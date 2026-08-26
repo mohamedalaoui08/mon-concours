@@ -1,5 +1,6 @@
 package com.monconcours.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -14,7 +15,7 @@ public class Abonnement {
     private LocalDate dateDebut;
     private LocalDate dateFin;
     private String statut;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_etudiant")
     private Etudiant etudiant;

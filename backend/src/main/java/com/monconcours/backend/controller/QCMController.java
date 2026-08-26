@@ -6,14 +6,24 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import com.monconcours.backend.repository.EtudiantRepository;
+import com.monconcours.backend.dto.ReponseQcmRequest;
+import com.monconcours.backend.entity.Etudiant;
+import com.monconcours.backend.entity.Resultat;
+import org.springframework.security.core.Authentication;
 
 @RestController
 public class QCMController {
 
     private final QCMService qcmService;
+    private final EtudiantRepository etudiantRepository;
 
-    public QCMController(QCMService qcmService) {
+    public QCMController(
+            QCMService qcmService,
+            EtudiantRepository etudiantRepository) {
+
         this.qcmService = qcmService;
+        this.etudiantRepository = etudiantRepository;
     }
 
     @GetMapping("/qcms")
@@ -40,5 +50,23 @@ public class QCMController {
     @DeleteMapping("/qcms/{id}")
     public void supprimerQCM(@PathVariable Integer id) {
         qcmService.supprimerQCM(id);
+    }
+
+    @PostMapping("/qcms/{id}/passer")
+    public Resultat passerQCM(
+            @PathVariable Integer id,
+            @RequestBody ReponseQcmRequest reponse,
+            Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        return qcmService.enregistrerResultat(
+                id,
+                etudiant,
+                reponse.getChoixIds()
+        );
     }
 }

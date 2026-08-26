@@ -1,5 +1,6 @@
 package com.monconcours.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,8 @@ public class Utilisateur {
     private String prenom;
     private String email;
     private String motDePasse;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
                                      /*getter */
     public Integer getId() {
         return id;

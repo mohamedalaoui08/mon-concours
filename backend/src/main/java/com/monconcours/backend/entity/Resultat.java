@@ -1,5 +1,6 @@
 package com.monconcours.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,11 +14,11 @@ public class Resultat {
 
     private float score;
     private LocalDate datePassage;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_qcm")
     private QCM qcm;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_etudiant")
     private Etudiant etudiant;

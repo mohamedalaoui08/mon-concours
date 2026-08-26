@@ -1,5 +1,7 @@
 package com.monconcours.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,7 +15,7 @@ public class Choix {
 
     private String texte;
     private boolean estCorrecte;
-
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne
     @JoinColumn(name = "id_question")
     private Question question;

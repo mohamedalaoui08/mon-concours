@@ -6,18 +6,30 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class AdminService {
 
     private final AdminRepository adminRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public AdminService(AdminRepository adminRepository) {
+    public AdminService(
+            AdminRepository adminRepository,
+            PasswordEncoder passwordEncoder) {
+
         this.adminRepository = adminRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // CREATE
     public Admin ajouterAdmin(Admin admin) {
+
+        String motDePasseEncode =
+                passwordEncoder.encode(admin.getMotDePasse());
+
+        admin.setMotDePasse(motDePasseEncode);
+
         return adminRepository.save(admin);
     }
 

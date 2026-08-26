@@ -41,4 +41,9 @@ public class ConcoursController {
     public void supprimerConcours(@PathVariable Integer id) {
         concoursService.supprimerConcours(id);
     }
+
+    @GetMapping("/concours/public")
+    public List<Concours> obtenirConcoursPublics() {
+        return concoursService.obtenirConcoursPublics();
+    }
 }

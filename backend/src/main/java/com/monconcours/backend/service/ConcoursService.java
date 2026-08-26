@@ -44,4 +44,10 @@ public class ConcoursService {
     public void supprimerConcours(Integer id) {
         concoursRepository.deleteById(id);
     }
+    public List<Concours> obtenirConcoursPublics() {
+        return concoursRepository.findAll()
+                .stream()
+                .limit(2)
+                .toList();
+    }
 }

@@ -1,5 +1,6 @@
 package com.monconcours.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -11,27 +12,32 @@ public class Favori {
     private Integer id;
 
     private LocalDate dateAjout;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_etudiant")
     private Etudiant etudiant;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_concours")
     private Concours concours;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_exercice")
     private Exercice exercice;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_formation")
     private Formation formation;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_qcm")
     private QCM qcm;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_actualite")
     private Actualite actualite;

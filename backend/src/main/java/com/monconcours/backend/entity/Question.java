@@ -1,5 +1,6 @@
 package com.monconcours.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class Question {
     private Integer id;
 
     private String enonce;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_qcm")
     private QCM qcm;

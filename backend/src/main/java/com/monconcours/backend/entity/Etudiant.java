@@ -19,9 +19,6 @@ public class Etudiant extends Utilisateur {
 
     @OneToMany(mappedBy = "etudiant")
     private List<Favori> favoris;
-
-    @OneToMany(mappedBy = "etudiant")
-    private List<Favori> favori;
                                 /*    getter    */
 
     public LocalDate getDateNaissance() {

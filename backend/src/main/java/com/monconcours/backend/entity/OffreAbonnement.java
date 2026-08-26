@@ -1,34 +1,31 @@
 package com.monconcours.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
-public class Ecole {
+public class OffreAbonnement {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String nom;
     private String description;
-    @JsonIgnore
-    @OneToMany(mappedBy = "ecole")
-    private List<Concours> concours;
+    private double prix;
+    private int dureeJours;
 
-    @OneToMany(mappedBy = "ecole")
-    private List<Actualite> actualites;
-                        /*  Constructeur    */
+                    /*      Constructeur        */
 
-    public Ecole() {
+    public OffreAbonnement() {
     }
 
-    public Ecole(String nom, String description) {
+    public OffreAbonnement(String nom, String description, double prix, int dureeJours) {
         this.nom = nom;
         this.description = description;
+        this.prix = prix;
+        this.dureeJours = dureeJours;
     }
-                         /*  Getter  */
+                    /*      Getter      */
 
     public Integer getId() {
         return id;
@@ -42,10 +39,14 @@ public class Ecole {
         return description;
     }
 
-    public List<Concours> getConcours() {
-        return concours;
+    public double getPrix() {
+        return prix;
     }
-                                    /*  Setter  */
+
+    public int getDureeJours() {
+        return dureeJours;
+    }
+                /*      Setter      */
 
     public void setId(Integer id) {
         this.id = id;
@@ -59,7 +60,11 @@ public class Ecole {
         this.description = description;
     }
 
-    public void setConcours(List<Concours> concours) {
-        this.concours = concours;
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
+    public void setDureeJours(int dureeJours) {
+        this.dureeJours = dureeJours;
     }
 }
