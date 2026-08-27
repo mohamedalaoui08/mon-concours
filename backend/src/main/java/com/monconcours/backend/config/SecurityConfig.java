@@ -117,6 +117,12 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.DELETE, "/questions/**", "/choix/**")
                         .hasRole("ADMIN")
+                        // RECUPER LE RESULTAT DE QCM
+                        .requestMatchers(HttpMethod.GET, "/resultats/mes-resultats")
+                        .hasRole("ETUDIANT")
+
+                        .requestMatchers("/resultats/**")
+                        .hasRole("ADMIN")
                         .anyRequest().authenticated()
                 );
         http.addFilterBefore(

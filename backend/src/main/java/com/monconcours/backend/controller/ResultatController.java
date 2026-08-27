@@ -6,14 +6,22 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import com.monconcours.backend.entity.Etudiant;
+import com.monconcours.backend.repository.EtudiantRepository;
+import org.springframework.security.core.Authentication;
 
 @RestController
 public class ResultatController {
 
     private final ResultatService resultatService;
+    private final EtudiantRepository etudiantRepository;
 
-    public ResultatController(ResultatService resultatService) {
+    public ResultatController(
+            ResultatService resultatService,
+            EtudiantRepository etudiantRepository) {
+
         this.resultatService = resultatService;
+        this.etudiantRepository = etudiantRepository;
     }
 
     @GetMapping("/resultats")
@@ -40,5 +48,16 @@ public class ResultatController {
     @DeleteMapping("/resultats/{id}")
     public void supprimerResultat(@PathVariable Integer id) {
         resultatService.supprimerResultat(id);
+    }
+
+    @GetMapping("/resultats/mes-resultats")
+    public List<Resultat> obtenirMesResultats(Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        return resultatService.obtenirResultatsEtudiant(etudiant);
     }
 }

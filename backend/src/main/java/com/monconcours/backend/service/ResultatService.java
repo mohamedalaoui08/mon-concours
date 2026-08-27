@@ -1,5 +1,6 @@
 package com.monconcours.backend.service;
 
+import com.monconcours.backend.entity.Etudiant;
 import com.monconcours.backend.entity.Resultat;
 import com.monconcours.backend.repository.ResultatRepository;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,9 @@ public class ResultatService {
 
     public void supprimerResultat(Integer id) {
         resultatRepository.deleteById(id);
+    }
+
+    public List<Resultat> obtenirResultatsEtudiant(Etudiant etudiant) {
+        return resultatRepository.findByEtudiant(etudiant);
     }
 }
