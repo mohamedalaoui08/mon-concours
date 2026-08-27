@@ -161,6 +161,21 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.DELETE, "/formations/**")
                         .hasRole("ADMIN")
+                        //ROLE DE CONCOURS
+                        .requestMatchers(HttpMethod.GET, "/concours/public")
+                        .permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/concours/**")
+                        .hasAnyRole("ETUDIANT", "ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/concours/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.PUT, "/concours/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.DELETE, "/concours/**")
+                        .hasRole("ADMIN")
                         .anyRequest().authenticated()
                 );
         http.addFilterBefore(
