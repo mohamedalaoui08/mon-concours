@@ -3,7 +3,7 @@ package com.monconcours.backend.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
-
+import com.monconcours.backend.entity.OffreAbonnement;
 @Entity
 public class Abonnement {
 
@@ -11,7 +11,10 @@ public class Abonnement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String type;
+    @ManyToOne
+    @JoinColumn(name = "id_offre_abonnement")
+    private OffreAbonnement offreAbonnement;
+
     private LocalDate dateDebut;
     private LocalDate dateFin;
     private String statut;
@@ -24,9 +27,10 @@ public class Abonnement {
 
     public Abonnement() {
     }
-
-    public Abonnement(String type, LocalDate dateDebut, LocalDate dateFin, String statut, Etudiant etudiant) {
-        this.type = type;
+    public void setOffreAbonnement(OffreAbonnement offreAbonnement) {
+        this.offreAbonnement = offreAbonnement;
+    }
+    public Abonnement(LocalDate dateDebut, LocalDate dateFin, String statut, Etudiant etudiant) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.statut = statut;
@@ -38,8 +42,8 @@ public class Abonnement {
         return id;
     }
 
-    public String getType() {
-        return type;
+    public OffreAbonnement getOffreAbonnement() {
+        return offreAbonnement;
     }
 
     public LocalDate getDateDebut() {
@@ -62,10 +66,6 @@ public class Abonnement {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public void setDateDebut(LocalDate dateDebut) {

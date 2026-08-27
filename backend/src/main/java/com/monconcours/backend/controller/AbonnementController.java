@@ -6,14 +6,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import com.monconcours.backend.dto.SouscrireAbonnementRequest;
+import com.monconcours.backend.entity.Etudiant;
+import com.monconcours.backend.repository.EtudiantRepository;
+import org.springframework.security.core.Authentication;
 
 @RestController
 public class AbonnementController {
 
     private final AbonnementService abonnementService;
+    private final EtudiantRepository etudiantRepository;
 
-    public AbonnementController(AbonnementService abonnementService) {
+    public AbonnementController(
+            AbonnementService abonnementService,
+            EtudiantRepository etudiantRepository) {
+
         this.abonnementService = abonnementService;
+        this.etudiantRepository = etudiantRepository;
     }
 
     // CREATE
@@ -45,5 +54,44 @@ public class AbonnementController {
     @DeleteMapping("/abonnements/{id}")
     public void supprimerAbonnement(@PathVariable Integer id) {
         abonnementService.supprimerAbonnement(id);
+    }
+
+    @PostMapping("/abonnements/souscrire")
+    public Abonnement souscrireAbonnement(
+            @RequestBody SouscrireAbonnementRequest request,
+            Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        return abonnementService.souscrireAbonnement(
+                etudiant,
+                request.getOffreId()
+        );
+    }
+
+    @GetMapping("/abonnements/mes-abonnements")
+    public List<Abonnement> obtenirMesAbonnements(Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        return abonnementService.obtenirAbonnementsEtudiant(etudiant);
+    }
+
+    @GetMapping("/abonnements/mon-abonnement-actif")
+    public Optional<Abonnement> obtenirMonAbonnementActif(
+            Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        return abonnementService.obtenirAbonnementActif(etudiant);
     }
 }

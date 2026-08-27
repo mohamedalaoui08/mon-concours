@@ -6,20 +6,37 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+import com.monconcours.backend.entity.Etudiant;
+import com.monconcours.backend.repository.EtudiantRepository;
+import org.springframework.security.core.Authentication;
+import com.monconcours.backend.dto.AjouterFavoriRequest;
+import com.monconcours.backend.dto.FavoriResponse;
 @RestController
 public class FavoriController {
 
     private final FavoriService favoriService;
+    private final EtudiantRepository etudiantRepository;
 
-    public FavoriController(FavoriService favoriService) {
+    public FavoriController(
+            FavoriService favoriService,
+            EtudiantRepository etudiantRepository) {
+
         this.favoriService = favoriService;
+        this.etudiantRepository = etudiantRepository;
     }
 
     // CREATE
     @PostMapping("/favoris")
-    public Favori ajouterFavori(@RequestBody Favori favori) {
-        return favoriService.ajouterFavori(favori);
+    public Favori ajouterFavori(
+            @RequestBody AjouterFavoriRequest request,
+            Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        return favoriService.ajouterFavoriSecurise(etudiant, request);
     }
 
     // READ - tous
@@ -43,7 +60,26 @@ public class FavoriController {
 
     // DELETE
     @DeleteMapping("/favoris/{id}")
-    public void supprimerFavori(@PathVariable Integer id) {
-        favoriService.supprimerFavori(id);
+    public void supprimerFavori(
+            @PathVariable Integer id,
+            Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        favoriService.supprimerFavoriEtudiant(id, etudiant);
+    }
+
+    @GetMapping("/favoris/mes-favoris")
+    public List<FavoriResponse> obtenirMesFavoris(Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        return favoriService.obtenirFavorisEtudiantResponse(etudiant);
     }
 }

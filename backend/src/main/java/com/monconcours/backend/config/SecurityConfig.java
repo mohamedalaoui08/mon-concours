@@ -123,6 +123,27 @@ public class SecurityConfig {
 
                         .requestMatchers("/resultats/**")
                         .hasRole("ADMIN")
+
+
+                        .requestMatchers(HttpMethod.GET, "/favoris/mes-favoris")
+                        .hasRole("ETUDIANT")
+
+                        .requestMatchers(HttpMethod.GET, "/favoris/**")
+                        .hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/favoris")
+                        .hasRole("ETUDIANT")
+
+                        .requestMatchers(HttpMethod.DELETE, "/favoris/**")
+                        .hasRole("ETUDIANT")
+
+                        .requestMatchers(HttpMethod.POST, "/abonnements/souscrire")
+                        .hasRole("ETUDIANT")
+                        .requestMatchers(HttpMethod.GET, "/abonnements/mes-abonnements")
+                        .hasRole("ETUDIANT")
+                        .requestMatchers(HttpMethod.GET, "/abonnements/mon-abonnement-actif")
+                        .hasRole("ETUDIANT")
+                        .requestMatchers("/abonnements/**")
+                        .hasRole("ADMIN")
                         .anyRequest().authenticated()
                 );
         http.addFilterBefore(
