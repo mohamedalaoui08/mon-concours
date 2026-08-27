@@ -25,11 +25,16 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/demandes-inscription/**",
                                 "/login",
                                 "/ping",
                                 "/concours/public"
                         ).permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/demandes-inscription")
+                        .permitAll()
+
+                        .requestMatchers("/demandes-inscription/**")
+                        .hasRole("ADMIN")
                         // role pour les qcms
                         .requestMatchers("/admins/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/qcms/**")

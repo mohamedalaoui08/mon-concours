@@ -19,15 +19,18 @@ public class QCMService {
     private final QCMRepository qcmRepository;
     private final ChoixRepository choixRepository;
     private final ResultatRepository resultatRepository;
+    private final AbonnementService abonnementService;
 
     public QCMService(
             QCMRepository qcmRepository,
             ChoixRepository choixRepository,
-            ResultatRepository resultatRepository) {
+            ResultatRepository resultatRepository,
+            AbonnementService abonnementService) {
 
         this.qcmRepository = qcmRepository;
         this.choixRepository = choixRepository;
         this.resultatRepository = resultatRepository;
+        this.abonnementService = abonnementService;
     }
 
     public QCM ajouterQCM(QCM qcm) {
@@ -97,6 +100,11 @@ public class QCMService {
             Integer qcmId,
             Etudiant etudiant,
             List<Integer> choixIds) {
+        if (abonnementService.obtenirAbonnementActif(etudiant).isEmpty()) {
+            throw new RuntimeException(
+                    "Un abonnement actif est nécessaire pour passer un QCM"
+            );
+        }
 
         QCM qcm = qcmRepository.findById(qcmId)
                 .orElseThrow(() -> new RuntimeException("QCM non trouvé"));

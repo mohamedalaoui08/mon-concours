@@ -17,8 +17,9 @@ public class Utilisateur {
     private String nom;
     private String prenom;
     private String email;
-    private String motDePasse;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String motDePasse;
+
 
                                      /*getter */
     public Integer getId() {

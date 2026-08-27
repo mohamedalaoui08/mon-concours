@@ -50,9 +50,11 @@ public class DemandeInscriptionService {
     }
     // ACCEPTER DEMANDE D'INSCRIPTION
     public DemandeInscription accepterDemande(Integer id) {
-
         DemandeInscription demande = demandeInscriptionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Demande non trouvee"));
+        if (etudiantRepository.findByEmail(demande.getEmail()).isPresent()) {
+            throw new RuntimeException("Un étudiant avec cet email existe déjà");
+        }
 
         //String codeInitial = String.valueOf((int) (Math.random() * 900000) + 100000);
         String codeInitial = "123456";
