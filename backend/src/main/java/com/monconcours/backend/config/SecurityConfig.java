@@ -149,6 +149,18 @@ public class SecurityConfig {
                         .hasRole("ETUDIANT")
                         .requestMatchers("/abonnements/**")
                         .hasRole("ADMIN")
+                        //ROLE DE FORMATION
+                        .requestMatchers(HttpMethod.GET, "/formations/**")
+                        .hasAnyRole("ETUDIANT", "ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/formations/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.PUT, "/formations/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.DELETE, "/formations/**")
+                        .hasRole("ADMIN")
                         .anyRequest().authenticated()
                 );
         http.addFilterBefore(
