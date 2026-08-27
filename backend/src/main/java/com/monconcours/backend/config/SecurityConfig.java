@@ -110,7 +110,9 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.DELETE, "/ecoles/**")
                         .hasRole("ADMIN")
+
                         // ROLE DE QCM ET CHOIX
+
                         .requestMatchers(HttpMethod.GET, "/questions/**", "/choix/**")
                         .hasAnyRole("ETUDIANT", "ADMIN")
 
@@ -122,7 +124,9 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.DELETE, "/questions/**", "/choix/**")
                         .hasRole("ADMIN")
+
                         // RECUPER LE RESULTAT DE QCM
+
                         .requestMatchers(HttpMethod.GET, "/resultats/mes-resultats")
                         .hasRole("ETUDIANT")
 
@@ -149,7 +153,9 @@ public class SecurityConfig {
                         .hasRole("ETUDIANT")
                         .requestMatchers("/abonnements/**")
                         .hasRole("ADMIN")
+
                         //ROLE DE FORMATION
+
                         .requestMatchers(HttpMethod.GET, "/formations/**")
                         .hasAnyRole("ETUDIANT", "ADMIN")
 
@@ -161,7 +167,9 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.DELETE, "/formations/**")
                         .hasRole("ADMIN")
+
                         //ROLE DE CONCOURS
+
                         .requestMatchers(HttpMethod.GET, "/concours/public")
                         .permitAll()
 
@@ -175,6 +183,21 @@ public class SecurityConfig {
                         .hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.DELETE, "/concours/**")
+                        .hasRole("ADMIN")
+
+                        //ROLE PROFILE ETUDIANT
+
+                        .requestMatchers(HttpMethod.GET, "/etudiants/mon-profil")
+                        .hasRole("ETUDIANT")
+                        .requestMatchers(HttpMethod.PUT, "/etudiants/mon-profil")
+                        .hasRole("ETUDIANT")
+
+                        .requestMatchers("/etudiants/**")
+                        .hasRole("ADMIN")
+
+                        // ROLE D'ADMIN
+
+                        .requestMatchers("/admins/**")
                         .hasRole("ADMIN")
                         .anyRequest().authenticated()
                 );
