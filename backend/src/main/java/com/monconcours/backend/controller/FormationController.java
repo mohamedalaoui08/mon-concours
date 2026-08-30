@@ -64,7 +64,30 @@ public class FormationController {
     }
     // READ - par id
     @GetMapping("/formations/{id}")
-    public Optional<Formation> obtenirFormationParId(@PathVariable Integer id) {
+    public Optional<Formation> obtenirFormationParId(
+            @PathVariable Integer id,
+            Authentication authentication) {
+
+        boolean estAdmin = authentication.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(role -> role.equals("ROLE_ADMIN"));
+
+        if (estAdmin) {
+            return formationService.obtenirFormationParId(id);
+        }
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        if (abonnementService.obtenirAbonnementActif(etudiant).isEmpty()) {
+            throw new RuntimeException(
+                    "Un abonnement actif est nécessaire pour consulter les formations"
+            );
+        }
+
         return formationService.obtenirFormationParId(id);
     }
 

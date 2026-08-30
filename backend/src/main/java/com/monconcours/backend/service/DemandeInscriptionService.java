@@ -56,8 +56,7 @@ public class DemandeInscriptionService {
             throw new RuntimeException("Un étudiant avec cet email existe déjà");
         }
 
-        //String codeInitial = String.valueOf((int) (Math.random() * 900000) + 100000);
-        String codeInitial = "123456";
+        String codeInitial = String.valueOf((int) (Math.random() * 900000) + 100000);
         String codeEncode = passwordEncoder.encode(codeInitial);
 
         Etudiant etudiant = new Etudiant(
@@ -70,7 +69,7 @@ public class DemandeInscriptionService {
         );
 
         etudiantRepository.save(etudiant);
-        //emailService.envoyerCodeConnexion(demande.getEmail(), codeInitial);
+        emailService.envoyerCodeConnexion(demande.getEmail(), codeInitial);
         demande.setStatut("ACCEPTEE");
 
         return demandeInscriptionRepository.save(demande);

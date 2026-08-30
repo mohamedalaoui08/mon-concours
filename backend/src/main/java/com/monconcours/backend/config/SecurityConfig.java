@@ -36,7 +36,6 @@ public class SecurityConfig {
                         .requestMatchers("/demandes-inscription/**")
                         .hasRole("ADMIN")
                         // role pour les qcms
-                        .requestMatchers("/admins/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/qcms/**")
                         .hasAnyRole("ETUDIANT", "ADMIN")
 
@@ -141,6 +140,8 @@ public class SecurityConfig {
                         .hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/favoris")
                         .hasRole("ETUDIANT")
+                        .requestMatchers(HttpMethod.PUT, "/favoris/**")
+                        .hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.DELETE, "/favoris/**")
                         .hasRole("ETUDIANT")
@@ -154,19 +155,7 @@ public class SecurityConfig {
                         .requestMatchers("/abonnements/**")
                         .hasRole("ADMIN")
 
-                        //ROLE DE FORMATION
 
-                        .requestMatchers(HttpMethod.GET, "/formations/**")
-                        .hasAnyRole("ETUDIANT", "ADMIN")
-
-                        .requestMatchers(HttpMethod.POST, "/formations/**")
-                        .hasRole("ADMIN")
-
-                        .requestMatchers(HttpMethod.PUT, "/formations/**")
-                        .hasRole("ADMIN")
-
-                        .requestMatchers(HttpMethod.DELETE, "/formations/**")
-                        .hasRole("ADMIN")
 
                         //ROLE DE CONCOURS
 

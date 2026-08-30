@@ -11,28 +11,76 @@ import com.monconcours.backend.dto.ReponseQcmRequest;
 import com.monconcours.backend.entity.Etudiant;
 import com.monconcours.backend.entity.Resultat;
 import org.springframework.security.core.Authentication;
+import com.monconcours.backend.service.AbonnementService;
+import org.springframework.security.core.GrantedAuthority;
 
 @RestController
 public class QCMController {
 
     private final QCMService qcmService;
     private final EtudiantRepository etudiantRepository;
+    private final AbonnementService abonnementService;
 
     public QCMController(
             QCMService qcmService,
-            EtudiantRepository etudiantRepository) {
+            EtudiantRepository etudiantRepository,
+            AbonnementService abonnementService) {
 
         this.qcmService = qcmService;
         this.etudiantRepository = etudiantRepository;
+        this.abonnementService = abonnementService;
     }
 
     @GetMapping("/qcms")
-    public List<QCM> obtenirTousLesQCM() {
+    public List<QCM> obtenirTousLesQCM(Authentication authentication) {
+        boolean estAdmin = authentication.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(role -> role.equals("ROLE_ADMIN"));
+
+        if (estAdmin) {
+            return qcmService.obtenirTousLesQCM();
+        }
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        if (abonnementService.obtenirAbonnementActif(etudiant).isEmpty()) {
+            throw new RuntimeException(
+                    "Un abonnement actif est nécessaire pour consulter les QCM"
+            );
+        }
+
         return qcmService.obtenirTousLesQCM();
     }
 
     @GetMapping("/qcms/{id}")
-    public Optional<QCM> obtenirQCMParId(@PathVariable Integer id) {
+    public Optional<QCM> obtenirQCMParId(
+            @PathVariable Integer id,
+            Authentication authentication) {
+
+        boolean estAdmin = authentication.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(role -> role.equals("ROLE_ADMIN"));
+
+        if (estAdmin) {
+            return qcmService.obtenirQCMParId(id);
+        }
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        if (abonnementService.obtenirAbonnementActif(etudiant).isEmpty()) {
+            throw new RuntimeException(
+                    "Un abonnement actif est nécessaire pour consulter les QCM"
+            );
+        }
+
         return qcmService.obtenirQCMParId(id);
     }
 

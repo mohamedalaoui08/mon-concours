@@ -6,23 +6,81 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import com.monconcours.backend.entity.Etudiant;
+import com.monconcours.backend.repository.EtudiantRepository;
+import com.monconcours.backend.service.AbonnementService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 
 @RestController
 public class ChoixController {
 
     private final ChoixService choixService;
+    private final EtudiantRepository etudiantRepository;
+    private final AbonnementService abonnementService;
 
-    public ChoixController(ChoixService choixService) {
+
+    public ChoixController(
+            ChoixService choixService,
+            EtudiantRepository etudiantRepository,
+            AbonnementService abonnementService) {
+
         this.choixService = choixService;
+        this.etudiantRepository = etudiantRepository;
+        this.abonnementService = abonnementService;
     }
 
     @GetMapping("/choix")
-    public List<Choix> obtenirTousLesChoix() {
+    public List<Choix> obtenirTousLesChoix(Authentication authentication) {
+
+        boolean estAdmin = authentication.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(role -> role.equals("ROLE_ADMIN"));
+
+        if (estAdmin) {
+            return choixService.obtenirTousLesChoix();
+        }
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        if (abonnementService.obtenirAbonnementActif(etudiant).isEmpty()) {
+            throw new RuntimeException(
+                    "Un abonnement actif est nécessaire pour consulter les choix"
+            );
+        }
+
         return choixService.obtenirTousLesChoix();
     }
 
     @GetMapping("/choix/{id}")
-    public Optional<Choix> obtenirChoixParId(@PathVariable Integer id) {
+    public Optional<Choix> obtenirChoixParId(
+            @PathVariable Integer id,
+            Authentication authentication) {
+
+        boolean estAdmin = authentication.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(role -> role.equals("ROLE_ADMIN"));
+
+        if (estAdmin) {
+            return choixService.obtenirChoixParId(id);
+        }
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        if (abonnementService.obtenirAbonnementActif(etudiant).isEmpty()) {
+            throw new RuntimeException(
+                    "Un abonnement actif est nécessaire pour consulter les choix"
+            );
+        }
+
         return choixService.obtenirChoixParId(id);
     }
 
