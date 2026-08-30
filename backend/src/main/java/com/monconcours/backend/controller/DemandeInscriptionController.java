@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import jakarta.validation.Valid;
 
 @RestController
 public class DemandeInscriptionController {
@@ -18,7 +19,7 @@ public class DemandeInscriptionController {
 
     // CREATE
     @PostMapping("/demandes-inscription")
-    public DemandeInscription ajouterDemande(@RequestBody DemandeInscription demande) {
+    public DemandeInscription ajouterDemande(@Valid @RequestBody DemandeInscription demande) {
         return demandeInscriptionService.ajouterDemande(demande);
     }
 

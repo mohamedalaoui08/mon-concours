@@ -8,6 +8,7 @@ import com.monconcours.backend.repository.EtudiantRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.List;
 import java.util.Optional;
+import java.security.SecureRandom;
 
 @Service
 public class DemandeInscriptionService {
@@ -16,6 +17,7 @@ public class DemandeInscriptionService {
     private final EtudiantRepository etudiantRepository;
     private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
+    private final SecureRandom secureRandom = new SecureRandom();
 
     public DemandeInscriptionService(
             DemandeInscriptionRepository demandeInscriptionRepository,
@@ -30,10 +32,19 @@ public class DemandeInscriptionService {
     }
     // CREATE
     public DemandeInscription ajouterDemande(DemandeInscription demande) {
+
+        if (demandeInscriptionRepository.existsByEmail(demande.getEmail())) {
+            throw new RuntimeException("Une demande avec cet email existe déjà");
+        }
+
+        if (etudiantRepository.findByEmail(demande.getEmail()).isPresent()) {
+            throw new RuntimeException("Un étudiant avec cet email existe déjà");
+        }
+
         demande.setStatut("EN_ATTENTE");
+
         return demandeInscriptionRepository.save(demande);
     }
-
     // READ - toutes
     public List<DemandeInscription> obtenirToutesLesDemandes() {
         return demandeInscriptionRepository.findAll();
@@ -52,11 +63,14 @@ public class DemandeInscriptionService {
     public DemandeInscription accepterDemande(Integer id) {
         DemandeInscription demande = demandeInscriptionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Demande non trouvee"));
+        if ("ACCEPTEE".equals(demande.getStatut())) {
+            throw new RuntimeException("Cette demande a déjà été acceptée");
+        }
         if (etudiantRepository.findByEmail(demande.getEmail()).isPresent()) {
             throw new RuntimeException("Un étudiant avec cet email existe déjà");
         }
 
-        String codeInitial = String.valueOf((int) (Math.random() * 900000) + 100000);
+        String codeInitial = String.valueOf(secureRandom.nextInt(900000) + 100000);
         String codeEncode = passwordEncoder.encode(codeInitial);
 
         Etudiant etudiant = new Etudiant(

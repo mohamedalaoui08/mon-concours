@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Column;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -16,6 +17,7 @@ public class Utilisateur {
     private Integer id;
     private String nom;
     private String prenom;
+    @Column(unique = true, nullable = false)
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String motDePasse;

@@ -27,15 +27,19 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/login",
                                 "/ping",
-                                "/concours/public"
+                                "/concours/public",
+                                "/error"
                         ).permitAll()
+                        // Role de demande d'inscription
 
                         .requestMatchers(HttpMethod.POST, "/demandes-inscription")
                         .permitAll()
 
                         .requestMatchers("/demandes-inscription/**")
                         .hasRole("ADMIN")
+
                         // role pour les qcms
+
                         .requestMatchers(HttpMethod.GET, "/qcms/**")
                         .hasAnyRole("ETUDIANT", "ADMIN")
 
@@ -144,7 +148,7 @@ public class SecurityConfig {
                         .hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.DELETE, "/favoris/**")
-                        .hasRole("ETUDIANT")
+                        .hasAnyRole("ETUDIANT", "ADMIN")
 
                         .requestMatchers(HttpMethod.POST, "/abonnements/souscrire")
                         .hasRole("ETUDIANT")

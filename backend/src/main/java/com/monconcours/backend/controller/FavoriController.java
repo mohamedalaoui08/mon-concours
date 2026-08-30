@@ -60,9 +60,15 @@ public class FavoriController {
 
     // DELETE
     @DeleteMapping("/favoris/{id}")
-    public void supprimerFavori(
-            @PathVariable Integer id,
-            Authentication authentication) {
+    public void supprimerFavori(@PathVariable Integer id, Authentication authentication) {
+
+        boolean estAdmin = authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+
+        if (estAdmin) {
+            favoriService.supprimerFavori(id);
+            return;
+        }
 
         String email = authentication.getName();
 

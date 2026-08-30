@@ -47,7 +47,12 @@ public class PdfService {
     public Resource chargerPdf(String nomFichier) {
 
         try {
-            Path cheminFichier = dossierPdf.resolve(nomFichier).normalize();
+            Path dossierNormalise = dossierPdf.toAbsolutePath().normalize();
+            Path cheminFichier = dossierNormalise.resolve(nomFichier).normalize();
+
+            if (!cheminFichier.startsWith(dossierNormalise)) {
+                throw new RuntimeException("Chemin PDF invalide");
+            }
 
             Resource resource = new UrlResource(cheminFichier.toUri());
 
