@@ -1,0 +1,31 @@
+<h2>Liste des formations</h2>
+
+<div *ngFor="let formationItem of formations">
+
+  <h3>{{ formationItem.titre }}</h3>
+
+  <p>Niveau : {{ formationItem.niveau }}</p>
+
+  <p>Durée : {{ formationItem.duree }}</p>
+
+  <p>{{ formationItem.description }}</p>
+
+  <button (click)="ouvrirFormation(formationItem)">
+    Voir la formation
+  </button>
+
+</div>
+
+<div *ngIf="formationSelectionnee">
+
+    <h2>{{ formationSelectionnee.titre }}</h2>
+  
+    <p>Description : {{ formationSelectionnee.description }}</p>
+  
+    <p>Contenu : {{ formationSelectionnee.contenu }}</p>
+  
+    <p>Durée : {{ formationSelectionnee.duree }}</p>
+  
+    <p>Niveau : {{ formationSelectionnee.niveau }}</p>
+  
+  </div>

@@ -8,6 +8,7 @@ import com.monconcours.backend.entity.Utilisateur;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.monconcours.backend.service.JwtService;
+import com.monconcours.backend.entity.Admin;
 
 @RestController
 public class AuthController {
@@ -38,9 +39,16 @@ public class AuthController {
         );
 
         if (motDePasseCorrect) {
-            return jwtService.genererToken(utilisateur.getEmail());
+            String role;
+
+            if (utilisateur instanceof Admin) {
+                role = "ADMIN";
+            } else {
+                role = "ETUDIANT";
+            }
+            return jwtService.genererToken(utilisateur.getEmail(), role);
         } else {
-            return "Email ou mot de passe incorrect";
+            throw new RuntimeException("Email ou mot de passe incorrect");
         }
     }
 }

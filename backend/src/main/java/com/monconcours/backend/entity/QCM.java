@@ -3,6 +3,7 @@ package com.monconcours.backend.entity;
 import jakarta.persistence.*;
 
 import java.util.List;
+import jakarta.persistence.CascadeType;
 
 @Entity
 public class QCM {
@@ -15,13 +16,13 @@ public class QCM {
     private  Integer duree;
     private String niveau;
 
-    @OneToMany(mappedBy = "qcm")
+    @OneToMany(mappedBy = "qcm", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions;
 
-    @OneToMany(mappedBy = "qcm")
+    @OneToMany(mappedBy = "qcm", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Resultat> resultats;
 
-    @OneToMany(mappedBy = "qcm")
+    @OneToMany(mappedBy = "qcm", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Favori> favori;
                     /*       Constructeur     */
 

@@ -1,0 +1,21 @@
+<h2>Nos offres d'abonnement</h2>
+
+<div *ngFor="let offre of offres">
+
+  <h3>{{ offre.nom }}</h3>
+
+  <p>Prix : {{ offre.prix }} DH</p>
+
+  <p>Durée : {{ offre.dureeJours }} jours</p>
+
+  <p>{{ offre.description }}</p>
+
+  <button (click)="souscrire(offre)">
+    Souscrire
+  </button>
+
+  <p *ngIf="messageAbonnement">
+    {{ messageAbonnement }}
+  </p>
+
+</div>

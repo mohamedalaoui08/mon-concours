@@ -1,0 +1,25 @@
+<h2>Liste des exercices</h2>
+
+<div *ngFor="let exerciceItem of exercices">
+
+  <h3>{{ exerciceItem.titre }}</h3>
+
+  <p>Matière : {{ exerciceItem.matiere }}</p>
+
+  <p>{{ exerciceItem.enonce }}</p>
+
+  <button (click)="ouvrirExercice(exerciceItem)">
+    Voir l'exercice
+  </button>
+
+</div>
+
+<div *ngIf="exerciceSelectionne">
+
+    <h2>{{ exerciceSelectionne.titre }}</h2>
+  
+    <p>Matière : {{ exerciceSelectionne.matiere }}</p>
+  
+    <p>Énoncé : {{ exerciceSelectionne.enonce }}</p>
+  
+  </div>

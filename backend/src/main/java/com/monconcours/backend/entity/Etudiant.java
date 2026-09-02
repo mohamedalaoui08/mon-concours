@@ -1,5 +1,6 @@
 package com.monconcours.backend.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
@@ -14,7 +15,11 @@ public class Etudiant extends Utilisateur {
     @OneToMany(mappedBy = "etudiant")
     private List<Resultat> resultats;
 
-    @OneToMany(mappedBy = "etudiant")
+    @OneToMany(
+            mappedBy = "etudiant",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<Abonnement> abonnements;
 
     @OneToMany(mappedBy = "etudiant")

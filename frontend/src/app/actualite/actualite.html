@@ -1,0 +1,11 @@
+<h2>Actualités des écoles</h2>
+
+<div *ngFor="let actualiteItem of actualites">
+
+  <h3>{{ actualiteItem.titre }}</h3>
+
+  <p>Date : {{ actualiteItem.datePublication }}</p>
+
+  <p>{{ actualiteItem.contenu }}</p>
+
+</div>

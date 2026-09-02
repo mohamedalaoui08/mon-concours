@@ -1,0 +1,44 @@
+<div *ngIf="profil">
+    <h2>Mon profil</h2>
+  
+    <label>Nom :</label>
+    <input [(ngModel)]="profil.nom">
+    <label>Prénom :</label>
+    <input [(ngModel)]="profil.prenom">
+    <p>Email : {{ profil.email }}</p>
+    <label>Date de naissance :</label>
+    <input type="date" [(ngModel)]="profil.dateNaissance">
+    <label>Niveau :</label>
+<input [(ngModel)]="profil.niveau">
+  </div>
+  <button (click)="modifierProfil()">Enregistrer les modifications</button>
+  <button (click)="seDeconnecter()">Déconnexion</button>
+
+  <h2>Mes favoris</h2>
+
+<div *ngFor="let favori of favoris">
+
+  <p>Type : {{ favori.typeContenu }}</p>
+
+  <p>ID du contenu : {{ favori.contenuId }}</p>
+
+  <p>Date d'ajout : {{ favori.dateAjout }}</p>
+
+  <button (click)="supprimerFavori(favori.id)">
+    Supprimer
+  </button>
+
+  <h2>Mes résultats QCM</h2>
+
+</div>
+
+
+<div *ngFor="let resultat of resultats">
+
+  <p>Score : {{ resultat.score }}</p>
+
+  <p>Date : {{ resultat.datePassage }}</p>
+
+</div>
+
+

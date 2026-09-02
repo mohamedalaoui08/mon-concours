@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
+import jakarta.persistence.CascadeType;
 
 @Entity
 public class Question {
@@ -18,7 +19,7 @@ public class Question {
     @JoinColumn(name = "id_qcm")
     private QCM qcm;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Choix> choix;
                             /*  Constructeur */
 

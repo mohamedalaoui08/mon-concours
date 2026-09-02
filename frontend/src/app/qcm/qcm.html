@@ -1,0 +1,43 @@
+<h2>Liste des QCM</h2>
+
+<div *ngFor="let qcmItem of qcms">
+  <h3>{{ qcmItem.titre }}</h3>
+  <p>Durée : {{ qcmItem.duree }} minutes</p>
+  <p>Niveau : {{ qcmItem.niveau }}</p>
+
+  <button (click)="ouvrirQcm(qcmItem)">
+    Passer le QCM
+  </button>
+
+</div>
+
+<div *ngIf="qcmSelectionne">
+
+    <h2>{{ qcmSelectionne.titre }}</h2>
+  
+    <div *ngFor="let question of qcmSelectionne.questions">
+  
+      <h3>{{ question.enonce }}</h3>
+
+      <div *ngFor="let choix of question.choix">
+        <label>
+            <input
+            type="radio"
+            [name]="'question-' + question.id"
+            (change)="selectionnerChoix(question.id, choix.id)"
+          >
+          {{ choix.texte }}
+        </label>
+      </div>
+  
+    </div>
+
+    <button (click)="validerQcm()">
+        Valider le QCM
+      </button>
+
+    <div *ngIf="resultatQcm">
+        <h3>Résultat : {{ resultatQcm.score }}</h3>
+    </div>
+  
+  </div>

@@ -1,0 +1,15 @@
+<h2>Liste des concours</h2>
+
+<div *ngFor="let concoursItem of concours">
+  <h3>{{ concoursItem.nom }}</h3>
+  <p>Date : {{ concoursItem.date }}</p>
+  <p>Description : {{ concoursItem.description }}</p>
+  <button (click)="telechargerPdf(concoursItem.id)">
+    Télécharger le PDF
+  </button>
+
+  <button (click)="ajouterFavori(concoursItem)">
+    Ajouter aux favoris
+  </button>
+  
+</div>
