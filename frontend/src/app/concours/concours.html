@@ -8,7 +8,7 @@
     Télécharger le PDF
   </button>
 
-  <button (click)="ajouterFavori(concoursItem)">
+  <button *ngIf="estConnecte" (click)="ajouterFavori(concoursItem)">
     Ajouter aux favoris
   </button>
   

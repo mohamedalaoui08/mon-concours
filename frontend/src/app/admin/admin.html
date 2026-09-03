@@ -736,6 +736,32 @@
     Supprimer
   </button>
 
+  <h2>Ajouter un admin</h2>
+
+<label>Nom :</label>
+<input [(ngModel)]="nouvelAdmin.nom">
+
+<br>
+
+<label>Prénom :</label>
+<input [(ngModel)]="nouvelAdmin.prenom">
+
+<br>
+
+<label>Email :</label>
+<input [(ngModel)]="nouvelAdmin.email">
+
+<br>
+
+<label>Mot de passe :</label>
+<input type="password" [(ngModel)]="nouvelAdmin.motDePasse">
+
+<br>
+
+<button (click)="ajouterAdmin()">
+  Ajouter l'admin
+</button>
+
 </div>
 
 <div *ngIf="adminAModifier">

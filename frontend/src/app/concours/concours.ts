@@ -11,9 +11,10 @@ import { CommonModule } from '@angular/common';
 export class Concours {
   private http = inject(HttpClient);
   concours: any[] = [];
+  estConnecte = !!localStorage.getItem('token');
 
   ngOnInit() {
-    this.http.get<any[]>('http://localhost:8080/concours')
+    this.http.get<any[]>('http://localhost:8080/concours/public')
       .subscribe({
         next: (reponse) => {
           this.concours = reponse;

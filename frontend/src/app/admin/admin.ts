@@ -45,6 +45,13 @@ demandesInscription: any[] = [];
 
 abonnements: any[] = [];
 
+nouvelAdmin: any = {
+  nom: '',
+  prenom: '',
+  email: '',
+  motDePasse: ''
+};
+
 nouvelleOffreAbonnement: any = {
   nom: '',
   description: '',
@@ -1142,6 +1149,29 @@ modifierAbonnement(abonnement: any) {
       console.log('Erreur modification abonnement :', erreur);
     }
 
+  });
+}
+
+ajouterAdmin() {
+  this.http.post<any>(
+    'http://localhost:8080/admins',
+    this.nouvelAdmin
+  ).subscribe({
+    next: (reponse) => {
+      console.log('Admin ajouté :', reponse);
+
+      this.admins.push(reponse);
+
+      this.nouvelAdmin = {
+        nom: '',
+        prenom: '',
+        email: '',
+        motDePasse: ''
+      };
+    },
+    error: (erreur) => {
+      console.log('Erreur ajout admin :', erreur);
+    }
   });
 }
 }

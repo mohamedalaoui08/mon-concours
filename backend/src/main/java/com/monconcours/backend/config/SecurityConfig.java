@@ -174,6 +174,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/concours/public")
                         .permitAll()
 
+                        .requestMatchers(HttpMethod.GET, "/concours/*/pdf").permitAll()
+
                         .requestMatchers(HttpMethod.GET, "/concours/**")
                         .hasAnyRole("ETUDIANT", "ADMIN")
 

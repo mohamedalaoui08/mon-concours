@@ -19,8 +19,8 @@ export const routes: Routes = [
   { path: 'qcm', component: Qcm, canActivate: [authGuard] },
   { path: 'exercice', component: Exercice, canActivate: [authGuard] },
   { path: 'formation', component: Formation, canActivate: [authGuard] },
-  { path: 'actualite', component: Actualite, canActivate: [authGuard] },
-  { path: 'abonnement', component: Abonnement, canActivate: [authGuard] },
+  { path: 'actualite', component: Actualite },
+  { path: 'abonnement', component: Abonnement },
   { path: 'profil', component: Profil, canActivate: [authGuard] },
   { path: 'admin', component: Admin, canActivate: [adminGuard] }
 ];

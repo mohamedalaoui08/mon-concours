@@ -10,7 +10,7 @@
 
   <p>{{ offre.description }}</p>
 
-  <button (click)="souscrire(offre)">
+  <button *ngIf="estConnecte" (click)="souscrire(offre)">
     Souscrire
   </button>
 

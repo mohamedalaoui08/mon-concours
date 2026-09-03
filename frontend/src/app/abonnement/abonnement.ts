@@ -14,6 +14,7 @@ export class Abonnement {
 
 offres: any[] = [];
 messageAbonnement: string = '';
+estConnecte = !!localStorage.getItem('token');
 
 ngOnInit() {
   this.http.get<any[]>('http://localhost:8080/offres-abonnement')
