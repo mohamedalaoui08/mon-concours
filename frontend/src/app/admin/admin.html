@@ -762,3 +762,49 @@
     </button>
   
   </div>
+  <h2>Demandes d'inscription</h2>
+
+  <div *ngFor="let demandeItem of demandesInscription">
+  
+    <p>Nom : {{ demandeItem.nom }}</p>
+    <p>Prénom : {{ demandeItem.prenom }}</p>
+    <p>Email : {{ demandeItem.email }}</p>
+    <p>Statut : {{ demandeItem.statut }}</p>
+    <button
+    *ngIf="demandeItem.statut !== 'ACCEPTEE' && demandeItem.statut !== 'REFUSEE'"
+    (click)="accepterDemande(demandeItem.id)">
+    Accepter
+  </button>
+
+  <button
+  *ngIf="demandeItem.statut !== 'ACCEPTEE' && demandeItem.statut !== 'REFUSEE'"
+  (click)="refuserDemande(demandeItem.id)">
+  Refuser
+  </button>
+  
+  </div>
+
+  <h2>Gestion des abonnements</h2>
+
+<div *ngFor="let abonnementItem of abonnements">
+
+  <p>ID : {{ abonnementItem.id }}</p>
+  <p>Date début : {{ abonnementItem.dateDebut }}</p>
+  <p>Date fin : {{ abonnementItem.dateFin }}</p>
+  <p>Statut : {{ abonnementItem.statut }}</p>
+
+  <button (click)="supprimerAbonnement(abonnementItem.id)">
+    Supprimer
+  </button>
+
+  <select [(ngModel)]="abonnementItem.statut">
+    <option value="ACTIF">ACTIF</option>
+    <option value="EXPIRE">EXPIRE</option>
+    <option value="ANNULE">ANNULE</option>
+  </select>
+  
+  <button (click)="modifierAbonnement(abonnementItem)">
+    Modifier
+  </button>
+
+</div>

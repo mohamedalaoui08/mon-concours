@@ -41,6 +41,9 @@ etudiants: any[] = [];
 etudiantAModifier: any = null;
 admins: any[] = [];
 adminAModifier: any = null;
+demandesInscription: any[] = [];
+
+abonnements: any[] = [];
 
 nouvelleOffreAbonnement: any = {
   nom: '',
@@ -102,19 +105,17 @@ nouvelExercice: any = {
 
 
 ngOnInit() {
-  this.http.get<any[]>('http://localhost:8080/concours')
-    .subscribe({
-      next: (reponse) => {
-        this.concours = reponse;
-        console.log('Concours admin reçus :', reponse);
-      },
-      error: (erreur) => {
-        console.log('Erreur concours admin :', erreur);
-      }
-    });
+  this.http.get<any[]>('http://localhost:8080/concours').subscribe({
+    next: (reponse) => {
+      this.concours = reponse;
+      console.log('Concours admin reçus :', reponse);
+    },
+    error: (erreur) => {
+      console.log('Erreur concours admin :', erreur);
+    }
+  });
 
-    this.http.get<any[]>('http://localhost:8080/ecoles')
-  .subscribe({
+  this.http.get<any[]>('http://localhost:8080/ecoles').subscribe({
     next: (reponse) => {
       this.ecoles = reponse;
       console.log('Écoles reçues :', reponse);
@@ -124,8 +125,7 @@ ngOnInit() {
     }
   });
 
-  this.http.get<any[]>('http://localhost:8080/qcms')
-  .subscribe({
+  this.http.get<any[]>('http://localhost:8080/qcms').subscribe({
     next: (reponse) => {
       this.qcms = reponse;
       console.log('QCM admin reçus :', reponse);
@@ -135,48 +135,17 @@ ngOnInit() {
     }
   });
 
-  this.http.get<any[]>('http://localhost:8080/actualites')
-  .subscribe({
+  this.http.get<any[]>('http://localhost:8080/questions').subscribe({
     next: (reponse) => {
-      this.actualites = reponse;
-      console.log('Actualités admin reçues :', reponse);
+      this.questions = reponse;
+      console.log('Questions admin reçues :', reponse);
     },
     error: (erreur) => {
-      console.log('Erreur actualités admin :', erreur);
+      console.log('Erreur questions admin :', erreur);
     }
   });
 
-  this.http.get<any[]>('http://localhost:8080/etudiants')
-  .subscribe({
-    next: (reponse) => {
-      this.etudiants = reponse;
-      console.log('Étudiants admin reçus :', reponse);
-    },
-    error: (erreur) => {
-      console.log('Erreur étudiants admin :', erreur);
-    }
-  });
-}
-
-supprimerConcours(id: number) {
-
-  this.http.delete(
-    `http://localhost:8080/concours/${id}`
-  ).subscribe({
-    next: () => {
-      console.log('Concours supprimé');
-
-      this.concours = this.concours.filter(
-        concoursItem => concoursItem.id !== id
-      );
-    },
-    error: (erreur) => {
-      console.log('Erreur suppression concours :', erreur);
-    }
-  });
-
-  this.http.get<any[]>('http://localhost:8080/choix')
-  .subscribe({
+  this.http.get<any[]>('http://localhost:8080/choix').subscribe({
     next: (reponse) => {
       this.choix = reponse;
       console.log('Choix admin reçus :', reponse);
@@ -186,8 +155,7 @@ supprimerConcours(id: number) {
     }
   });
 
-  this.http.get<any[]>('http://localhost:8080/exercices')
-  .subscribe({
+  this.http.get<any[]>('http://localhost:8080/exercices').subscribe({
     next: (reponse) => {
       this.exercices = reponse;
       console.log('Exercices admin reçus :', reponse);
@@ -196,8 +164,8 @@ supprimerConcours(id: number) {
       console.log('Erreur exercices admin :', erreur);
     }
   });
-  this.http.get<any[]>('http://localhost:8080/formations')
-  .subscribe({
+
+  this.http.get<any[]>('http://localhost:8080/formations').subscribe({
     next: (reponse) => {
       this.formations = reponse;
       console.log('Formations admin reçues :', reponse);
@@ -207,8 +175,17 @@ supprimerConcours(id: number) {
     }
   });
 
-  this.http.get<any[]>('http://localhost:8080/offres-abonnement')
-  .subscribe({
+  this.http.get<any[]>('http://localhost:8080/actualites').subscribe({
+    next: (reponse) => {
+      this.actualites = reponse;
+      console.log('Actualités admin reçues :', reponse);
+    },
+    error: (erreur) => {
+      console.log('Erreur actualités admin :', erreur);
+    }
+  });
+
+  this.http.get<any[]>('http://localhost:8080/offres-abonnement').subscribe({
     next: (reponse) => {
       this.offresAbonnement = reponse;
       console.log('Offres abonnement admin reçues :', reponse);
@@ -218,8 +195,17 @@ supprimerConcours(id: number) {
     }
   });
 
-  this.http.get<any[]>('http://localhost:8080/admins')
-  .subscribe({
+  this.http.get<any[]>('http://localhost:8080/etudiants').subscribe({
+    next: (reponse) => {
+      this.etudiants = reponse;
+      console.log('Étudiants admin reçus :', reponse);
+    },
+    error: (erreur) => {
+      console.log('Erreur étudiants admin :', erreur);
+    }
+  });
+
+  this.http.get<any[]>('http://localhost:8080/admins').subscribe({
     next: (reponse) => {
       this.admins = reponse;
       console.log('Admins reçus :', reponse);
@@ -229,23 +215,54 @@ supprimerConcours(id: number) {
     }
   });
 
+  this.http.get<any[]>('http://localhost:8080/demandes-inscription').subscribe({
+    next: (reponse) => {
+      this.demandesInscription = reponse;
+      console.log('Demandes inscription reçues :', reponse);
+    },
+    error: (erreur) => {
+      console.log('Erreur demandes inscription :', erreur);
+    }
+  });
+
+  this.http.get<any[]>('http://localhost:8080/abonnements').subscribe({
+  next: (reponse) => {
+    this.abonnements = reponse;
+    console.log('Abonnements admin reçus :', reponse);
+  },
+  error: (erreur) => {
+    console.log('Erreur abonnements admin :', erreur);
+  }
+});
+
+}
+
+supprimerConcours(id: number) {
+  this.http.delete(
+    `http://localhost:8080/concours/${id}`
+  ).subscribe({
+    next: () => {
+      console.log('Concours supprimé');
+      this.concours = this.concours.filter(
+        concoursItem => concoursItem.id !== id
+      );
+    },
+    error: (erreur) => {
+      console.log('Erreur suppression concours :', erreur);
+    }
+  });
 }
 
 ajouterConcours() {
-
   this.http.post(
     'http://localhost:8080/concours',
     this.nouveauConcours
   ).subscribe({
-
     next: (reponse: any) => {
-
       console.log('Concours ajouté :', reponse);
-
       this.concours.push(reponse);
 
       if (this.pdfSelectionne) {
-
         const formData = new FormData();
         formData.append('fichier', this.pdfSelectionne);
 
@@ -253,48 +270,19 @@ ajouterConcours() {
           `http://localhost:8080/concours/${reponse.id}/pdf`,
           formData
         ).subscribe({
-
           next: (concoursAvecPdf: any) => {
             console.log('PDF envoyé :', concoursAvecPdf);
           },
-
           error: (erreur) => {
             console.log('Erreur envoi PDF :', erreur);
           }
-
         });
-
       }
     },
-
     error: (erreur) => {
       console.log('Erreur ajout concours :', erreur);
     }
-
   });
-
-  this.http.get<any[]>('http://localhost:8080/questions')
-  .subscribe({
-    next: (reponse) => {
-      this.questions = reponse;
-      console.log('Questions admin reçues :', reponse);
-    },
-    error: (erreur) => {
-      console.log('Erreur questions admin :', erreur);
-    }
-  });
-  
-  this.http.get<any[]>('http://localhost:8080/formations')
-  .subscribe({
-    next: (reponse) => {
-      this.formations = reponse;
-      console.log('Formations admin reçues :', reponse);
-    },
-    error: (erreur) => {
-      console.log('Erreur formations admin :', erreur);
-    }
-  });
-
 }
 
 selectionnerConcours(concours: any) {
@@ -1070,4 +1058,90 @@ modifierAdmin() {
   });
 }
 
+accepterDemande(id: number) {
+
+  this.http.put(
+    `http://localhost:8080/demandes-inscription/${id}/accepter`,
+    {}
+  ).subscribe({
+
+    next: (reponse: any) => {
+      console.log('Demande acceptée :', reponse);
+
+      const index = this.demandesInscription.findIndex(
+        demande => demande.id === reponse.id
+      );
+
+      if (index !== -1) {
+        this.demandesInscription[index] = reponse;
+      }
+    },
+
+    error: (erreur) => {
+      console.log('Erreur acceptation demande :', erreur);
+    }
+
+  });
+}
+
+refuserDemande(id: number) {
+
+  this.http.put(
+    `http://localhost:8080/demandes-inscription/${id}/refuser`,
+    {}
+  ).subscribe({
+
+    next: (reponse: any) => {
+      console.log('Demande refusée :', reponse);
+
+      const index = this.demandesInscription.findIndex(
+        demande => demande.id === reponse.id
+      );
+
+      if (index !== -1) {
+        this.demandesInscription[index] = reponse;
+      }
+    },
+
+    error: (erreur) => {
+      console.log('Erreur refus demande :', erreur);
+    }
+
+  });
+}
+
+supprimerAbonnement(id: number) {
+  this.http.delete(
+    `http://localhost:8080/abonnements/${id}`
+  ).subscribe({
+    next: () => {
+      this.abonnements = this.abonnements.filter(
+        abonnement => abonnement.id !== id
+      );
+
+      console.log('Abonnement supprimé');
+    },
+    error: (erreur) => {
+      console.log('Erreur suppression abonnement :', erreur);
+    }
+  });
+}
+
+modifierAbonnement(abonnement: any) {
+
+  this.http.put(
+    `http://localhost:8080/abonnements/${abonnement.id}`,
+    abonnement
+  ).subscribe({
+
+    next: (reponse: any) => {
+      console.log('Abonnement modifié :', reponse);
+    },
+
+    error: (erreur) => {
+      console.log('Erreur modification abonnement :', erreur);
+    }
+
+  });
+}
 }

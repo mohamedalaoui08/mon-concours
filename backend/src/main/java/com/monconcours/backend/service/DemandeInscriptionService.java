@@ -88,4 +88,15 @@ public class DemandeInscriptionService {
 
         return demandeInscriptionRepository.save(demande);
     }
+
+    public DemandeInscription refuserDemande(Integer id) {
+
+        DemandeInscription demande = demandeInscriptionRepository
+                .findById(id)
+                .orElseThrow(() -> new RuntimeException("Demande non trouvée"));
+
+        demande.setStatut("REFUSEE");
+
+        return demandeInscriptionRepository.save(demande);
+    }
 }

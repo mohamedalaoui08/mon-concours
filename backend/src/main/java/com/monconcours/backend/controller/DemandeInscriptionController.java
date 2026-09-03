@@ -45,4 +45,10 @@ public class DemandeInscriptionController {
     public DemandeInscription accepterDemande(@PathVariable Integer id) {
         return demandeInscriptionService.accepterDemande(id);
     }
+
+    @PutMapping("/demandes-inscription/{id}/refuser")
+    public DemandeInscription refuserDemande(@PathVariable Integer id) {
+        return demandeInscriptionService.refuserDemande(id);
+    }
 }
+
