@@ -1,0 +1,852 @@
+/* =========================
+   HEADER - MON CONCOURS
+   ========================= */
+
+.header {
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+  
+    background: #07056f;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 0 55px;
+  }
+
+  /* =========================
+   LOGO
+   ========================= */
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-image {
+    width: 200px;
+    height: auto;
+    display: block;
+  }
+  
+
+  /* =========================
+   MENU
+   ========================= */
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  
+  .nav a {
+    color: white;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  
+  .nav a:hover {
+    opacity: 0.8;
+  }
+
+  /* =========================
+   SE CONNECTER
+   ========================= */
+  
+  .nav a[href="/connexion"] {
+    color: #5ee7f2;
+  }
+
+  /* =========================
+   BOUTON S'INSCRIRE
+   ========================= */
+
+  
+  .nav .btn-inscription {
+    background: linear-gradient(180deg, #9beaf3, #18268f);
+    padding: 14px 27px;
+    border-radius: 30px;
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  /* =========================
+   LANGUE
+   ========================= */
+
+  
+  .langue {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* =========================
+   RESPONSIVE
+   ========================= */
+
+  
+  @media (max-width: 1100px) {
+    .header {
+      padding: 0 25px;
+    }
+  
+    .nav {
+      gap: 15px;
+    }
+  
+    .nav a,
+    .langue {
+      font-size: 14px;
+    }
+  
+    .logo-image {
+      width: 110px;
+    }
+  }
+
+  /* =========================
+   SECTION PRINCIPALE / HERO
+   ========================= */
+
+   .hero {
+    min-height: 520px;
+  
+    background: #eafcff;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    gap: 45px;
+  
+    padding: 45px 80px;
+    box-sizing: border-box;
+  }
+  
+  /* =========================
+     IMAGE DU HERO
+     ========================= */
+  
+  .hero-image {
+    width: 48%;
+    max-width: 540px;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    height: auto;
+  
+    display: block;
+  
+    border-radius: 35px;
+  }
+  
+  
+  /* =========================
+     TEXTE DU HERO
+     ========================= */
+  
+  .hero-content {
+    width: 42%;
+  
+    font-family: Arial, sans-serif;
+  }
+  
+  .hero-content h1 {
+    margin: 0;
+  
+    font-size: 54px;
+    line-height: 1.05;
+  
+    font-weight: 800;
+    color: #000000;
+  }
+  
+  .hero-content h1 span {
+    display: block;
+  
+    color: #080678;
+  }
+  
+  
+  /* =========================
+     DESCRIPTION
+     ========================= */
+  
+  .hero-description {
+    margin-top: 30px;
+  
+    color: #9ca9ad;
+  
+    font-size: 19px;
+    font-weight: 700;
+  }
+  
+  
+  /* =========================
+     BOUTON COMMENCER
+     ========================= */
+  
+  .hero-button {
+    display: inline-block;
+  
+    margin-top: 30px;
+  
+    padding: 14px 28px;
+  
+    background: #080678;
+    color: white;
+  
+    text-decoration: none;
+  
+    font-size: 17px;
+    font-weight: 700;
+  
+    border-radius: 30px;
+  }
+  
+  .hero-button:hover {
+    opacity: 0.85;
+  }
+  
+  
+  /* =========================
+     RESPONSIVE HERO
+     ========================= */
+  
+  @media (max-width: 900px) {
+  
+    .hero {
+      flex-direction: column;
+  
+      padding: 40px 25px;
+  
+      text-align: center;
+    }
+  
+    .hero-image,
+    .hero-content {
+      width: 100%;
+    }
+  
+    .hero-content h1 {
+      font-size: 42px;
+    }
+  }
+
+  /* =========================
+   BANDE DES ÉCOLES
+   ========================= */
+
+.ecoles-strip {
+    width: 100%;
+    min-height: 105px;
+  
+    background: #ffffff;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    gap: 55px;
+  
+    padding: 18px 30px;
+    box-sizing: border-box;
+  }
+  
+  
+  /* =========================
+     LOGOS DES ÉCOLES
+     ========================= */
+  
+  .ecoles-strip img {
+    width: 85px;
+    height: 70px;
+  
+    object-fit: contain;
+  
+    opacity: 0.5;
+    ;
+  
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  
+  /* =========================
+     EFFET AU SURVOL
+     ========================= */
+  
+  .ecoles-strip img:hover {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  
+  
+  /* =========================
+     RESPONSIVE
+     ========================= */
+  
+  @media (max-width: 900px) {
+  
+    .ecoles-strip {
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+  
+    .ecoles-strip img {
+      width: 70px;
+      height: 60px;
+    }
+  }
+  
+  /* =========================
+   SECTION FONCTIONNALITÉS
+   ========================= */
+
+.features-section {
+  background: #f8fbfd;
+
+  padding: 80px 8%;
+
+  font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   TITRE DE LA SECTION
+   ========================= */
+
+.features-header {
+  text-align: center;
+
+  margin-bottom: 80px;
+}
+
+.features-header h2 {
+  margin: 0;
+
+  font-size: 48px;
+  line-height: 1.1;
+
+  color: #111827;
+}
+
+.features-header h2 span {
+  display: block;
+
+  color: #080678;
+}
+
+.features-header p {
+  margin-top: 20px;
+
+  font-size: 19px;
+
+  color: #667085;
+}
+
+
+/* =========================
+   LIGNE D'UNE FONCTIONNALITÉ
+   ========================= */
+
+.feature-row {
+  max-width: 1250px;
+
+  margin: 0 auto 100px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 70px;
+}
+
+
+/* =========================
+   INVERSION IMAGE / TEXTE
+   ========================= */
+
+.feature-row.feature-reverse {
+  flex-direction: row-reverse;
+}
+
+
+/* =========================
+   CAPTURE D'ÉCRAN
+   ========================= */
+
+.feature-image {
+  width: 52%;
+}
+
+.feature-image img {
+  width: 100%;
+
+  display: block;
+
+  border-radius: 20px;
+
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================
+   TEXTE
+   ========================= */
+
+.feature-text {
+  width: 48%;
+}
+
+.feature-text h3 {
+  margin: 0 0 22px;
+
+  font-size: 34px;
+
+  color: #111827;
+}
+
+.feature-text p {
+  font-size: 19px;
+  line-height: 1.7;
+
+  color: #586174;
+}
+
+
+/* =========================
+   LISTE
+   ========================= */
+
+.feature-text ul {
+  padding-left: 22px;
+
+  margin: 25px 0;
+}
+
+.feature-text li {
+  margin-bottom: 12px;
+
+  font-size: 17px;
+
+  color: #586174;
+}
+
+.feature-text li::marker {
+  color: #080678;
+}
+
+
+/* =========================
+   LIEN
+   ========================= */
+
+.feature-text a {
+  color: #080678;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+
+  .features-section {
+    padding: 60px 25px;
+  }
+
+  .features-header h2 {
+    font-size: 38px;
+  }
+
+  .feature-row,
+  .feature-row.feature-reverse {
+    flex-direction: column;
+
+    gap: 35px;
+
+    margin-bottom: 70px;
+  }
+
+  .feature-image,
+  .feature-text {
+    width: 100%;
+  }
+}
+
+/* =========================
+   SECTION ABONNEMENTS
+   ========================= */
+
+   .home-abonnements {
+    background: #080678;
+  
+    padding: 65px 8% 90px;
+  
+    font-family: Arial, sans-serif;
+  }
+  
+  
+  /* =========================
+     TITRE ABONNEMENTS
+     ========================= */
+  
+  .home-abonnements h2 {
+    margin: 0 0 45px;
+  
+    text-align: center;
+  
+    color: #62dff2;
+  
+    font-size: 48px;
+    font-weight: 800;
+  }
+  
+  
+  /* =========================
+     CONTENEUR DES CARTES
+     ========================= */
+  
+  .abonnement-cards {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+  
+    gap: 70px;
+  }
+  
+  
+  /* =========================
+     CARTE ABONNEMENT
+     ========================= */
+  
+  .abonnement-card {
+    width: 280px;
+    min-height: 380px;
+  
+    background: white;
+  
+    border-radius: 18px;
+  
+    padding: 28px 30px;
+  
+    box-sizing: border-box;
+  }
+  
+  
+  /* =========================
+     TITRE DE LA CARTE
+     ========================= */
+  
+  .abonnement-card h3 {
+    margin: 0 0 35px;
+  
+    text-align: center;
+  
+    color: #000000;
+  
+    font-size: 27px;
+    font-weight: 800;
+  }
+  
+  
+  /* =========================
+     CONTENU DE LA CARTE
+     ========================= */
+  
+  .abonnement-card p {
+    margin: 14px 0;
+  
+    color: #111111;
+  
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  
+  
+  /* =========================
+     RESPONSIVE
+     ========================= */
+  
+  @media (max-width: 950px) {
+  
+    .abonnement-cards {
+      flex-direction: column;
+      align-items: center;
+  
+      gap: 30px;
+    }
+  
+    .abonnement-card {
+      width: 100%;
+      max-width: 380px;
+    }
+  
+    .home-abonnements h2 {
+      font-size: 38px;
+    }
+  }
+
+  /* =========================
+   SECTION AVIS
+   ========================= */
+
+.avis-section {
+  background: #eafcff;
+
+  padding: 60px 40px 90px;
+
+  font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   TITRE
+   ========================= */
+
+.avis-section h2 {
+  text-align: center;
+
+  margin: 0 0 70px;
+
+  font-size: 48px;
+  font-weight: 800;
+
+  color: #000000;
+}
+
+
+/* =========================
+   CONTENEUR DES AVIS
+   ========================= */
+
+.avis-container {
+  max-width: 1200px;
+
+  margin: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  gap: 35px;
+}
+
+
+/* =========================
+   CARTE AVIS
+   ========================= */
+
+.avis-card {
+  width: 360px;
+
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 18px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   NOM + ÉTOILES
+   ========================= */
+
+.avis-card h3 {
+  margin: 0 0 18px;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+
+/* =========================
+   TEXTE DE L'AVIS
+   ========================= */
+
+.avis-card p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  color: #333333;
+}
+
+
+/* =========================
+   3e AVIS AU CENTRE
+   ========================= */
+
+.avis-card:nth-child(3) {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 850px) {
+
+  .avis-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .avis-card {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+   .footer {
+    background: #07076b;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  
+  /* =========================
+     PARTIE PRINCIPALE
+     ========================= */
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+  
+    max-width: 1400px;
+    margin: auto;
+  
+    padding: 65px 60px;
+  }
+  
+  
+  /* =========================
+     COLONNES
+     ========================= */
+  
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+  
+    width: 22%;
+  }
+  
+  
+  /* Titres */
+  
+  .footer-column h3 {
+    margin: 0 0 28px;
+  
+    font-size: 22px;
+    font-weight: 700;
+  
+    color: white;
+  }
+  
+  
+  /* Liens */
+  
+  .footer-column a {
+    margin-bottom: 16px;
+  
+    color: white;
+    text-decoration: none;
+  
+    font-size: 17px;
+  }
+  
+  
+  /* Effet au passage de la souris */
+  
+  .footer-column a:hover {
+    color: #5ce1e6;
+  }
+  
+  
+  /* =========================
+     LIGNE DE SÉPARATION
+     ========================= */
+  
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+  
+    min-height: 120px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 0 60px;
+  }
+  
+  
+  /* =========================
+     LOGO
+     ========================= */
+  
+  .footer-brand img {
+    width: 200px;
+    height: auto;
+  }
+  
+  
+  /* =========================
+     TEXTE DU BAS
+     ========================= */
+  
+  .footer-bottom p {
+    margin: 0;
+  
+    font-size: 16px;
+  
+    color: white;
+  }
+  
+  
+  /* =========================
+     RESPONSIVE
+     ========================= */
+  
+  @media (max-width: 850px) {
+  
+    .footer-content {
+      flex-direction: column;
+      gap: 40px;
+    }
+  
+    .footer-column {
+      width: 100%;
+    }
+  
+    .footer-bottom {
+      flex-direction: column;
+      gap: 20px;
+  
+      padding: 30px;
+    }
+  }

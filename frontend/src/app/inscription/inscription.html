@@ -1,0 +1,137 @@
+<!-- =========================
+     PAGE DEMANDE D'INSCRIPTION
+     ========================= -->
+
+     <div class="inscription-page">
+
+        <!-- =========================
+             PARTIE GAUCHE : PRÉSENTATION
+             ========================= -->
+      
+        <div class="inscription-presentation">
+      
+          <h1>
+            Rejoignez
+            <span>Mon Concours</span>
+          </h1>
+      
+          <p class="intro">
+            Envoyez votre demande d'inscription et commencez votre préparation
+            aux concours des grandes écoles.
+          </p>
+      
+          <!-- Avantage 1 -->
+          <div class="avantage">
+            <div class="avantage-icon">📚</div>
+      
+            <div>
+              <h3>Préparez vos concours</h3>
+              <p>
+                Accédez aux concours, sujets PDF et contenus de préparation.
+              </p>
+            </div>
+          </div>
+      
+          <!-- Avantage 2 -->
+          <div class="avantage">
+            <div class="avantage-icon">📝</div>
+      
+            <div>
+              <h3>Entraînez-vous</h3>
+              <p>
+                Testez vos connaissances avec des QCM et des exercices.
+              </p>
+            </div>
+          </div>
+      
+          <!-- Avantage 3 -->
+          <div class="avantage">
+            <div class="avantage-icon">🎯</div>
+      
+            <div>
+              <h3>Progressez efficacement</h3>
+              <p>
+                Organisez votre préparation et consultez vos résultats.
+              </p>
+            </div>
+          </div>
+      
+        </div>
+      
+      
+        <!-- =========================
+             PARTIE DROITE : FORMULAIRE
+             ========================= -->
+      
+        <div class="inscription-formulaire">
+      
+          <h2>Demande d'inscription</h2>
+      
+          <form (ngSubmit)="envoyerDemande()">
+      
+            <!-- Ligne Nom / Prénom -->
+            <div class="form-row">
+      
+              <input
+                type="text"
+                [(ngModel)]="demande.prenom"
+                name="prenom"
+                placeholder="Prénom">
+      
+              <input
+                type="text"
+                [(ngModel)]="demande.nom"
+                name="nom"
+                placeholder="Nom">
+      
+            </div>
+      
+      
+            <!-- Email -->
+            <input
+              type="email"
+              [(ngModel)]="demande.email"
+              name="email"
+              placeholder="Email">
+      
+      
+            <!-- Ligne Date de naissance / Niveau -->
+            <div class="form-row">
+      
+              <input
+                type="date"
+                [(ngModel)]="demande.dateNaissance"
+                name="dateNaissance">
+      
+              <select
+                [(ngModel)]="demande.niveau"
+                name="niveau">
+      
+                <option value="" disabled selected>
+                  Niveau
+                </option>
+      
+                <option value="1BAC">2ème année Bac</option>
+                <option value="2BAC">Bac Libre</option>
+      
+              </select>
+      
+            </div>
+      
+      
+            <!-- Bouton -->
+            <button type="submit">
+              Envoyer ma demande
+            </button>
+      
+      
+            <!-- Message après envoi -->
+            <p class="message" *ngIf="message">
+              {{ message }}
+            </p>
+      
+          </form>
+      
+        </div>
+      
+      </div>

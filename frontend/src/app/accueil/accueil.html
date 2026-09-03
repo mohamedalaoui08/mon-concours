@@ -1,2 +1,423 @@
-<h1>Bienvenue sur Mon Concours</h1>
-<p>Préparez vos concours en toute simplicité.</p>
+<header class="header">
+
+    <div class="logo">
+        <img src="Logo.png" alt="Mon Concours" class="logo-image">
+    </div>
+  
+    <nav class="nav">
+      <a routerLink="/">Accueil</a>
+      <a routerLink="/concours">Concours</a>
+      <a routerLink="/exercice">Service</a>
+      <a routerLink="/abonnement">Abonnements</a>
+      <a routerLink="/actualite">Actualité</a>
+      <a routerLink="/connexion">Se connecter</a>
+      <a routerLink="/inscription" class="btn-inscription">S’inscrire</a>
+      <span class="langue">FR</span>
+    </nav>
+  
+  </header>
+
+  <!-- =========================
+     SECTION PRINCIPALE / HERO
+     ========================= -->
+
+<section class="hero">
+
+    <!-- Partie gauche : image -->
+    <div class="hero-image">
+      <img src="Etudiants.png" alt="Étudiants préparant leurs concours">
+    </div>
+  
+    <!-- Partie droite : texte -->
+    <div class="hero-content">
+  
+      <h1>
+        Préparez votre
+        <span>Concours</span>
+      </h1>
+  
+      <p class="hero-description">
+        Concours, QCM, Exercices, Astuces....
+      </p>
+  
+      <a routerLink="/concours" class="hero-button">
+        Commencer
+      </a>
+  
+    </div>
+  
+  </section>
+
+  <!-- =========================
+     BANDE DES ÉCOLES
+     ========================= -->
+
+<section class="ecoles-strip">
+
+    <!-- Logo ENSA -->
+    <img src="ensa.png" alt="ENSA">
+  
+    <!-- Logo ENSAM -->
+    <img src="ensam.png" alt="ENSAM">
+  
+    <!-- Logo ENA -->
+    <img src="ena.png" alt="ENA">
+  
+    <!-- Logo Médecine -->
+    <img src="medecine.png" alt="Médecine">
+  
+    <!-- Logo ENCG -->
+    <img src="encg.png" alt="ENCG">
+  
+    <!-- Logo IAV -->
+    <img src="iav.png" alt="IAV">
+  
+  </section>
+
+  <!-- =========================
+     SECTION FONCTIONNALITÉS
+     ========================= -->
+
+<section class="features-section">
+
+  <!-- Titre principal -->
+  <div class="features-header">
+    <h2>
+      Pourquoi choisir
+      <span>Mon Concours ?</span>
+    </h2>
+
+    <p>
+      Tout ce dont tu as besoin pour préparer et réussir tes concours.
+    </p>
+  </div>
+
+
+  <!-- =========================
+       1. CONCOURS / PDF
+       ========================= -->
+
+  <div class="feature-row">
+
+    <!-- Capture -->
+    <div class="feature-image">
+      <img
+        src="concours-feature.png"
+        alt="Concours et PDF">
+    </div>
+
+    <!-- Texte -->
+    <div class="feature-text">
+      <h3>🏆 Concours & PDF</h3>
+
+      <p>
+        Accède aux concours disponibles et télécharge directement
+        les sujets PDF pour t'entraîner.
+      </p>
+
+      <ul>
+        <li>Concours des grandes écoles</li>
+        <li>Sujets accessibles en PDF</li>
+        <li>Préparation ciblée par école</li>
+      </ul>
+
+      <a routerLink="/concours">
+        Voir les concours →
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       2. EXERCICES
+       ========================= -->
+
+  <div class="feature-row feature-reverse">
+
+    <!-- Capture -->
+    <div class="feature-image">
+      <img
+        src="exercices-feature.png"
+        alt="Exercices">
+    </div>
+
+    <!-- Texte -->
+    <div class="feature-text">
+      <h3>✏️ Exercices</h3>
+
+      <p>
+        Entraîne-toi avec des exercices adaptés aux matières
+        importantes pour tes concours.
+      </p>
+
+      <ul>
+        <li>Exercices par matière</li>
+        <li>Entraînement régulier</li>
+        <li>Préparation progressive</li>
+      </ul>
+
+      <a routerLink="/exercice">
+        Voir les exercices →
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       3. QCM
+       ========================= -->
+
+  <div class="feature-row">
+
+    <!-- Capture -->
+    <div class="feature-image">
+      <img
+        src="qcm-feature.png"
+        alt="QCM interactifs">
+    </div>
+
+    <!-- Texte -->
+    <div class="feature-text">
+      <h3>📝 QCM interactifs</h3>
+
+      <p>
+        Teste tes connaissances avec des QCM et consulte
+        tes résultats après chaque passage.
+      </p>
+
+      <ul>
+        <li>Questions interactives</li>
+        <li>Validation des réponses</li>
+        <li>Résultats enregistrés</li>
+      </ul>
+
+      <a routerLink="/qcm">
+        Commencer un QCM →
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       4. ASTUCES
+       ========================= -->
+
+  <div class="feature-row feature-reverse">
+
+    <!-- Capture -->
+    <div class="feature-image">
+      <img
+        src="astuces-feature.png"
+        alt="Astuces de préparation">
+    </div>
+
+    <!-- Texte -->
+    <div class="feature-text">
+      <h3>💡 Astuces</h3>
+
+      <p>
+        Découvre des conseils et contenus utiles pour mieux
+        organiser ta préparation aux concours.
+      </p>
+
+      <ul>
+        <li>Méthodes de préparation</li>
+        <li>Conseils pour réussir</li>
+        <li>Informations utiles sur les écoles</li>
+      </ul>
+      <a routerLink="/qcm">
+        Voir les astuces →
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     SECTION ABONNEMENTS
+     ========================= -->
+
+     <section class="home-abonnements">
+
+      <!-- Titre -->
+      <h2>Nos abonnements</h2>
+    
+      <!-- Cartes des abonnements -->
+      <div class="abonnement-cards">
+    
+        <!-- =========================
+             PACK GRATUIT
+             ========================= -->
+        <div class="abonnement-card">
+    
+          <h3>Pack Gratuit</h3>
+    
+          <p>✅ Accès à quelques concours</p>
+          <p>✅ QCM limités</p>
+          <p>✅ Actualités des écoles</p>
+    
+          <p>❌ Accès complet</p>
+          <p>❌ Contenus premium</p>
+    
+        </div>
+    
+    
+        <!-- =========================
+             PACK STANDARD
+             ========================= -->
+        <div class="abonnement-card">
+    
+          <h3>Pack Standard</h3>
+    
+          <p>✅ Accès aux concours</p>
+          <p>✅ QCM</p>
+          <p>✅ Exercices</p>
+          <p>✅ Actualités des écoles</p>
+    
+          <p>❌ Accès premium complet</p>
+    
+        </div>
+    
+    
+        <!-- =========================
+             PACK PREMIUM
+             ========================= -->
+        <div class="abonnement-card">
+    
+          <h3>Pack Premium</h3>
+    
+          <p>✅ Tous les concours</p>
+          <p>✅ Tous les QCM</p>
+          <p>✅ Tous les exercices</p>
+          <p>✅ Formations</p>
+          <p>✅ Actualités des écoles</p>
+    
+        </div>
+    
+      </div>
+    
+    </section>
+
+    <!-- =========================
+     SECTION AVIS
+     ========================= -->
+
+<section class="avis-section">
+
+  <!-- Titre -->
+  <h2>Avis</h2>
+
+  <!-- Conteneur des avis -->
+  <div class="avis-container">
+
+    <!-- Avis 1 -->
+    <div class="avis-card">
+      <h3>⭐⭐⭐⭐⭐ — Yassine, candidat ENSA</h3>
+
+      <p>
+        Mon Concours m’a permis de mieux organiser mes révisions.
+        Les QCM et les examens blancs m’ont beaucoup aidé à identifier
+        mes points faibles.
+      </p>
+    </div>
+
+
+    <!-- Avis 2 -->
+    <div class="avis-card">
+      <h3>⭐⭐⭐⭐⭐ — Safae, candidate Médecine</h3>
+
+      <p>
+        J’ai particulièrement apprécié le suivi de ma progression.
+        La plateforme m’a permis de m’entraîner régulièrement
+        et de rester motivée pendant ma préparation.
+      </p>
+    </div>
+
+
+    <!-- Avis 3 -->
+    <div class="avis-card">
+      <h3>⭐⭐⭐⭐⭐ — Hafid, candidat ENSAM</h3>
+
+      <p>
+        Les cours sont bien organisés et les exercices permettent
+        de se préparer aux types de questions rencontrées dans les concours.
+        Une plateforme vraiment pratique !
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+     ========================= -->
+
+     <footer class="footer">
+
+      <!-- Partie principale -->
+      <div class="footer-content">
+    
+        <!-- À propos -->
+        <div class="footer-column">
+          <h3>À propos</h3>
+    
+          <a href="#">Qui sommes-nous ?</a>
+          <a href="#">Notre mission</a>
+          <a href="#">Contact</a>
+          <a href="#">Nos écoles</a>
+        </div>
+    
+    
+        <!-- Mon Concours -->
+        <div class="footer-column">
+          <h3>Mon Concours</h3>
+    
+          <a routerLink="/concours">Concours</a>
+          <a routerLink="/qcm">QCM</a>
+          <a routerLink="/exercice">Exercices</a>
+          <a routerLink="/actualite">Actualités</a>
+        </div>
+    
+    
+        <!-- Compte -->
+        <div class="footer-column">
+          <h3>Mon compte</h3>
+    
+          <a routerLink="/connexion">Se connecter</a>
+          <a routerLink="/abonnement">Abonnements</a>
+          <a routerLink="/profil">Mon profil</a>
+          <a href="#">Aide</a>
+        </div>
+    
+    
+        <!-- Informations -->
+        <div class="footer-column">
+          <h3>Informations</h3>
+    
+          <a href="#">Politique de confidentialité</a>
+          <a href="#">Conditions d'utilisation</a>
+          <a href="#">Mentions légales</a>
+        </div>
+    
+      </div>
+    
+    
+      <!-- Ligne du bas -->
+      <div class="footer-bottom">
+    
+        <div class="footer-brand">
+          <img src="Logo.png" alt="Mon Concours">
+        </div>
+    
+        <p>© 2026 Mon Concours. Tous droits réservés.</p>
+    
+        <p>FR 🇲🇦</p>
+    
+      </div>
+    
+    </footer>

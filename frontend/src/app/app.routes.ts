@@ -11,6 +11,7 @@ import { Profil } from './profil/profil';
 import { Admin } from './admin/admin';
 import { authGuard } from './auth-guard';
 import { adminGuard } from './admin-guard';
+import { Inscription } from './inscription/inscription';
 
 export const routes: Routes = [
   { path: '', component: Accueil },
@@ -22,5 +23,9 @@ export const routes: Routes = [
   { path: 'actualite', component: Actualite },
   { path: 'abonnement', component: Abonnement },
   { path: 'profil', component: Profil, canActivate: [authGuard] },
-  { path: 'admin', component: Admin, canActivate: [adminGuard] }
+  { path: 'admin', component: Admin, canActivate: [adminGuard] },
+  {
+    path: 'inscription',
+    component: Inscription
+  }
 ];

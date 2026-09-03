@@ -1,11 +1,66 @@
-<h1>Connexion</h1>
+<!-- =========================
+     PAGE CONNEXION
+     ========================= -->
 
-<form (ngSubmit)="seConnecter()">
-  <label>Email</label>
-  <input type="email" [(ngModel)]="email" name="email">
+     <div class="connexion-page">
 
-  <label>Mot de passe</label>
-  <input type="password" [(ngModel)]="motDePasse" name="motDePasse">
-
-  <button type="submit">Se connecter</button>
-</form>
+      <!-- =========================
+           PARTIE GAUCHE : IMAGE
+           ========================= -->
+      <div class="connexion-image">
+        <img src="connexion.png" alt="Préparation aux concours">
+      </div>
+    
+    
+      <!-- =========================
+           PARTIE DROITE : FORMULAIRE
+           ========================= -->
+      <div class="connexion-zone">
+    
+        <!-- Titre principal -->
+        <h1>Mon Concours</h1>
+    
+        <!-- Carte de connexion -->
+        <div class="connexion-card">
+    
+          <h2>Se connecter</h2>
+    
+          <form (ngSubmit)="seConnecter()">
+    
+            <!-- Email -->
+            <input
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              placeholder="Email">
+    
+            <!-- Mot de passe -->
+            <input
+              type="password"
+              [(ngModel)]="motDePasse"
+              name="motDePasse"
+              placeholder="Mot de passe">
+    
+            <!-- Mot de passe oublié -->
+            <a class="mot-passe-oublie">
+              Mot de passe oublié ?
+            </a>
+    
+            <!-- Bouton connexion -->
+            <button type="submit">
+              Se connecter
+            </button>
+    
+          </form>
+    
+          <!-- Inscription -->
+          <p class="inscription">
+            Pas encore de compte ?
+            <a routerLink="/inscription">S'inscrire</a>
+          </p>
+    
+        </div>
+    
+      </div>
+    
+    </div>

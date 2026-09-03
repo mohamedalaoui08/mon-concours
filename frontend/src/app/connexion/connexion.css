@@ -1,0 +1,234 @@
+/* =========================
+   PAGE CONNEXION
+   ========================= */
+
+   .connexion-page {
+    min-height: 100vh;
+  
+    background: #E9FBFF;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    gap: 70px;
+  
+    padding: 40px 60px;
+    box-sizing: border-box;
+  
+    font-family: Arial, sans-serif;
+  }
+  
+  
+  /* =========================
+     PARTIE GAUCHE : IMAGE
+     ========================= */
+  
+     .connexion-image {
+        width: 52%;
+        max-width: 720px;
+      
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+  
+      .connexion-image img {
+        width: 115%;
+        max-width: 700px;
+        height: auto;
+      
+        object-fit: contain;
+
+         /* Déplacement de l'image */
+        transform: translate(-40px, 20px);
+      }
+  
+  
+  /* =========================
+     PARTIE DROITE
+     ========================= */
+  
+  .connexion-zone {
+    width: 38%;
+    max-width: 450px;
+  }
+  
+  
+  /* =========================
+     TITRE MON CONCOURS
+     ========================= */
+  
+  .connexion-zone > h1 {
+    margin: 0 0 8px 65px;
+  
+    color: #080678;
+  
+    font-size: 45px;
+    font-weight: 800;
+  }
+  
+  
+  /* =========================
+     CARTE DU FORMULAIRE
+     ========================= */
+  
+  .connexion-card {
+    background: white;
+  
+    border: 1px solid #444;
+    border-radius: 18px;
+  
+    padding: 35px 25px 20px;
+  
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  
+  /* =========================
+     TITRE SE CONNECTER
+     ========================= */
+  
+  .connexion-card h2 {
+    margin: 0 0 35px;
+  
+    text-align: center;
+  
+    font-size: 30px;
+    font-weight: 800;
+  }
+  
+  
+  /* =========================
+     FORMULAIRE
+     ========================= */
+  
+  .connexion-card form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  /* =========================
+     CHAMPS
+     ========================= */
+  
+  .connexion-card input {
+    height: 55px;
+  
+    margin-bottom: 28px;
+    padding: 0 15px;
+  
+    border: 1px solid #d4d4d4;
+    border-radius: 10px;
+  
+    background: #fafafa;
+  
+    font-size: 18px;
+    font-weight: 600;
+  
+    box-sizing: border-box;
+  }
+  
+  .connexion-card input::placeholder {
+    color: #a5a5a5;
+  }
+  
+  
+  /* =========================
+     MOT DE PASSE OUBLIÉ
+     ========================= */
+  
+  .mot-passe-oublie {
+    margin-top: -12px;
+    margin-bottom: 20px;
+  
+    text-align: right;
+  
+    color: #00bce8;
+  
+    font-size: 13px;
+    font-weight: 700;
+  
+    text-decoration: none;
+  }
+  
+  
+  /* =========================
+     BOUTON CONNEXION
+     ========================= */
+  
+  .connexion-card button {
+    width: 220px;
+    height: 58px;
+  
+    margin: 0 auto 20px;
+  
+    border: none;
+    border-radius: 35px;
+  
+    background: linear-gradient(
+      180deg,
+      #8fe3ed 0%,
+      #18258f 100%
+    );
+  
+    color: white;
+  
+    font-size: 19px;
+    font-weight: 700;
+  
+    cursor: pointer;
+  }
+  
+  .connexion-card button:hover {
+    opacity: 0.9;
+  }
+  
+  
+  /* =========================
+     INSCRIPTION
+     ========================= */
+  
+  .inscription {
+    margin: 0;
+  
+    text-align: center;
+  
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  .inscription a {
+    color: #00bce8;
+  
+    font-weight: 700;
+    text-decoration: none;
+  }
+  
+  
+  /* =========================
+     RESPONSIVE
+     ========================= */
+  
+  @media (max-width: 900px) {
+  
+    .connexion-page {
+      flex-direction: column;
+  
+      gap: 30px;
+  
+      padding: 30px 20px;
+    }
+  
+    .connexion-image,
+    .connexion-zone {
+      width: 100%;
+    }
+  
+    .connexion-zone > h1 {
+      margin-left: 0;
+      text-align: center;
+    }
+  }
