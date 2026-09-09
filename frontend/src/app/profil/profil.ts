@@ -21,6 +21,7 @@ export class Profil {
   profil: any = null;
   favoris: any[] = [];
   resultats: any[] = [];
+  abonnementActif: any = null;
 
   ngOnInit() {
 
@@ -59,6 +60,19 @@ export class Profil {
       console.log('Erreur résultats :', erreur);
     }
   });
+
+  this.http.get(
+  'http://localhost:8080/abonnements/mon-abonnement-actif'
+).subscribe({
+  next: (reponse) => {
+    this.abonnementActif = reponse;
+    console.log('Abonnement actif :', reponse);
+  },
+  error: () => {
+    this.abonnementActif = null;
+    console.log('Aucun abonnement actif');
+  }
+});
   
   }
 

@@ -143,8 +143,13 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/resultats/mes-resultats")
                         .hasRole("ETUDIANT")
 
+                        .requestMatchers(HttpMethod.GET, "/resultats/meilleur-score/**")
+                        .hasRole("ETUDIANT")
+
                         .requestMatchers("/resultats/**")
                         .hasRole("ADMIN")
+
+
 
 
                         .requestMatchers(HttpMethod.GET, "/favoris/mes-favoris")
@@ -165,6 +170,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/abonnements/mes-abonnements")
                         .hasRole("ETUDIANT")
                         .requestMatchers(HttpMethod.GET, "/abonnements/mon-abonnement-actif")
+                        .hasRole("ETUDIANT")
+                        .requestMatchers(HttpMethod.PUT, "/abonnements/resilier")
+                        .hasRole("ETUDIANT")
+                        .requestMatchers(HttpMethod.PUT, "/abonnements/changer")
                         .hasRole("ETUDIANT")
                         .requestMatchers("/abonnements/**")
                         .hasRole("ADMIN")

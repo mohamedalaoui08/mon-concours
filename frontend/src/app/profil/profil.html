@@ -155,6 +155,57 @@
 
       </section>
 
+<!-- =========================
+     ABONNEMENT
+     ========================= -->
+<section class="profil-section">
+
+  <h2>Mon abonnement</h2>
+
+  <!-- Abonnement actif -->
+  <div *ngIf="abonnementActif" class="abonnement-profil">
+
+    <div>
+      <h3>
+        {{ abonnementActif.offreAbonnement?.nom }}
+      </h3>
+
+      <p>
+        Statut : {{ abonnementActif.statut }}
+      </p>
+
+      <p>
+        Du {{ abonnementActif.dateDebut }}
+        au {{ abonnementActif.dateFin }}
+      </p>
+
+      <a
+        routerLink="/abonnement"
+        class="abonnement-button">
+        Gérer mon abonnement
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- Aucun abonnement actif -->
+  <div *ngIf="!abonnementActif" class="abonnement-profil">
+
+    <p>
+      Vous n'avez aucun abonnement actif.
+    </p>
+
+    <a
+      routerLink="/abonnement"
+      class="abonnement-button">
+      Ajouter un abonnement
+    </a>
+
+  </div>
+
+</section>
+
 
       <!-- =========================
            RESULTATS QCM

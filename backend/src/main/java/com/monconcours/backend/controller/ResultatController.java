@@ -9,19 +9,24 @@ import java.util.Optional;
 import com.monconcours.backend.entity.Etudiant;
 import com.monconcours.backend.repository.EtudiantRepository;
 import org.springframework.security.core.Authentication;
+import com.monconcours.backend.entity.QCM;
+import com.monconcours.backend.repository.QCMRepository;
 
 @RestController
 public class ResultatController {
 
     private final ResultatService resultatService;
     private final EtudiantRepository etudiantRepository;
+    private final QCMRepository qcmRepository;
 
     public ResultatController(
             ResultatService resultatService,
-            EtudiantRepository etudiantRepository) {
+            EtudiantRepository etudiantRepository,
+            QCMRepository qcmRepository) {
 
         this.resultatService = resultatService;
         this.etudiantRepository = etudiantRepository;
+        this.qcmRepository = qcmRepository;
     }
 
     @GetMapping("/resultats")
@@ -59,5 +64,23 @@ public class ResultatController {
                 .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
 
         return resultatService.obtenirResultatsEtudiant(etudiant);
+    }
+
+    @GetMapping("/resultats/meilleur-score/{qcmId}")
+    public float obtenirMeilleurScore(
+            @PathVariable Integer qcmId,
+            Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        QCM qcm = qcmRepository.findById(qcmId)
+                .orElseThrow(() -> new RuntimeException("QCM non trouvé"));
+
+        return resultatService.obtenirMeilleurResultat(etudiant, qcm)
+                .map(Resultat::getScore)
+                .orElse(0f);
     }
 }

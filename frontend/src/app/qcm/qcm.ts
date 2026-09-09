@@ -16,6 +16,7 @@ export class Qcm {
   qcmSelectionne: any = null;
   choixSelectionnes: number[] = [];
   resultatQcm: any = null;
+  meilleursScores: { [qcmId: number]: number } = {};
   
 
   ngOnInit() {
@@ -23,6 +24,19 @@ export class Qcm {
       .subscribe({
 next: (reponse) => {
   this.qcms = reponse;
+
+  this.qcms.forEach(qcm => {
+  this.http.get<number>(
+    `http://localhost:8080/resultats/meilleur-score/${qcm.id}`
+  ).subscribe({
+    next: (score) => {
+      this.meilleursScores[qcm.id] = score;
+    },
+    error: (erreur) => {
+      console.log('Erreur meilleur score :', erreur);
+    }
+  });
+});
 
   const idFavori = this.route.snapshot.queryParamMap.get('id');
 
@@ -73,10 +87,10 @@ ouvrirQcm(qcm: any) {
     `http://localhost:8080/qcms/${this.qcmSelectionne.id}/passer`,
     { choixIds: choixIds }
   ).subscribe({
-    next: (reponse) => {
-      console.log('Résultat du QCM :', reponse);
-      this.resultatQcm = reponse;
-    },
+next: (reponse) => {
+  console.log('Résultat du QCM :', reponse);
+  this.resultatQcm = reponse;
+},
     error: (erreur) => {
       console.log('Erreur validation QCM :', erreur);
     }

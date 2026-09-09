@@ -339,8 +339,9 @@
    ========================= */
 
 .qcm-actions {
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
   margin-top: 25px;
 }
 
@@ -368,9 +369,6 @@
    ========================= */
 
 .retour-button {
-  position: absolute;
-  bottom: 30px;
-  left: 45px;
 
   border: none;
   border-radius: 7px;
@@ -387,4 +385,24 @@
 
 .retour-button:hover {
   opacity: 0.85;
+}
+
+.qcm-resultat {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.retour-button {
+  justify-self: start;
+}
+
+.qcm-resultat {
+  justify-self: center;
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.valider-button {
+  justify-self: end;
 }

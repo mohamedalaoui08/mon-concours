@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import com.monconcours.backend.entity.QCM;
 
 @Service
 public class ResultatService {
@@ -48,5 +49,16 @@ public class ResultatService {
 
     public List<Resultat> obtenirResultatsEtudiant(Etudiant etudiant) {
         return resultatRepository.findByEtudiant(etudiant);
+    }
+
+    public Optional<Resultat> obtenirMeilleurResultat(
+            Etudiant etudiant,
+            QCM qcm) {
+
+        return resultatRepository
+                .findTopByEtudiantAndQcmOrderByScoreDesc(
+                        etudiant,
+                        qcm
+                );
     }
 }

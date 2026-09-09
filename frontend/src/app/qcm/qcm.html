@@ -86,9 +86,9 @@
 
         <div class="qcm-card-bottom">
 
-          <div class="qcm-score">
-            0/20
-          </div>
+        <div class="qcm-score">
+        {{ meilleursScores[qcmItem.id] ?? 0 }}/20
+        </div>
 
           <button
             class="passer-button"
@@ -109,12 +109,6 @@
     <section
       *ngIf="qcmSelectionne"
       class="qcm-selectionne">
-
-            <button
-       class="retour-button"
-      (click)="fermerQcm()">
-       ← Retour aux QCM
-        </button>
 
 
       <div class="qcm-selectionne-header">
@@ -181,31 +175,30 @@
       <!-- =========================
            BOUTON VALIDER
            ========================= -->
-      <div class="qcm-actions">
+<div class="qcm-actions">
 
-        <button
-          class="valider-button"
-          (click)="validerQcm()">
-
-          Valider le QCM
-
+            <button
+       class="retour-button"
+      (click)="fermerQcm()">
+       ← Retour aux QCM
         </button>
+        
 
-      </div>
+<div class="qcm-resultat">
 
+  <span *ngIf="resultatQcm">
+    Résultat : {{ resultatQcm.score }}
+  </span>
 
-      <!-- =========================
-           RÉSULTAT
-           ========================= -->
-      <div
-        *ngIf="resultatQcm"
-        class="qcm-resultat">
+</div>
 
-        <h3>
-          Résultat : {{ resultatQcm.score }}
-        </h3>
+  <button
+    class="valider-button"
+    (click)="validerQcm()">
+    Valider le QCM
+  </button>
 
-      </div>
+</div>
 
     </section>
 

@@ -175,3 +175,53 @@
 
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
 }
+
+/* =========================
+   GESTION ABONNEMENT
+   ========================= */
+
+
+.resilier-button {
+  padding: 12px 26px;
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  background: #ffe5e5;
+  color: #b91c1c;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.resilier-button:hover {
+  opacity: 0.85;
+}
+
+.abonnement-actuel-button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #d6d6d6;
+  color: #666;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: default;
+  margin-bottom: 12px;
+}
+
+.resilier-button {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d9a6a6;
+  border-radius: 8px;
+  background: #ffe3e3;
+  color: #b91c1c;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.resilier-button:hover {
+  background: #ffd4d4;
+}
+

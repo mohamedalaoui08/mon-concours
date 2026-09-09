@@ -94,4 +94,34 @@ public class AbonnementController {
 
         return abonnementService.obtenirAbonnementActif(etudiant);
     }
+
+    @PutMapping("/abonnements/resilier")
+    public Abonnement resilierMonAbonnement(
+            Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException("Etudiant non trouvé"));
+
+        return abonnementService.resilierAbonnement(etudiant);
+    }
+
+    @PutMapping("/abonnements/changer")
+    public Abonnement changerMonAbonnement(
+            @RequestBody SouscrireAbonnementRequest request,
+            Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Etudiant etudiant = etudiantRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException("Etudiant non trouvé"));
+
+        return abonnementService.changerAbonnement(
+                etudiant,
+                request.getOffreId()
+        );
+    }
 }

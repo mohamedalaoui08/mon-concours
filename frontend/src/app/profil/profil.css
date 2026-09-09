@@ -282,3 +282,40 @@
 .resultat-card p {
   margin: 0;
 }
+
+.abonnement-profil {
+  background: white;
+  border-radius: 14px;
+  padding: 24px 28px;
+  margin-top: 18px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.abonnement-profil h3 {
+  margin: 0 0 14px 0;
+  font-size: 24px;
+  color: #080678;
+}
+
+.abonnement-profil p {
+  margin: 7px 0;
+  font-size: 17px;
+  color: #333;
+}
+
+.abonnement-button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 11px 24px;
+  border-radius: 8px;
+  background: linear-gradient(#70d7ef, #080678);
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.abonnement-button:hover {
+  opacity: 0.9;
+}

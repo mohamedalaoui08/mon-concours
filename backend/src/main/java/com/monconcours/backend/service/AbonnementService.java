@@ -51,7 +51,6 @@ public class AbonnementService {
         abonnementExistant.setDateDebut(nouvelAbonnement.getDateDebut());
         abonnementExistant.setDateFin(nouvelAbonnement.getDateFin());
         abonnementExistant.setStatut(nouvelAbonnement.getStatut());
-        abonnementExistant.setEtudiant(nouvelAbonnement.getEtudiant());
 
         return abonnementRepository.save(abonnementExistant);
     }
@@ -111,5 +110,60 @@ public class AbonnementService {
         }
 
         return Optional.of(abonnement);
+    }
+
+    public Abonnement resilierAbonnement(Etudiant etudiant) {
+
+        Abonnement abonnement = obtenirAbonnementActif(etudiant)
+                .orElseThrow(() ->
+                        new RuntimeException("Aucun abonnement actif"));
+
+        abonnement.setStatut("ANNULE");
+
+        return abonnementRepository.save(abonnement);
+    }
+
+    public Abonnement changerAbonnement(
+            Etudiant etudiant,
+            Integer offreId) {
+
+        // Récupérer l'abonnement actuellement actif
+        Abonnement abonnementActuel = obtenirAbonnementActif(etudiant)
+                .orElseThrow(() ->
+                        new RuntimeException("Aucun abonnement actif"));
+
+        // Récupérer la nouvelle offre choisie
+        OffreAbonnement nouvelleOffre =
+                offreAbonnementRepository.findById(offreId)
+                        .orElseThrow(() ->
+                                new RuntimeException("Offre non trouvée"));
+
+        // Empêcher de choisir la même offre
+        if (abonnementActuel.getOffreAbonnement().getId()
+                .equals(nouvelleOffre.getId())) {
+
+            throw new RuntimeException(
+                    "Vous avez déjà cet abonnement"
+            );
+        }
+
+        // Annuler l'ancien abonnement
+        abonnementActuel.setStatut("ANNULE");
+        abonnementRepository.save(abonnementActuel);
+
+        // Créer le nouvel abonnement
+        Abonnement nouvelAbonnement = new Abonnement();
+
+        nouvelAbonnement.setEtudiant(etudiant);
+        nouvelAbonnement.setOffreAbonnement(nouvelleOffre);
+        nouvelAbonnement.setDateDebut(LocalDate.now());
+        nouvelAbonnement.setDateFin(
+                LocalDate.now().plusDays(
+                        nouvelleOffre.getDureeJours()
+                )
+        );
+        nouvelAbonnement.setStatut("ACTIF");
+
+        return abonnementRepository.save(nouvelAbonnement);
     }
 }
