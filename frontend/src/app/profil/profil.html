@@ -1,44 +1,190 @@
-<div *ngIf="profil">
-    <h2>Mon profil</h2>
-  
-    <label>Nom :</label>
-    <input [(ngModel)]="profil.nom">
-    <label>Prénom :</label>
-    <input [(ngModel)]="profil.prenom">
-    <p>Email : {{ profil.email }}</p>
-    <label>Date de naissance :</label>
-    <input type="date" [(ngModel)]="profil.dateNaissance">
-    <label>Niveau :</label>
-<input [(ngModel)]="profil.niveau">
-  </div>
-  <button (click)="modifierProfil()">Enregistrer les modifications</button>
-  <button (click)="seDeconnecter()">Déconnexion</button>
+<div class="profil-page">
 
-  <h2>Mes favoris</h2>
+  <!-- =========================
+       SIDEBAR
+       ========================= -->
+  <aside class="sidebar">
 
-<div *ngFor="let favori of favoris">
+    <div class="sidebar-logo">
+      <img src="Logo.png" alt="Mon Concours">
+    </div>
 
-  <p>Type : {{ favori.typeContenu }}</p>
+    <nav class="sidebar-nav">
 
-  <p>ID du contenu : {{ favori.contenuId }}</p>
+      <a routerLink="/dashboard">
+        <img src="icon-accueil.png" alt="">
+        <span>Accueil</span>
+      </a>
 
-  <p>Date d'ajout : {{ favori.dateAjout }}</p>
+      <a routerLink="/concours">
+        <img src="icon-concours.png" alt="">
+        <span>Concours</span>
+      </a>
 
-  <button (click)="supprimerFavori(favori.id)">
-    Supprimer
-  </button>
+      <a routerLink="/qcm">
+        <img src="icon-qcm.png" alt="">
+        <span>QCM</span>
+      </a>
 
-  <h2>Mes résultats QCM</h2>
+      <a routerLink="/formation">
+        <img src="icon-astuces.png" alt="">
+        <span>Formation</span>
+      </a>
+
+      <a routerLink="/exercice">
+        <img src="icon-exercices.png" alt="">
+        <span>Exercices</span>
+      </a>
+
+      <a routerLink="/actualite">
+        <img src="icon-ecoles.png" alt="">
+        <span>Écoles</span>
+      </a>
+
+    </nav>
+
+    <div class="sidebar-profile active">
+      <img src="icon-profil.png" alt="">
+      <span>Mon profil</span>
+    </div>
+
+  </aside>
+
+
+  <!-- =========================
+       CONTENU PROFIL
+       ========================= -->
+  <main class="profil-content">
+
+    <h1>Mon profil</h1>
+
+    <div class="profil-card" *ngIf="profil">
+
+      <!-- =========================
+           INFORMATIONS PERSONNELLES
+           ========================= -->
+      <section class="profil-section">
+
+        <h2>Informations personnelles</h2>
+
+        <div class="profil-grid">
+
+          <div class="champ">
+            <label>Nom</label>
+            <input [(ngModel)]="profil.nom">
+          </div>
+
+          <div class="champ">
+            <label>Prénom</label>
+            <input [(ngModel)]="profil.prenom">
+          </div>
+
+          <div class="champ champ-large">
+            <label>Email</label>
+            <input
+              [value]="profil.email"
+              readonly>
+          </div>
+
+          <div class="champ">
+            <label>Date de naissance</label>
+            <input
+              type="date"
+              [(ngModel)]="profil.dateNaissance">
+          </div>
+
+          <div class="champ">
+            <label>Niveau</label>
+            <input [(ngModel)]="profil.niveau">
+          </div>
+
+        </div>
+
+        <div class="profil-actions">
+
+          <button
+            class="save-button"
+            (click)="modifierProfil()">
+            Enregistrer les modifications
+          </button>
+
+          <button
+            class="logout-button"
+            (click)="seDeconnecter()">
+            Déconnexion
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           FAVORIS
+           ========================= -->
+      <section class="profil-section">
+
+        <h2>Mes favoris</h2>
+
+      <div
+        class="favori-card"
+        *ngFor="let favori of favoris"
+        (click)="ouvrirFavori(favori)">
+
+         <div>
+        <p class="favori-type">
+          {{ favori.typeContenu }}
+        </p>
+
+         <h3>
+        {{ favori.titre }}
+         </h3>
+
+         <p>
+         Ajouté le : {{ favori.dateAjout }}
+         </p>
+          </div>
+
+          <button
+            class="delete-button"
+            (click)="supprimerFavori(favori.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           RESULTATS QCM
+           ========================= -->
+      <section class="profil-section">
+
+        <h2>Mes résultats QCM</h2>
+
+        <div class="resultats-grid">
+
+          <div
+            class="resultat-card"
+            *ngFor="let resultat of resultats">
+
+            <p class="score">
+              {{ resultat.score }}
+            </p>
+
+            <p>
+              {{ resultat.datePassage }}
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
 
 </div>
-
-
-<div *ngFor="let resultat of resultats">
-
-  <p>Score : {{ resultat.score }}</p>
-
-  <p>Date : {{ resultat.datePassage }}</p>
-
-</div>
-
-

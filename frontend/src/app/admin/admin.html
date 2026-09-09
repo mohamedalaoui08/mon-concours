@@ -1,836 +1,1440 @@
-<h2>Ajouter un concours</h2>
-
-<label>Nom :</label>
-<input [(ngModel)]="nouveauConcours.nom">
-
-<br>
-
-<label>Date :</label>
-<input type="date" [(ngModel)]="nouveauConcours.date">
-
-<br>
-
-<label>Description :</label>
-<input [(ngModel)]="nouveauConcours.description">
-
-<br>
-
-<label>Fichier PDF :</label>
-<input
-  type="file"
-  accept="application/pdf"
-  (change)="selectionnerPdf($event)">
-
-<br>
-
-<label>École :</label>
-
-<select [(ngModel)]="nouveauConcours.ecole">
-  <option *ngFor="let ecole of ecoles" [ngValue]="ecole">
-    {{ ecole.nom }}
-  </option>
-</select>
-
-<br>
-
-<button (click)="ajouterConcours()">
-  Ajouter le concours
-</button>
-
-
-<h2>Gestion des concours</h2>
-
-<div *ngFor="let concoursItem of concours">
-
-  <h3>{{ concoursItem.nom }}</h3>
-
-  <p>Date : {{ concoursItem.date }}</p>
-
-  <p>Description : {{ concoursItem.description }}</p>
-
-  <button (click)="selectionnerConcours(concoursItem)">
-    Modifier
-  </button>
-
-  <button (click)="supprimerConcours(concoursItem.id)">
-    Supprimer
-  </button>
-
-</div>
-
-
-<div *ngIf="concoursAModifier">
-
-  <h2>Modifier le concours</h2>
-
-  <label>Nom :</label>
-  <input [(ngModel)]="concoursAModifier.nom">
-
-  <br>
-
-  <label>Date :</label>
-  <input type="date" [(ngModel)]="concoursAModifier.date">
-
-  <br>
-
-  <label>Description :</label>
-  <input [(ngModel)]="concoursAModifier.description">
-
-  <br>
-
-  <label>Fichier PDF :</label>
-  <input
-    type="file"
-    accept="application/pdf"
-    (change)="selectionnerPdf($event)">
-
-  <br>
-
-  <button (click)="modifierConcours()">
-    Enregistrer les modifications
-  </button>
-
-</div>
-
-<h2>Gestion des QCM</h2>
-
-<div *ngFor="let qcmItem of qcms">
-
-  <h3>{{ qcmItem.titre }}</h3>
-
-  <p>Durée : {{ qcmItem.duree }}</p>
-  <p>Niveau : {{ qcmItem.niveau }}</p>
-
-  <button (click)="selectionnerQcm(qcmItem)">
-    Modifier
-  </button>
-
-  <button (click)="supprimerQcm(qcmItem.id)">
-    Supprimer
-  </button>
-
-</div>
-
-
-<h2>Ajouter un QCM</h2>
-
-<label>Titre :</label>
-<input [(ngModel)]="nouveauQcm.titre">
-
-<br>
-
-<label>Durée :</label>
-<input type="number" [(ngModel)]="nouveauQcm.duree">
-
-<br>
-
-<label>Niveau :</label>
-<input [(ngModel)]="nouveauQcm.niveau">
-
-<br>
-
-<button (click)="ajouterQcm()">
-  Ajouter le QCM
-</button>
-
-
-<div *ngIf="qcmAModifier">
-
-  <h2>Modifier le QCM</h2>
-
-  <label>Titre :</label>
-  <input [(ngModel)]="qcmAModifier.titre">
-
-  <br>
-
-  <label>Durée :</label>
-  <input type="number" [(ngModel)]="qcmAModifier.duree">
-
-  <br>
-
-  <label>Niveau :</label>
-  <input [(ngModel)]="qcmAModifier.niveau">
-
-  <br>
-
-  <button (click)="modifierQcm()">
-    Enregistrer les modifications
-  </button>
-
-</div>
-
-
-<hr>
-
-
-<h2>Gestion des questions</h2>
-
-<div *ngFor="let questionItem of questions">
-
-  <p>{{ questionItem.enonce }}</p>
-
-  <button (click)="selectionnerQuestion(questionItem)">
-    Modifier
-  </button>
-
-  <button (click)="supprimerQuestion(questionItem.id)">
-    Supprimer
-  </button>
-
-</div>
-
-
-<h2>Ajouter une question</h2>
-
-<label>Question :</label>
-<input [(ngModel)]="nouvelleQuestion.enonce">
-
-<br>
-
-<label>QCM :</label>
-
-<select [(ngModel)]="nouvelleQuestion.qcm">
-  <option *ngFor="let qcmItem of qcms" [ngValue]="qcmItem">
-    {{ qcmItem.titre }}
-  </option>
-</select>
-
-<br>
-
-<button (click)="ajouterQuestion()">
-  Ajouter la question
-</button>
-
-
-<div *ngIf="questionAModifier">
-
-  <h2>Modifier la question</h2>
-
-  <label>Énoncé :</label>
-  <input [(ngModel)]="questionAModifier.enonce">
-
-  <br>
-
-  <button (click)="modifierQuestion()">
-    Enregistrer les modifications
-  </button>
-
-</div>
-
-<h2>Ajouter un choix</h2>
-
-<label>Texte :</label>
-<input [(ngModel)]="nouveauChoix.texte">
-
-<br>
-
-<label>Bonne réponse :</label>
-<input
-  type="checkbox"
-  [(ngModel)]="nouveauChoix.estCorrecte">
-
-<br>
-
-<label>Question :</label>
-
-<select [(ngModel)]="nouveauChoix.question">
-  <option *ngFor="let questionItem of questions" [ngValue]="questionItem">
-    {{ questionItem.enonce }}
-  </option>
-</select>
-
-<br>
-
-<button (click)="ajouterChoix()">
-  Ajouter le choix
-</button>
-
-<h2>Gestion des choix</h2>
-
-<div *ngFor="let choixItem of choix">
-
-  <p>Texte : {{ choixItem.texte }}</p>
-
-  <p>Bonne réponse : {{ choixItem.estCorrecte ? 'Oui' : 'Non' }}</p>
-
-  <button (click)="selectionnerChoix(choixItem)">
-    Modifier
-  </button>
-
-  <button (click)="supprimerChoix(choixItem.id)">
-    Supprimer
-  </button>
-
-</div>
-
-<div *ngIf="choixAModifier">
-
-    <h2>Modifier le choix</h2>
-  
-    <label>Texte :</label>
-    <input [(ngModel)]="choixAModifier.texte">
-  
-    <br>
-  
-    <label>Bonne réponse :</label>
-    <input
-      type="checkbox"
-      [(ngModel)]="choixAModifier.estCorrecte">
-  
-    <br>
-  
-    <button (click)="modifierChoix()">
-      Enregistrer les modifications
-    </button>
-  
+<div class="admin-page">
+
+  <!-- =====================================================
+       SIDEBAR ADMIN
+       ===================================================== -->
+
+  <aside class="admin-sidebar">
+
+    <div class="admin-logo">
+      <img src="Logo.png" alt="Mon Concours">
+    </div>
+
+    <nav class="admin-nav">
+
+      <button
+        [class.active]="sectionActive === 'dashboard'"
+        (click)="changerSection('dashboard')">
+        <img src="icon-accueil.png" alt="">
+        <span>Accueil</span>
+      </button>
+
+      <button
+        [class.active]="sectionActive === 'admins'"
+        (click)="changerSection('admins')">
+        <img src="icon-profil.png" alt="">
+        <span>Admins</span>
+      </button>
+
+      <button
+        [class.active]="sectionActive === 'etudiants'"
+        (click)="changerSection('etudiants')">
+        <img src="icon-profil.png" alt="">
+        <span>Étudiants</span>
+      </button>
+
+      <button
+        [class.active]="sectionActive === 'concours'"
+        (click)="changerSection('concours')">
+        <img src="icon-concours.png" alt="">
+        <span>Concours</span>
+      </button>
+
+      <button
+        [class.active]="sectionActive === 'qcm'"
+        (click)="changerSection('qcm')">
+        <img src="icon-qcm.png" alt="">
+        <span>QCM</span>
+      </button>
+
+      <button
+        [class.active]="sectionActive === 'formations'"
+        (click)="changerSection('formations')">
+        <img src="icon-astuces.png" alt="">
+        <span>Formation</span>
+      </button>
+
+      <button
+        [class.active]="sectionActive === 'exercices'"
+        (click)="changerSection('exercices')">
+        <img src="icon-exercices.png" alt="">
+        <span>Exercices</span>
+      </button>
+
+      <button
+        [class.active]="sectionActive === 'ecoles'"
+        (click)="changerSection('ecoles')">
+        <img src="icon-ecoles.png" alt="">
+        <span>Écoles & Actualités</span>
+      </button>
+
+      <button
+        [class.active]="sectionActive === 'abonnements'"
+        (click)="changerSection('abonnements')">
+        <img src="icon-concours.png" alt="">
+        <span>Abonnements</span>
+      </button>
+
+      <button
+        [class.active]="sectionActive === 'inscriptions'"
+        (click)="changerSection('inscriptions')">
+        <img src="icon-profil.png" alt="">
+        <span>Inscriptions</span>
+      </button>
+
+    </nav>
+
+<div
+  class="admin-profile"
+  (click)="changerSection('profil')">
+
+  <img src="icon-profil.png" alt="">
+
+  <div>
+    <span>Mon profil</span>
+    <small>Admin</small>
   </div>
 
-  <h2>Ajouter un exercice</h2>
+</div>
+  </aside>
 
-<label>Titre :</label>
-<input [(ngModel)]="nouvelExercice.titre">
 
-<br>
+  <!-- =====================================================
+       CONTENU PRINCIPAL
+       ===================================================== -->
 
-<label>Énoncé :</label>
-<input [(ngModel)]="nouvelExercice.enonce">
+  <main class="admin-content">
 
-<br>
 
-<label>Matière :</label>
-<input [(ngModel)]="nouvelExercice.matiere">
+    <!-- =====================================================
+         DASHBOARD
+         ===================================================== -->
 
-<br>
+<section
+  *ngIf="sectionActive === 'dashboard'"
+  class="admin-section dashboard-section">
 
-<button (click)="ajouterExercice()">
-  Ajouter l'exercice
-</button>
+  <h1>Tableau de bord</h1>
 
-<h2>Gestion des exercices</h2>
+  <div class="dashboard-stats">
 
-<div *ngFor="let exerciceItem of exercices">
+    <div class="stat-card">
+      <span class="stat-label">Étudiants</span>
+      <strong class="stat-value">{{ etudiants.length }}</strong>
+    </div>
 
-  <h3>{{ exerciceItem.titre }}</h3>
+    <div class="stat-card">
+      <span class="stat-label">Concours</span>
+      <strong class="stat-value">{{ concours.length }}</strong>
+    </div>
 
-  <p>Énoncé : {{ exerciceItem.enonce }}</p>
+    <div class="stat-card">
+      <span class="stat-label">QCM</span>
+      <strong class="stat-value">{{ qcms.length }}</strong>
+    </div>
 
-  <p>Matière : {{ exerciceItem.matiere }}</p>
+    <div class="stat-card">
+      <span class="stat-label">Demandes en attente</span>
 
-  <button (click)="selectionnerExercice(exerciceItem)">
-    Modifier
-  </button>
+      <strong class="stat-value">
+        {{
+          demandesInscription.filter(
+            demande => demande.statut === 'EN_ATTENTE'
+          ).length
+        }}
+      </strong>
+    </div>
 
-  <button (click)="supprimerExercice(exerciceItem.id)">
-    Supprimer
-  </button>
+  </div>
+
+</section>
+
+
+    <!-- =====================================================
+         ADMINS
+         ===================================================== -->
+
+    <section
+      *ngIf="sectionActive === 'admins'"
+      class="admin-section">
+
+      <h1>Gestion des administrateurs</h1>
+
+
+      <!-- Ajouter admin -->
+
+      <div class="admin-form">
+
+        <h2>Ajouter un admin</h2>
+
+        <label>Nom :</label>
+        <input [(ngModel)]="nouvelAdmin.nom">
+
+        <label>Prénom :</label>
+        <input [(ngModel)]="nouvelAdmin.prenom">
+
+        <label>Email :</label>
+        <input
+          type="email"
+          [(ngModel)]="nouvelAdmin.email">
+
+        <label>Mot de passe :</label>
+        <input
+          type="password"
+          [(ngModel)]="nouvelAdmin.motDePasse">
+
+        <button (click)="ajouterAdmin()">
+          Ajouter l'admin
+        </button>
+
+      </div>
+
+
+      <!-- Liste admins -->
+
+      <div class="admin-list">
+
+        <h2>Liste des admins</h2>
+
+        <div
+          *ngFor="let adminItem of admins"
+          class="admin-item">
+
+          <p>
+            <strong>Nom :</strong>
+            {{ adminItem.nom }}
+          </p>
+
+          <p>
+            <strong>Prénom :</strong>
+            {{ adminItem.prenom }}
+          </p>
+
+          <p>
+            <strong>Email :</strong>
+            {{ adminItem.email }}
+          </p>
+
+          <button
+            (click)="selectionnerAdmin(adminItem)">
+            Modifier
+          </button>
+
+          <button
+            (click)="supprimerAdmin(adminItem.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- Modifier admin -->
+
+      <div
+        *ngIf="adminAModifier"
+        class="admin-form">
+
+        <h2>Modifier l'admin</h2>
+
+        <label>Nom :</label>
+        <input [(ngModel)]="adminAModifier.nom">
+
+        <label>Prénom :</label>
+        <input [(ngModel)]="adminAModifier.prenom">
+
+        <label>Email :</label>
+        <input [(ngModel)]="adminAModifier.email">
+
+        <button (click)="modifierAdmin()">
+          Enregistrer les modifications
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ÉTUDIANTS
+         ===================================================== -->
+
+    <section
+      *ngIf="sectionActive === 'etudiants'"
+      class="admin-section">
+
+      <h1>Gestion des étudiants</h1>
+
+      <div
+        *ngFor="let etudiantItem of etudiants"
+        class="admin-item">
+
+        <p>
+          <strong>Nom :</strong>
+          {{ etudiantItem.nom }}
+        </p>
+
+        <p>
+          <strong>Prénom :</strong>
+          {{ etudiantItem.prenom }}
+        </p>
+
+        <p>
+          <strong>Email :</strong>
+          {{ etudiantItem.email }}
+        </p>
+
+        <p>
+          <strong>Niveau :</strong>
+          {{ etudiantItem.niveau }}
+        </p>
+
+        <p>
+          <strong>Date de naissance :</strong>
+          {{ etudiantItem.dateNaissance }}
+        </p>
+
+        <button
+          (click)="selectionnerEtudiant(etudiantItem)">
+          Modifier
+        </button>
+
+        <button
+          (click)="supprimerEtudiant(etudiantItem.id)">
+          Supprimer
+        </button>
+
+      </div>
+
+
+      <div
+        *ngIf="etudiantAModifier"
+        class="admin-form">
+
+        <h2>Modifier l'étudiant</h2>
+
+        <label>Nom :</label>
+        <input [(ngModel)]="etudiantAModifier.nom">
+
+        <label>Prénom :</label>
+        <input [(ngModel)]="etudiantAModifier.prenom">
+
+        <label>Email :</label>
+        <input [(ngModel)]="etudiantAModifier.email">
+
+        <label>Niveau :</label>
+        <input [(ngModel)]="etudiantAModifier.niveau">
+
+        <label>Date de naissance :</label>
+        <input
+          type="date"
+          [(ngModel)]="etudiantAModifier.dateNaissance">
+
+        <button (click)="modifierEtudiant()">
+          Enregistrer les modifications
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONCOURS
+         ===================================================== -->
+
+    <section
+      *ngIf="sectionActive === 'concours'"
+      class="admin-section">
+
+      <h1>Gestion des concours</h1>
+
+
+      <!-- Ajouter concours -->
+
+      <div class="admin-form">
+
+        <h2>Ajouter un concours</h2>
+
+        <label>Nom :</label>
+        <input [(ngModel)]="nouveauConcours.nom">
+
+        <label>Date :</label>
+        <input
+          type="date"
+          [(ngModel)]="nouveauConcours.date">
+
+        <label>Description :</label>
+        <input [(ngModel)]="nouveauConcours.description">
+
+        <label>Fichier PDF :</label>
+
+        <input
+          type="file"
+          accept="application/pdf"
+          (change)="selectionnerPdf($event)">
+
+        <label>École :</label>
+
+        <select [(ngModel)]="nouveauConcours.ecole">
+
+          <option
+            *ngFor="let ecole of ecoles"
+            [ngValue]="ecole">
+
+            {{ ecole.nom }}
+
+          </option>
+
+        </select>
+
+        <button (click)="ajouterConcours()">
+          Ajouter le concours
+        </button>
+
+      </div>
+
+
+      <!-- Liste concours -->
+
+      <div class="admin-list">
+
+        <h2>Liste des concours</h2>
+
+        <div
+          *ngFor="let concoursItem of concours"
+          class="admin-item">
+
+          <h3>{{ concoursItem.nom }}</h3>
+
+          <p>
+            <strong>Date :</strong>
+            {{ concoursItem.date }}
+          </p>
+
+          <p>
+            <strong>Description :</strong>
+            {{ concoursItem.description }}
+          </p>
+
+          <button
+            (click)="selectionnerConcours(concoursItem)">
+            Modifier
+          </button>
+
+          <button
+            (click)="supprimerConcours(concoursItem.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- Modifier concours -->
+
+      <div
+        *ngIf="concoursAModifier"
+        class="admin-form">
+
+        <h2>Modifier le concours</h2>
+
+        <label>Nom :</label>
+        <input [(ngModel)]="concoursAModifier.nom">
+
+        <label>Date :</label>
+        <input
+          type="date"
+          [(ngModel)]="concoursAModifier.date">
+
+        <label>Description :</label>
+        <input [(ngModel)]="concoursAModifier.description">
+
+        <label>Fichier PDF :</label>
+
+        <input
+          type="file"
+          accept="application/pdf"
+          (change)="selectionnerPdf($event)">
+
+        <button (click)="modifierConcours()">
+          Enregistrer les modifications
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         QCM + QUESTIONS + CHOIX
+         ===================================================== -->
+
+    <section
+      *ngIf="sectionActive === 'qcm'"
+      class="admin-section">
+
+      <h1>Gestion des QCM</h1>
+
+
+      <!-- Ajouter QCM -->
+
+      <div class="admin-form">
+
+        <h2>Ajouter un QCM</h2>
+
+        <label>Titre :</label>
+        <input [(ngModel)]="nouveauQcm.titre">
+
+        <label>Durée :</label>
+        <input
+          type="number"
+          [(ngModel)]="nouveauQcm.duree">
+
+        <label>Niveau :</label>
+        <input [(ngModel)]="nouveauQcm.niveau">
+
+        <button (click)="ajouterQcm()">
+          Ajouter le QCM
+        </button>
+
+      </div>
+
+
+      <!-- Liste QCM -->
+
+      <div class="admin-list">
+
+        <h2>Liste des QCM</h2>
+
+        <div
+          *ngFor="let qcmItem of qcms"
+          class="admin-item">
+
+          <h3>{{ qcmItem.titre }}</h3>
+
+          <p>
+            <strong>Durée :</strong>
+            {{ qcmItem.duree }}
+          </p>
+
+          <p>
+            <strong>Niveau :</strong>
+            {{ qcmItem.niveau }}
+          </p>
+
+          <button
+            (click)="selectionnerQcm(qcmItem)">
+            Modifier
+          </button>
+
+          <button
+            (click)="supprimerQcm(qcmItem.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- Modifier QCM -->
+
+      <div
+        *ngIf="qcmAModifier"
+        class="admin-form">
+
+        <h2>Modifier le QCM</h2>
+
+        <label>Titre :</label>
+        <input [(ngModel)]="qcmAModifier.titre">
+
+        <label>Durée :</label>
+        <input
+          type="number"
+          [(ngModel)]="qcmAModifier.duree">
+
+        <label>Niveau :</label>
+        <input [(ngModel)]="qcmAModifier.niveau">
+
+        <button (click)="modifierQcm()">
+          Enregistrer les modifications
+        </button>
+
+      </div>
+
+
+      <!-- Questions -->
+
+      <div class="admin-form">
+
+        <h2>Ajouter une question</h2>
+
+        <label>Question :</label>
+        <input [(ngModel)]="nouvelleQuestion.enonce">
+
+        <label>QCM :</label>
+
+        <select [(ngModel)]="nouvelleQuestion.qcm">
+
+          <option
+            *ngFor="let qcmItem of qcms"
+            [ngValue]="qcmItem">
+
+            {{ qcmItem.titre }}
+
+          </option>
+
+        </select>
+
+        <button (click)="ajouterQuestion()">
+          Ajouter la question
+        </button>
+
+      </div>
+
+
+      <div class="admin-list">
+
+        <h2>Gestion des questions</h2>
+
+        <div
+          *ngFor="let questionItem of questions"
+          class="admin-item">
+
+          <p>{{ questionItem.enonce }}</p>
+
+          <button
+            (click)="selectionnerQuestion(questionItem)">
+            Modifier
+          </button>
+
+          <button
+            (click)="supprimerQuestion(questionItem.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        *ngIf="questionAModifier"
+        class="admin-form">
+
+        <h2>Modifier la question</h2>
+
+        <label>Énoncé :</label>
+        <input [(ngModel)]="questionAModifier.enonce">
+
+        <button (click)="modifierQuestion()">
+          Enregistrer les modifications
+        </button>
+
+      </div>
+
+
+      <!-- Choix -->
+
+      <div class="admin-form">
+
+        <h2>Ajouter un choix</h2>
+
+        <label>Texte :</label>
+        <input [(ngModel)]="nouveauChoix.texte">
+
+        <label>Bonne réponse :</label>
+
+        <input
+          type="checkbox"
+          [(ngModel)]="nouveauChoix.estCorrecte">
+
+        <label>Question :</label>
+
+        <select [(ngModel)]="nouveauChoix.question">
+
+          <option
+            *ngFor="let questionItem of questions"
+            [ngValue]="questionItem">
+
+            {{ questionItem.enonce }}
+
+          </option>
+
+        </select>
+
+        <button (click)="ajouterChoix()">
+          Ajouter le choix
+        </button>
+
+      </div>
+
+
+      <div class="admin-list">
+
+        <h2>Gestion des choix</h2>
+
+        <div
+          *ngFor="let choixItem of choix"
+          class="admin-item">
+
+          <p>
+            <strong>Texte :</strong>
+            {{ choixItem.texte }}
+          </p>
+
+          <p>
+            <strong>Bonne réponse :</strong>
+            {{ choixItem.estCorrecte ? 'Oui' : 'Non' }}
+          </p>
+
+          <button
+            (click)="selectionnerChoix(choixItem)">
+            Modifier
+          </button>
+
+          <button
+            (click)="supprimerChoix(choixItem.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        *ngIf="choixAModifier"
+        class="admin-form">
+
+        <h2>Modifier le choix</h2>
+
+        <label>Texte :</label>
+        <input [(ngModel)]="choixAModifier.texte">
+
+        <label>Bonne réponse :</label>
+
+        <input
+          type="checkbox"
+          [(ngModel)]="choixAModifier.estCorrecte">
+
+        <button (click)="modifierChoix()">
+          Enregistrer les modifications
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FORMATIONS
+         ===================================================== -->
+
+    <section
+      *ngIf="sectionActive === 'formations'"
+      class="admin-section">
+
+      <h1>Gestion des formations</h1>
+
+
+      <div class="admin-form">
+
+        <h2>Ajouter une formation</h2>
+
+        <label>Titre :</label>
+        <input [(ngModel)]="nouvelleFormation.titre">
+
+        <label>Description :</label>
+        <input [(ngModel)]="nouvelleFormation.description">
+
+        <label>Contenu :</label>
+        <input [(ngModel)]="nouvelleFormation.contenu">
+
+        <label>Durée :</label>
+        <input
+          type="number"
+          [(ngModel)]="nouvelleFormation.duree">
+
+        <label>Niveau :</label>
+        <input [(ngModel)]="nouvelleFormation.niveau">
+
+        <label>Date de publication :</label>
+        <input
+          type="date"
+          [(ngModel)]="nouvelleFormation.datePublication">
+
+        <button (click)="ajouterFormation()">
+          Ajouter la formation
+        </button>
+
+      </div>
+
+
+      <div class="admin-list">
+
+        <h2>Liste des formations</h2>
+
+        <div
+          *ngFor="let formationItem of formations"
+          class="admin-item">
+
+          <h3>{{ formationItem.titre }}</h3>
+
+          <p>
+            <strong>Description :</strong>
+            {{ formationItem.description }}
+          </p>
+
+          <p>
+            <strong>Contenu :</strong>
+            {{ formationItem.contenu }}
+          </p>
+
+          <p>
+            <strong>Durée :</strong>
+            {{ formationItem.duree }}
+          </p>
+
+          <p>
+            <strong>Niveau :</strong>
+            {{ formationItem.niveau }}
+          </p>
+
+          <p>
+            <strong>Date :</strong>
+            {{ formationItem.datePublication }}
+          </p>
+
+          <button
+            (click)="selectionnerFormation(formationItem)">
+            Modifier
+          </button>
+
+          <button
+            (click)="supprimerFormation(formationItem.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        *ngIf="formationAModifier"
+        class="admin-form">
+
+        <h2>Modifier la formation</h2>
+
+        <label>Titre :</label>
+        <input [(ngModel)]="formationAModifier.titre">
+
+        <label>Description :</label>
+        <input [(ngModel)]="formationAModifier.description">
+
+        <label>Contenu :</label>
+        <input [(ngModel)]="formationAModifier.contenu">
+
+        <label>Durée :</label>
+        <input
+          type="number"
+          [(ngModel)]="formationAModifier.duree">
+
+        <label>Niveau :</label>
+        <input [(ngModel)]="formationAModifier.niveau">
+
+        <label>Date de publication :</label>
+        <input
+          type="date"
+          [(ngModel)]="formationAModifier.datePublication">
+
+        <button (click)="modifierFormation()">
+          Enregistrer les modifications
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         EXERCICES
+         ===================================================== -->
+
+    <section
+      *ngIf="sectionActive === 'exercices'"
+      class="admin-section">
+
+      <h1>Gestion des exercices</h1>
+
+
+      <div class="admin-form">
+
+        <h2>Ajouter un exercice</h2>
+
+        <label>Titre :</label>
+        <input [(ngModel)]="nouvelExercice.titre">
+
+        <label>Énoncé :</label>
+        <input [(ngModel)]="nouvelExercice.enonce">
+
+        <label>Matière :</label>
+        <input [(ngModel)]="nouvelExercice.matiere">
+
+        <button (click)="ajouterExercice()">
+          Ajouter l'exercice
+        </button>
+
+      </div>
+
+
+      <div class="admin-list">
+
+        <h2>Liste des exercices</h2>
+
+        <div
+          *ngFor="let exerciceItem of exercices"
+          class="admin-item">
+
+          <h3>{{ exerciceItem.titre }}</h3>
+
+          <p>
+            <strong>Énoncé :</strong>
+            {{ exerciceItem.enonce }}
+          </p>
+
+          <p>
+            <strong>Matière :</strong>
+            {{ exerciceItem.matiere }}
+          </p>
+
+          <button
+            (click)="selectionnerExercice(exerciceItem)">
+            Modifier
+          </button>
+
+          <button
+            (click)="supprimerExercice(exerciceItem.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        *ngIf="exerciceAModifier"
+        class="admin-form">
+
+        <h2>Modifier l'exercice</h2>
+
+        <label>Titre :</label>
+        <input [(ngModel)]="exerciceAModifier.titre">
+
+        <label>Énoncé :</label>
+        <input [(ngModel)]="exerciceAModifier.enonce">
+
+        <label>Matière :</label>
+        <input [(ngModel)]="exerciceAModifier.matiere">
+
+        <button (click)="modifierExercice()">
+          Enregistrer les modifications
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ÉCOLES + ACTUALITÉS
+         ===================================================== -->
+
+    <section
+      *ngIf="sectionActive === 'ecoles'"
+      class="admin-section">
+
+      <h1>Écoles & Actualités</h1>
+
+
+      <!-- Écoles -->
+
+      <div class="admin-form">
+
+        <h2>Ajouter une école</h2>
+
+        <label>Nom :</label>
+        <input [(ngModel)]="nouvelleEcole.nom">
+
+        <label>Description :</label>
+        <input [(ngModel)]="nouvelleEcole.description">
+
+        <button (click)="ajouterEcole()">
+          Ajouter l'école
+        </button>
+
+      </div>
+
+
+      <div class="admin-list">
+
+        <h2>Gestion des écoles</h2>
+
+        <div
+          *ngFor="let ecoleItem of ecoles"
+          class="admin-item">
+
+          <h3>{{ ecoleItem.nom }}</h3>
+
+          <p>
+            <strong>Description :</strong>
+            {{ ecoleItem.description }}
+          </p>
+
+          <button
+            (click)="selectionnerEcole(ecoleItem)">
+            Modifier
+          </button>
+
+          <button
+            (click)="supprimerEcole(ecoleItem.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        *ngIf="ecoleAModifier"
+        class="admin-form">
+
+        <h2>Modifier l'école</h2>
+
+        <label>Nom :</label>
+        <input [(ngModel)]="ecoleAModifier.nom">
+
+        <label>Description :</label>
+        <input [(ngModel)]="ecoleAModifier.description">
+
+        <button (click)="modifierEcole()">
+          Enregistrer les modifications
+        </button>
+
+      </div>
+
+
+      <!-- Actualités -->
+
+      <div class="admin-form">
+
+        <h2>Ajouter une actualité</h2>
+
+        <label>Titre :</label>
+        <input [(ngModel)]="nouvelleActualite.titre">
+
+        <label>Contenu :</label>
+        <input [(ngModel)]="nouvelleActualite.contenu">
+
+        <label>Date de publication :</label>
+        <input
+          type="date"
+          [(ngModel)]="nouvelleActualite.datePublication">
+
+        <label>École :</label>
+
+        <select [(ngModel)]="nouvelleActualite.ecole">
+
+          <option
+            *ngFor="let ecoleItem of ecoles"
+            [ngValue]="ecoleItem">
+
+            {{ ecoleItem.nom }}
+
+          </option>
+
+        </select>
+
+        <button (click)="ajouterActualite()">
+          Ajouter l'actualité
+        </button>
+
+      </div>
+
+
+      <div class="admin-list">
+
+        <h2>Gestion des actualités</h2>
+
+        <div
+          *ngFor="let actualiteItem of actualites"
+          class="admin-item">
+
+          <h3>{{ actualiteItem.titre }}</h3>
+
+          <p>
+            <strong>Contenu :</strong>
+            {{ actualiteItem.contenu }}
+          </p>
+
+          <p>
+            <strong>Date :</strong>
+            {{ actualiteItem.datePublication }}
+          </p>
+
+          <button
+            (click)="selectionnerActualite(actualiteItem)">
+            Modifier
+          </button>
+
+          <button
+            (click)="supprimerActualite(actualiteItem.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        *ngIf="actualiteAModifier"
+        class="admin-form">
+
+        <h2>Modifier l'actualité</h2>
+
+        <label>Titre :</label>
+        <input [(ngModel)]="actualiteAModifier.titre">
+
+        <label>Contenu :</label>
+        <input [(ngModel)]="actualiteAModifier.contenu">
+
+        <label>Date de publication :</label>
+        <input
+          type="date"
+          [(ngModel)]="actualiteAModifier.datePublication">
+
+        <label>École :</label>
+
+        <select [(ngModel)]="actualiteAModifier.ecole">
+
+          <option
+            *ngFor="let ecoleItem of ecoles"
+            [ngValue]="ecoleItem">
+
+            {{ ecoleItem.nom }}
+
+          </option>
+
+        </select>
+
+        <button (click)="modifierActualite()">
+          Enregistrer les modifications
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABONNEMENTS
+         ===================================================== -->
+
+    <section
+      *ngIf="sectionActive === 'abonnements'"
+      class="admin-section">
+
+      <h1>Gestion des abonnements</h1>
+
+
+      <!-- Ajouter offre -->
+
+      <div class="admin-form">
+
+        <h2>Ajouter une offre d'abonnement</h2>
+
+        <label>Nom :</label>
+        <input [(ngModel)]="nouvelleOffreAbonnement.nom">
+
+        <label>Description :</label>
+        <input [(ngModel)]="nouvelleOffreAbonnement.description">
+
+        <label>Prix :</label>
+        <input
+          type="number"
+          [(ngModel)]="nouvelleOffreAbonnement.prix">
+
+        <label>Durée en jours :</label>
+        <input
+          type="number"
+          [(ngModel)]="nouvelleOffreAbonnement.dureeJours">
+
+        <button (click)="ajouterOffreAbonnement()">
+          Ajouter l'offre
+        </button>
+
+      </div>
+
+
+      <!-- Liste offres -->
+
+      <div class="admin-list">
+
+        <h2>Offres d'abonnement</h2>
+
+        <div
+          *ngFor="let offreItem of offresAbonnement"
+          class="admin-item">
+
+          <h3>{{ offreItem.nom }}</h3>
+
+          <p>
+            <strong>Description :</strong>
+            {{ offreItem.description }}
+          </p>
+
+          <p>
+            <strong>Prix :</strong>
+            {{ offreItem.prix }} DH
+          </p>
+
+          <p>
+            <strong>Durée :</strong>
+            {{ offreItem.dureeJours }} jours
+          </p>
+
+          <button
+            (click)="selectionnerOffreAbonnement(offreItem)">
+            Modifier
+          </button>
+
+          <button
+            (click)="supprimerOffreAbonnement(offreItem.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- Modifier offre -->
+
+      <div
+        *ngIf="offreAbonnementAModifier"
+        class="admin-form">
+
+        <h2>Modifier l'offre d'abonnement</h2>
+
+        <label>Nom :</label>
+        <input [(ngModel)]="offreAbonnementAModifier.nom">
+
+        <label>Description :</label>
+        <input [(ngModel)]="offreAbonnementAModifier.description">
+
+        <label>Prix :</label>
+        <input
+          type="number"
+          [(ngModel)]="offreAbonnementAModifier.prix">
+
+        <label>Durée en jours :</label>
+        <input
+          type="number"
+          [(ngModel)]="offreAbonnementAModifier.dureeJours">
+
+        <button (click)="modifierOffreAbonnement()">
+          Enregistrer les modifications
+        </button>
+
+      </div>
+
+
+      <!-- Abonnements étudiants -->
+
+      <div class="admin-list">
+
+        <h2>Abonnements des étudiants</h2>
+
+        <div
+          *ngFor="let abonnementItem of abonnements"
+          class="admin-item">
+
+          <p>
+            <strong>ID :</strong>
+            {{ abonnementItem.id }}
+          </p>
+
+          <p>
+            <strong>Date début :</strong>
+            {{ abonnementItem.dateDebut }}
+          </p>
+
+          <p>
+            <strong>Date fin :</strong>
+            {{ abonnementItem.dateFin }}
+          </p>
+
+          <p>
+            <strong>Statut :</strong>
+            {{ abonnementItem.statut }}
+          </p>
+
+          <select [(ngModel)]="abonnementItem.statut">
+
+            <option value="ACTIF">
+              ACTIF
+            </option>
+
+            <option value="EXPIRE">
+              EXPIRE
+            </option>
+
+            <option value="ANNULE">
+              ANNULE
+            </option>
+
+          </select>
+
+          <button
+            (click)="modifierAbonnement(abonnementItem)">
+            Modifier
+          </button>
+
+          <button
+            (click)="supprimerAbonnement(abonnementItem.id)">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DEMANDES D'INSCRIPTION
+         ===================================================== -->
+
+    <section
+      *ngIf="sectionActive === 'inscriptions'"
+      class="admin-section">
+
+      <h1>Demandes d'inscription</h1>
+
+      <div
+        *ngFor="let demandeItem of demandesInscription"
+        class="admin-item">
+
+        <p>
+          <strong>Nom :</strong>
+          {{ demandeItem.nom }}
+        </p>
+
+        <p>
+          <strong>Prénom :</strong>
+          {{ demandeItem.prenom }}
+        </p>
+
+        <p>
+          <strong>Email :</strong>
+          {{ demandeItem.email }}
+        </p>
+
+        <p>
+          <strong>Statut :</strong>
+          {{ demandeItem.statut }}
+        </p>
+
+        <button
+          *ngIf="
+            demandeItem.statut !== 'ACCEPTEE'
+            && demandeItem.statut !== 'REFUSEE'
+          "
+          (click)="accepterDemande(demandeItem.id)">
+
+          Accepter
+
+        </button>
+
+        <button
+          *ngIf="
+            demandeItem.statut !== 'ACCEPTEE'
+            && demandeItem.statut !== 'REFUSEE'
+          "
+          (click)="refuserDemande(demandeItem.id)">
+
+          Refuser
+
+        </button>
+
+      </div>
+
+    </section>
+
+<section
+  *ngIf="sectionActive === 'profil'"
+  class="admin-section admin-profil-section">
+
+  <h1>Mon profil</h1>
+
+  <div class="profil-card" *ngIf="adminConnecte">
+
+    <h2>Informations personnelles</h2>
+
+    <div class="profil-grid">
+
+      <div class="profil-field">
+        <label>Nom</label>
+        <input
+          type="text"
+          [(ngModel)]="adminConnecte.nom">
+      </div>
+
+      <div class="profil-field">
+        <label>Prénom</label>
+        <input
+          type="text"
+          [(ngModel)]="adminConnecte.prenom">
+      </div>
+
+      <div class="profil-field profil-email">
+        <label>Email</label>
+        <input
+          type="email"
+          [(ngModel)]="adminConnecte.email">
+      </div>
+
+    </div>
+
+    <div class="profil-actions">
+
+      <button
+        class="btn-enregistrer"
+        (click)="enregistrerProfilAdmin()">
+        Enregistrer les modifications
+      </button>
+
+      <button
+        class="btn-deconnexion"
+        (click)="deconnexionAdmin()">
+        Déconnexion
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
 
 </div>
 
-<div *ngIf="exerciceAModifier">
-
-    <h2>Modifier l'exercice</h2>
-  
-    <label>Titre :</label>
-    <input [(ngModel)]="exerciceAModifier.titre">
-  
-    <br>
-  
-    <label>Énoncé :</label>
-    <input [(ngModel)]="exerciceAModifier.enonce">
-  
-    <br>
-  
-    <label>Matière :</label>
-    <input [(ngModel)]="exerciceAModifier.matiere">
-  
-    <br>
-  
-    <button (click)="modifierExercice()">
-      Enregistrer les modifications
-    </button>
-  
-  </div>
-  
-  <h2>Ajouter une formation</h2>
-
-<label>Titre :</label>
-<input [(ngModel)]="nouvelleFormation.titre">
-
-<br>
-
-<label>Description :</label>
-<input [(ngModel)]="nouvelleFormation.description">
-
-<br>
-
-<label>Contenu :</label>
-<input [(ngModel)]="nouvelleFormation.contenu">
-
-<br>
-
-<label>Durée :</label>
-<input type="number" [(ngModel)]="nouvelleFormation.duree">
-
-<br>
-
-<label>Niveau :</label>
-<input [(ngModel)]="nouvelleFormation.niveau">
-
-<br>
-
-<label>Date de publication :</label>
-<input type="date" [(ngModel)]="nouvelleFormation.datePublication">
-
-<br>
-
-<button (click)="ajouterFormation()">
-  Ajouter la formation
-</button>
-
-<h2>Gestion des formations</h2>
-
-<div *ngFor="let formationItem of formations">
-
-  <h3>{{ formationItem.titre }}</h3>
-
-  <p>Description : {{ formationItem.description }}</p>
-  <p>Contenu : {{ formationItem.contenu }}</p>
-  <p>Durée : {{ formationItem.duree }}</p>
-  <p>Niveau : {{ formationItem.niveau }}</p>
-  <p>Date de publication : {{ formationItem.datePublication }}</p>
-
-  <button (click)="selectionnerFormation(formationItem)">
-    Modifier
-  </button>
-
-  <button (click)="supprimerFormation(formationItem.id)">
-    Supprimer
-  </button>
-
-</div>
-
-<div *ngIf="formationAModifier">
-
-    <h2>Modifier la formation</h2>
-  
-    <label>Titre :</label>
-    <input [(ngModel)]="formationAModifier.titre">
-  
-    <br>
-  
-    <label>Description :</label>
-    <input [(ngModel)]="formationAModifier.description">
-  
-    <br>
-  
-    <label>Contenu :</label>
-    <input [(ngModel)]="formationAModifier.contenu">
-  
-    <br>
-  
-    <label>Durée :</label>
-    <input type="number" [(ngModel)]="formationAModifier.duree">
-  
-    <br>
-  
-    <label>Niveau :</label>
-    <input [(ngModel)]="formationAModifier.niveau">
-  
-    <br>
-  
-    <label>Date de publication :</label>
-    <input type="date" [(ngModel)]="formationAModifier.datePublication">
-  
-    <br>
-  
-    <button (click)="modifierFormation()">
-      Enregistrer les modifications
-    </button>
-  
-  </div>
-
-  <h2>Ajouter une actualité</h2>
-
-<label>Titre :</label>
-<input [(ngModel)]="nouvelleActualite.titre">
-
-<br>
-
-<label>Contenu :</label>
-<input [(ngModel)]="nouvelleActualite.contenu">
-
-<br>
-
-<label>Date de publication :</label>
-<input type="date" [(ngModel)]="nouvelleActualite.datePublication">
-
-<br>
-
-<label>École :</label>
-<select [(ngModel)]="nouvelleActualite.ecole">
-  <option *ngFor="let ecoleItem of ecoles" [ngValue]="ecoleItem">
-    {{ ecoleItem.nom }}
-  </option>
-</select>
-
-<br>
-
-<button (click)="ajouterActualite()">
-  Ajouter l'actualité
-</button>
-
-<h2>Gestion des actualités</h2>
-
-<div *ngFor="let actualiteItem of actualites">
-
-  <h3>{{ actualiteItem.titre }}</h3>
-
-  <p>Contenu : {{ actualiteItem.contenu }}</p>
-
-  <p>Date de publication : {{ actualiteItem.datePublication }}</p>
-
-  <button (click)="selectionnerActualite(actualiteItem)">
-    Modifier
-  </button>
-
-  <button (click)="supprimerActualite(actualiteItem.id)">
-    Supprimer
-  </button>
-
-</div>
-
-<div *ngIf="actualiteAModifier">
-
-    <h2>Modifier l'actualité</h2>
-  
-    <label>Titre :</label>
-    <input [(ngModel)]="actualiteAModifier.titre">
-  
-    <br>
-  
-    <label>Contenu :</label>
-    <input [(ngModel)]="actualiteAModifier.contenu">
-  
-    <br>
-  
-    <label>Date de publication :</label>
-    <input
-      type="date"
-      [(ngModel)]="actualiteAModifier.datePublication">
-  
-    <br>
-  
-    <label>École :</label>
-    <select [(ngModel)]="actualiteAModifier.ecole">
-      <option *ngFor="let ecoleItem of ecoles" [ngValue]="ecoleItem">
-        {{ ecoleItem.nom }}
-      </option>
-    </select>
-  
-    <br>
-  
-    <button (click)="modifierActualite()">
-      Enregistrer les modifications
-    </button>
-  
-  </div>
-
-  <h2>Ajouter une école</h2>
-
-<label>Nom :</label>
-<input [(ngModel)]="nouvelleEcole.nom">
-
-<br>
-
-<label>Description :</label>
-<input [(ngModel)]="nouvelleEcole.description">
-
-<br>
-
-<button (click)="ajouterEcole()">
-  Ajouter l'école
-</button>
-
-<h2>Gestion des écoles</h2>
-
-<div *ngFor="let ecoleItem of ecoles">
-
-  <h3>{{ ecoleItem.nom }}</h3>
-
-  <p>Description : {{ ecoleItem.description }}</p>
-
-  <button (click)="selectionnerEcole(ecoleItem)">
-    Modifier
-  </button>
-
-  <button (click)="supprimerEcole(ecoleItem.id)">
-    Supprimer
-  </button>
-
-</div>
-
-<div *ngIf="ecoleAModifier">
-
-    <h2>Modifier l'école</h2>
-  
-    <label>Nom :</label>
-    <input [(ngModel)]="ecoleAModifier.nom">
-  
-    <br>
-  
-    <label>Description :</label>
-    <input [(ngModel)]="ecoleAModifier.description">
-  
-    <br>
-  
-    <button (click)="modifierEcole()">
-      Enregistrer les modifications
-    </button>
-  
-  </div>
-
-  <h2>Ajouter une offre d'abonnement</h2>
-
-<label>Nom :</label>
-<input [(ngModel)]="nouvelleOffreAbonnement.nom">
-
-<br>
-
-<label>Description :</label>
-<input [(ngModel)]="nouvelleOffreAbonnement.description">
-
-<br>
-
-<label>Prix :</label>
-<input type="number" [(ngModel)]="nouvelleOffreAbonnement.prix">
-
-<br>
-
-<label>Durée en jours :</label>
-<input type="number" [(ngModel)]="nouvelleOffreAbonnement.dureeJours">
-
-<br>
-
-<button (click)="ajouterOffreAbonnement()">
-  Ajouter l'offre
-</button>
-
-<h2>Gestion des offres d'abonnement</h2>
-
-<div *ngFor="let offreItem of offresAbonnement">
-
-  <h3>{{ offreItem.nom }}</h3>
-
-  <p>Description : {{ offreItem.description }}</p>
-  <p>Prix : {{ offreItem.prix }}</p>
-  <p>Durée : {{ offreItem.dureeJours }} jours</p>
-
-  <button (click)="selectionnerOffreAbonnement(offreItem)">
-    Modifier
-  </button>
-
-  <button (click)="supprimerOffreAbonnement(offreItem.id)">
-    Supprimer
-  </button>
-
-</div>
-
-<div *ngIf="offreAbonnementAModifier">
-
-    <h2>Modifier l'offre d'abonnement</h2>
-  
-    <label>Nom :</label>
-    <input [(ngModel)]="offreAbonnementAModifier.nom">
-  
-    <br>
-  
-    <label>Description :</label>
-    <input [(ngModel)]="offreAbonnementAModifier.description">
-  
-    <br>
-  
-    <label>Prix :</label>
-    <input type="number" [(ngModel)]="offreAbonnementAModifier.prix">
-  
-    <br>
-  
-    <label>Durée en jours :</label>
-    <input type="number" [(ngModel)]="offreAbonnementAModifier.dureeJours">
-  
-    <br>
-  
-    <button (click)="modifierOffreAbonnement()">
-      Enregistrer les modifications
-    </button>
-  
-  </div>
-
-  <h2>Gestion des étudiants</h2>
-
-<div *ngFor="let etudiantItem of etudiants">
-
-  <p>Nom : {{ etudiantItem.nom }}</p>
-  <p>Prénom : {{ etudiantItem.prenom }}</p>
-  <p>Email : {{ etudiantItem.email }}</p>
-  <p>Niveau : {{ etudiantItem.niveau }}</p>
-  <p>Date de naissance : {{ etudiantItem.dateNaissance }}</p>
-
-  <button (click)="selectionnerEtudiant(etudiantItem)">
-    Modifier
-  </button>
-
-  <button (click)="supprimerEtudiant(etudiantItem.id)">
-    Supprimer
-  </button>
-
-</div>
-
-<div *ngIf="etudiantAModifier">
-
-    <h2>Modifier l'étudiant</h2>
-  
-    <label>Nom :</label>
-    <input [(ngModel)]="etudiantAModifier.nom">
-  
-    <br>
-  
-    <label>Prénom :</label>
-    <input [(ngModel)]="etudiantAModifier.prenom">
-  
-    <br>
-  
-    <label>Email :</label>
-    <input [(ngModel)]="etudiantAModifier.email">
-  
-    <br>
-  
-    <label>Niveau :</label>
-    <input [(ngModel)]="etudiantAModifier.niveau">
-  
-    <br>
-  
-    <label>Date de naissance :</label>
-    <input type="date" [(ngModel)]="etudiantAModifier.dateNaissance">
-  
-    <br>
-  
-    <button (click)="modifierEtudiant()">
-      Enregistrer les modifications
-    </button>
-  
-  </div>
-
-  <h2>Gestion des admins</h2>
-
-<div *ngFor="let adminItem of admins">
-
-  <p>Nom : {{ adminItem.nom }}</p>
-  <p>Prénom : {{ adminItem.prenom }}</p>
-  <p>Email : {{ adminItem.email }}</p>
-
-  <button (click)="selectionnerAdmin(adminItem)">
-    Modifier
-  </button>
-
-  <button (click)="supprimerAdmin(adminItem.id)">
-    Supprimer
-  </button>
-
-  <h2>Ajouter un admin</h2>
-
-<label>Nom :</label>
-<input [(ngModel)]="nouvelAdmin.nom">
-
-<br>
-
-<label>Prénom :</label>
-<input [(ngModel)]="nouvelAdmin.prenom">
-
-<br>
-
-<label>Email :</label>
-<input [(ngModel)]="nouvelAdmin.email">
-
-<br>
-
-<label>Mot de passe :</label>
-<input type="password" [(ngModel)]="nouvelAdmin.motDePasse">
-
-<br>
-
-<button (click)="ajouterAdmin()">
-  Ajouter l'admin
-</button>
-
-</div>
-
-<div *ngIf="adminAModifier">
-
-    <h2>Modifier l'admin</h2>
-  
-    <label>Nom :</label>
-    <input [(ngModel)]="adminAModifier.nom">
-  
-    <br>
-  
-    <label>Prénom :</label>
-    <input [(ngModel)]="adminAModifier.prenom">
-  
-    <br>
-  
-    <label>Email :</label>
-    <input [(ngModel)]="adminAModifier.email">
-  
-    <br>
-  
-    <button (click)="modifierAdmin()">
-      Enregistrer les modifications
-    </button>
-  
-  </div>
-  <h2>Demandes d'inscription</h2>
-
-  <div *ngFor="let demandeItem of demandesInscription">
-  
-    <p>Nom : {{ demandeItem.nom }}</p>
-    <p>Prénom : {{ demandeItem.prenom }}</p>
-    <p>Email : {{ demandeItem.email }}</p>
-    <p>Statut : {{ demandeItem.statut }}</p>
-    <button
-    *ngIf="demandeItem.statut !== 'ACCEPTEE' && demandeItem.statut !== 'REFUSEE'"
-    (click)="accepterDemande(demandeItem.id)">
-    Accepter
-  </button>
-
-  <button
-  *ngIf="demandeItem.statut !== 'ACCEPTEE' && demandeItem.statut !== 'REFUSEE'"
-  (click)="refuserDemande(demandeItem.id)">
-  Refuser
-  </button>
-  
-  </div>
-
-  <h2>Gestion des abonnements</h2>
-
-<div *ngFor="let abonnementItem of abonnements">
-
-  <p>ID : {{ abonnementItem.id }}</p>
-  <p>Date début : {{ abonnementItem.dateDebut }}</p>
-  <p>Date fin : {{ abonnementItem.dateFin }}</p>
-  <p>Statut : {{ abonnementItem.statut }}</p>
-
-  <button (click)="supprimerAbonnement(abonnementItem.id)">
-    Supprimer
-  </button>
-
-  <select [(ngModel)]="abonnementItem.statut">
-    <option value="ACTIF">ACTIF</option>
-    <option value="EXPIRE">EXPIRE</option>
-    <option value="ANNULE">ANNULE</option>
-  </select>
-  
-  <button (click)="modifierAbonnement(abonnementItem)">
-    Modifier
-  </button>
-
-</div>

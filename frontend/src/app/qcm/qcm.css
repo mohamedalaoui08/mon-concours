@@ -1,0 +1,390 @@
+/* =========================
+   PAGE QCM
+   ========================= */
+
+.qcm-page {
+  min-height: 100vh;
+  display: flex;
+  background: #eafcff;
+  font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #080678;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.sidebar-logo {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-logo img {
+  width: 250px;
+  height: auto;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  color: #a7a7cc;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sidebar-nav a img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  opacity: 0.5;
+}
+
+.sidebar-nav a.active {
+  color: white;
+}
+
+.sidebar-nav a.active img {
+  opacity: 1;
+}
+
+.sidebar-nav a:hover {
+  color: white;
+}
+
+.sidebar-nav a:hover img {
+  opacity: 1;
+}
+
+.sidebar-profile {
+  margin-top: auto;
+  min-height: 85px;
+  border-top: 1px solid white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 30px;
+
+  color: white;
+  text-decoration: none;
+
+  font-size: 17px;
+  font-weight: 700;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.sidebar-profile img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.sidebar-profile img {
+  width: 32px;
+  height: 32px;
+}
+
+
+/* =========================
+   CONTENU
+   ========================= */
+
+.qcm-content {
+  flex: 1;
+  padding: 35px 45px;
+  box-sizing: border-box;
+}
+
+.qcm-header {
+  display: flex;
+  align-items: center;
+  gap: 110px;
+  margin-bottom: 40px;
+}
+
+.qcm-header h1 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+
+/* =========================
+   FILTRE
+   ========================= */
+
+.filtre-wrapper select {
+  width: 155px;
+  height: 42px;
+  padding: 0 15px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: white;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.filtre-wrapper {
+  position: relative;
+}
+
+.filtre-wrapper select {
+  appearance: none;
+  padding-right: 40px;
+}
+
+/* Notre propre flèche */
+.filtre-wrapper::after {
+  content: "";
+
+  width: 8px;
+  height: 8px;
+
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+
+  transform: rotate(45deg);
+
+  position: absolute;
+
+  /* POSITION DE LA FLÈCHE */
+  right: 15px;
+  top: 14px;
+
+  pointer-events: none;
+}
+
+/* =========================
+   GRILLE QCM
+   ========================= */
+
+.qcm-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 42px 55px;
+}
+
+.qcm-card {
+  height: 190px;
+  background: white;
+  border-radius: 7px;
+  padding: 20px 20px 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.qcm-card h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+
+/* =========================
+   BAS DE CARTE
+   ========================= */
+
+.qcm-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qcm-score {
+  width: 50px;
+  height: 50px;
+  border: 1.5px solid #111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.passer-button {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 17px;
+  background: linear-gradient(#70d7ef, #080678);
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.passer-button:hover {
+  opacity: 0.85;
+}
+
+/* =========================
+   QCM SÉLECTIONNÉ
+   ========================= */
+
+.qcm-selectionne {
+  margin-top: 50px;
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.qcm-selectionne-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.qcm-selectionne-header h2 {
+  margin: 5px 0 0;
+  font-size: 28px;
+}
+
+.qcm-label {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.qcm-duree {
+  background: #eafcff;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+/* =========================
+   QUESTION
+   ========================= */
+
+.question-card {
+  border: 1px solid #dfe8eb;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.question-numero {
+  margin: 0 0 8px;
+  color: #666;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.question-card h3 {
+  margin: 0 0 25px;
+  font-size: 20px;
+}
+
+/* =========================
+   CHOIX
+   ========================= */
+
+.choix-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.choix-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 13px 15px;
+
+  border: 1px solid #d8e2e5;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.choix-item:hover {
+  background: #f3fcff;
+}
+
+.choix-item input {
+  width: 18px;
+  height: 18px;
+}
+
+/* =========================
+   BOUTON VALIDER
+   ========================= */
+
+.qcm-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.valider-button {
+  border: none;
+  border-radius: 7px;
+
+  padding: 11px 25px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.valider-button:hover {
+  opacity: 0.85;
+}
+
+/* =========================
+   BOUTON RETOUR
+   ========================= */
+
+.retour-button {
+  position: absolute;
+  bottom: 30px;
+  left: 45px;
+
+  border: none;
+  border-radius: 7px;
+  padding: 11px 25px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.retour-button:hover {
+  opacity: 0.85;
+}

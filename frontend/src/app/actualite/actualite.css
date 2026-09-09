@@ -1,0 +1,296 @@
+/* =========================
+   PAGE ACTUALITÉS
+   ========================= */
+
+.actualite-page {
+  min-height: 100vh;
+  display: flex;
+  background: #eafcff;
+  font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #080678;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.sidebar-logo {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-logo img {
+  width: 250px;
+  height: auto;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  color: #a7a7cc;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sidebar-nav a img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  opacity: 0.5;
+}
+
+.sidebar-nav a.active {
+  color: white;
+}
+
+.sidebar-nav a.active img {
+  opacity: 1;
+}
+
+.sidebar-nav a:hover {
+  color: white;
+}
+
+.sidebar-nav a:hover img {
+  opacity: 1;
+}
+
+.sidebar-profile {
+  margin-top: auto;
+  min-height: 85px;
+  border-top: 1px solid white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 30px;
+
+  color: white;
+  text-decoration: none;
+
+  font-size: 17px;
+  font-weight: 700;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.sidebar-profile img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.sidebar-profile img {
+  width: 32px;
+  height: 32px;
+}
+
+
+/* =========================
+   CONTENU
+   ========================= */
+
+.actualite-content {
+  flex: 1;
+  padding: 35px 45px;
+  box-sizing: border-box;
+}
+
+.actualite-content h1 {
+  margin: 0 0 35px;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+
+/* =========================
+   GRILLE
+   ========================= */
+
+.actualite-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 55px;
+}
+
+
+/* =========================
+   CARTE ACTUALITÉ
+   ========================= */
+
+.actualite-card {
+  min-height: 210px;
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+}
+
+.actualite-card h3 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.actualite-card p {
+  margin: 10px 0 0;
+  color: #666;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   BOUTON AFFICHER
+   ========================= */
+
+.afficher-button {
+  align-self: flex-end;
+
+  border: none;
+  border-radius: 7px;
+  padding: 9px 15px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+}
+
+.afficher-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transform: translate(4px, -1.5px);
+}
+
+.afficher-button:hover {
+  opacity: 0.85;
+}
+
+
+/* =========================
+   ACTUALITÉ SÉLECTIONNÉE
+   ========================= */
+
+.actualite-selectionnee {
+  position: relative;
+
+  background: white;
+  border-radius: 15px;
+  padding: 35px;
+
+  box-sizing: border-box;
+}
+
+.actualite-selectionnee h2 {
+  margin: 0 0 10px;
+  font-size: 30px;
+}
+
+.actualite-date {
+  margin: 0 0 30px;
+  color: #666;
+  font-weight: 700;
+}
+
+.actualite-contenu {
+  border: 1px solid #d8e2e5;
+  border-radius: 10px;
+
+  padding: 25px;
+
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+
+/* =========================
+   BOUTON RETOUR
+   ========================= */
+
+.retour-button {
+  position: absolute;
+  top: 30px;
+  right: 35px;
+
+  border: none;
+  border-radius: 7px;
+  padding: 11px 25px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.retour-button:hover {
+  opacity: 0.85;
+}
+
+/* =========================
+   FAVORI ACTUALITÉ
+   ========================= */
+
+.actualite-card {
+  position: relative;
+}
+
+.favori-button {
+  position: absolute;
+  left: 25px;
+  bottom: 25px;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favori-button img {
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+}

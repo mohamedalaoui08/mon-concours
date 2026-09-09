@@ -1,25 +1,68 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-concours',
-  imports: [CommonModule],
+imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './concours.html',
   styleUrl: './concours.css',
 })
 export class Concours {
   private http = inject(HttpClient);
   concours: any[] = [];
+  concoursFiltres: any[] = [];
+  ecoleSelectionnee = '';
+  private route = inject(ActivatedRoute);
+
   estConnecte = !!localStorage.getItem('token');
 
   ngOnInit() {
-    this.http.get<any[]>('http://localhost:8080/concours/public')
-      .subscribe({
-        next: (reponse) => {
-          this.concours = reponse;
-          console.log('Concours reçus :', reponse);
-        },
+const url = this.estConnecte
+  ? 'http://localhost:8080/concours'
+  : 'http://localhost:8080/concours/public';
+
+this.http.get<any[]>(url).subscribe({
+next: (reponse) => {
+  this.concours = reponse;
+  this.concoursFiltres = reponse;
+  if (this.estConnecte) {
+  this.http.get<any[]>('http://localhost:8080/favoris/mes-favoris')
+    .subscribe({
+      next: (favoris) => {
+
+        this.concours.forEach(concoursItem => {
+
+          concoursItem.estFavori = favoris.some(
+            favori =>
+              favori.typeContenu === 'CONCOURS' &&
+              favori.contenuId === concoursItem.id
+          );
+
+        });
+
+      },
+      error: (erreur) => {
+        console.log('Erreur chargement favoris :', erreur);
+      }
+    });
+}
+
+  const idFavori = this.route.snapshot.queryParamMap.get('id');
+
+  if (idFavori) {
+    const concoursTrouve = reponse.find(
+      concoursItem => concoursItem.id === Number(idFavori)
+    );
+
+    if (concoursTrouve) {
+      console.log('Concours favori ouvert :', concoursTrouve);
+    }
+  }
+
+  console.log('Concours reçus :', reponse);
+},
         error: (erreur) => {
           console.log('Erreur concours :', erreur);
         }
@@ -60,6 +103,7 @@ export class Concours {
     ).subscribe({
       next: (reponse) => {
         console.log('Favori ajouté :', reponse);
+        concours.estFavori = true;
       },
       error: (erreur) => {
         console.log('Erreur favori :', erreur);
@@ -67,6 +111,17 @@ export class Concours {
     });
   }
 
+filtrerParEcole() {
 
+  if (this.ecoleSelectionnee === '') {
+    this.concoursFiltres = this.concours;
+    return;
+  }
+
+  this.concoursFiltres = this.concours.filter(
+    concoursItem =>
+      concoursItem.ecole?.nom === this.ecoleSelectionnee
+  );
+}
 
 }

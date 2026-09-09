@@ -1,0 +1,284 @@
+/* =========================
+   PAGE PROFIL
+   ========================= */
+
+.profil-page {
+  min-height: 100vh;
+  display: flex;
+  background: #eafcff;
+  font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #080678;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.sidebar-logo {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-logo img {
+  width: 250px;
+  height: auto;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  color: #a7a7cc;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  color: white;
+}
+
+.sidebar-nav a img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  opacity: 0.5;
+}
+
+.sidebar-nav a:hover img,
+.sidebar-nav a.active img {
+  opacity: 1;
+}
+
+.sidebar-profile {
+  margin-top: auto;
+  min-height: 85px;
+  border-top: 1px solid white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 30px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.sidebar-profile img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.sidebar-profile.active {
+  color: white;
+}
+
+
+/* =========================
+   CONTENU
+   ========================= */
+
+.profil-content {
+  flex: 1;
+  padding: 35px 45px;
+  box-sizing: border-box;
+}
+
+.profil-content h1 {
+  margin: 0 0 30px;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.profil-card {
+  background: white;
+  border-radius: 15px;
+  padding: 35px;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   SECTIONS
+   ========================= */
+
+.profil-section {
+  padding-bottom: 35px;
+  margin-bottom: 35px;
+  border-bottom: 1px solid #d9e3e6;
+}
+
+.profil-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.profil-section h2 {
+  margin: 0 0 25px;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+
+/* =========================
+   FORMULAIRE
+   ========================= */
+
+.profil-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px 30px;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.champ label {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.champ input {
+  height: 48px;
+  border: 1px solid #b9c8ce;
+  border-radius: 7px;
+  padding: 0 15px;
+  font-size: 17px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.champ input:focus {
+  border-color: #080678;
+}
+
+.champ input[readonly] {
+  background: #f3f6f7;
+  color: #777;
+}
+
+.champ-large {
+  grid-column: span 2;
+}
+
+
+/* =========================
+   BOUTONS PROFIL
+   ========================= */
+
+.profil-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.save-button,
+.logout-button,
+.delete-button {
+  border: none;
+  border-radius: 7px;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.save-button {
+  padding: 12px 25px;
+  background: linear-gradient(#70d7ef, #080678);
+  color: white;
+}
+
+.logout-button {
+  padding: 12px 25px;
+  background: #eef1f2;
+  color: #c52424;
+  border: 1px solid #d7d7d7;
+}
+
+.save-button:hover,
+.logout-button:hover,
+.delete-button:hover {
+  opacity: 0.85;
+}
+
+
+/* =========================
+   FAVORIS
+   ========================= */
+
+.favori-card {
+  background: #f7fbfc;
+  border: 1px solid #d9e3e6;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.favori-card p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.delete-button {
+  padding: 10px 18px;
+  background: #ffe5e5;
+  color: #b91c1c;
+}
+
+
+/* =========================
+   RESULTATS QCM
+   ========================= */
+
+.resultats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.resultat-card {
+  background: #f7fbfc;
+  border: 1px solid #d9e3e6;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.resultat-card .score {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 800;
+  color: #080678;
+}
+
+.resultat-card p {
+  margin: 0;
+}

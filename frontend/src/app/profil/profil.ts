@@ -4,9 +4,11 @@ import { inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-profil',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './profil.html',
   styleUrl: './profil.css',
 })
@@ -32,6 +34,8 @@ export class Profil {
           console.log('Erreur profil :', erreur);
         }
       });
+
+      
   
     // JUSTE ICI 👇
     this.http.get<any[]>('http://localhost:8080/favoris/mes-favoris')
@@ -95,5 +99,39 @@ export class Profil {
     });
   
   }
+
+ouvrirFavori(favori: any) {
+
+  if (favori.typeContenu === 'CONCOURS') {
+    this.router.navigate(['/concours'], {
+      queryParams: { id: favori.contenuId }
+    });
+  }
+
+  if (favori.typeContenu === 'QCM') {
+    this.router.navigate(['/qcm'], {
+      queryParams: { id: favori.contenuId }
+    });
+  }
+  if (favori.typeContenu === 'EXERCICE') {
+  this.router.navigate(['/exercice'], {
+    queryParams: { id: favori.contenuId }
+  });
+}
+
+if (favori.typeContenu === 'ACTUALITE') {
+  this.router.navigate(['/actualite'], {
+    queryParams: { id: favori.contenuId }
+  });
+}
+
+if (favori.typeContenu === 'FORMATION') {
+  this.router.navigate(['/formation'], {
+    queryParams: { id: favori.contenuId }
+  });
+}
+
+}
+
 
 }

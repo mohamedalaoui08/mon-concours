@@ -1,31 +1,162 @@
-<h2>Liste des formations</h2>
+<div class="formation-page">
 
-<div *ngFor="let formationItem of formations">
+  <!-- =========================
+       SIDEBAR
+       ========================= -->
+  <aside class="sidebar">
 
-  <h3>{{ formationItem.titre }}</h3>
+    <div class="sidebar-logo">
+      <img src="Logo.png" alt="Mon Concours">
+    </div>
 
-  <p>Niveau : {{ formationItem.niveau }}</p>
+    <nav class="sidebar-nav">
 
-  <p>Durée : {{ formationItem.duree }}</p>
+      <a routerLink="/dashboard">
+        <img src="icon-accueil.png" alt="">
+        <span>Accueil</span>
+      </a>
 
-  <p>{{ formationItem.description }}</p>
+      <a routerLink="/concours">
+        <img src="icon-concours.png" alt="">
+        <span>Concours</span>
+      </a>
 
-  <button (click)="ouvrirFormation(formationItem)">
-    Voir la formation
-  </button>
+      <a routerLink="/qcm">
+        <img src="icon-qcm.png" alt="">
+        <span>QCM</span>
+      </a>
+
+      <a routerLink="/formation" class="active">
+        <img src="icon-astuces.png" alt="">
+        <span>Formation</span>
+      </a>
+
+      <a routerLink="/exercice">
+        <img src="icon-exercices.png" alt="">
+        <span>Exercices</span>
+      </a>
+
+      <a routerLink="/actualite">
+        <img src="icon-ecoles.png" alt="">
+        <span>Écoles</span>
+      </a>
+
+    </nav>
+
+<a routerLink="/profil" class="sidebar-profile">
+  <img src="icon-profil.png" alt="">
+  <span>Mon profil</span>
+</a>
+
+  </aside>
+
+
+  <!-- =========================
+       CONTENU FORMATION
+       ========================= -->
+  <main class="formation-content">
+
+    <h2>Formations</h2>
+
+    <!-- =========================
+         FILTRES
+         ========================= -->
+    <div
+      class="formation-filtres"
+      *ngIf="!formationSelectionnee">
+
+      <select
+        [(ngModel)]="matiereSelectionnee"
+        (change)="filtrerFormations()">
+
+        <option value="">Matières</option>
+        <option value="Mathématiques">Mathématiques</option>
+        <option value="Physique">Physique</option>
+        <option value="Français">Science de la vie et la terre</option>
+
+      </select>
+
+      <select
+        [(ngModel)]="typeSelectionne"
+        (change)="filtrerFormations()">
+
+        <option value="">Types</option>
+        <option value="COURS">Cours</option>
+        <option value="ASTUCE">Astuce</option>
+        <option value="METHODE">Méthode</option>
+
+      </select>
+
+    </div>
+
+
+  <!-- =========================
+     LISTE DES FORMATIONS
+     ========================= -->
+<div *ngIf="!formationSelectionnee">
+
+  <div
+    *ngFor="let formationItem of formationsFiltres"
+    class="formation-card">
+
+    <h3>{{ formationItem.titre }}</h3>
+
+    <p>Matière : {{ formationItem.matiere }}</p>
+    <p>Type : {{ formationItem.type }}</p>
+    <p>Niveau : {{ formationItem.niveau }}</p>
+    <p>Durée : {{ formationItem.duree }} min</p>
+    <p>{{ formationItem.description }}</p>
+
+    <div class="formation-actions">
+
+      <button
+        class="voir-formation-button"
+        (click)="ouvrirFormation(formationItem)">
+        Voir la formation
+      </button>
+
+      <button
+        class="favori-button"
+        (click)="$event.stopPropagation(); ajouterFavori(formationItem)">
+
+        <img
+          [src]="formationItem.estFavori === true
+            ? 'icon-favori-plein2.png'
+            : 'icon-favori.png'"
+          alt="Favori">
+
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
-<div *ngIf="formationSelectionnee">
 
-    <h2>{{ formationSelectionnee.titre }}</h2>
-  
-    <p>Description : {{ formationSelectionnee.description }}</p>
-  
-    <p>Contenu : {{ formationSelectionnee.contenu }}</p>
-  
-    <p>Durée : {{ formationSelectionnee.duree }}</p>
-  
-    <p>Niveau : {{ formationSelectionnee.niveau }}</p>
-  
+<!-- =========================
+     FORMATION SÉLECTIONNÉE
+     ========================= -->
+<div
+  *ngIf="formationSelectionnee"
+  class="formation-detail">
+
+  <button
+    class="retour-formation-button"
+    (click)="formationSelectionnee = null">
+    ← Retour aux formations
+  </button>
+
+  <h2>{{ formationSelectionnee.titre }}</h2>
+
+  <p>Matière : {{ formationSelectionnee.matiere }}</p>
+  <p>Type : {{ formationSelectionnee.type }}</p>
+  <p>Niveau : {{ formationSelectionnee.niveau }}</p>
+  <p>Durée : {{ formationSelectionnee.duree }} min</p>
+  <p>{{ formationSelectionnee.description }}</p>
+
+  <div>
+    {{ formationSelectionnee.contenu }}
   </div>
+
+</div>

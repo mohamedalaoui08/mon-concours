@@ -1,0 +1,308 @@
+/* =========================
+   PAGE CONCOURS
+   ========================= */
+
+.concours-page {
+  min-height: 100vh;
+  display: flex;
+  background: #eafcff;
+  font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   MENU LATÉRAL
+   ========================= */
+
+.sidebar {
+  width: 240px;
+
+  min-height: 100vh;
+
+  background: #080678;
+
+  color: white;
+
+  display: flex;
+
+  flex-direction: column;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   LOGO
+   ========================= */
+
+.sidebar-logo {
+  height: 130px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.sidebar-logo img {
+  width: 250px;
+
+  height: auto;
+}
+
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+.sidebar-nav {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 0px 30px;
+
+  gap: 0px;
+}
+
+.sidebar-nav a {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 12px 0;
+
+  color: #a7a7cc;
+
+  text-decoration: none;
+
+  font-size: 20px;
+
+  font-weight: 700;
+}
+
+.sidebar-nav a:hover {
+  color: white;
+}
+
+.sidebar-nav a:hover img {
+  opacity: 1;
+}
+
+.sidebar-nav a.active {
+  color: white;
+}
+
+
+/* =========================
+   ICÔNES DU MENU
+   ========================= */
+
+.sidebar-nav a img {
+  width: 28px;
+
+  height: 28px;
+
+  object-fit: contain;
+
+  opacity: 0.5;
+}
+
+.sidebar-nav a.active img {
+  opacity: 1;
+}
+
+
+/* =========================
+   PROFIL EN BAS
+   ========================= */
+
+.sidebar-profile {
+  margin-top: auto;
+  min-height: 85px;
+  border-top: 1px solid white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 30px;
+
+  color: white;
+  text-decoration: none;
+
+  font-size: 17px;
+  font-weight: 700;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.sidebar-profile img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.sidebar-profile img {
+  width: 32px;
+
+  height: 32px;
+
+  object-fit: contain;
+}
+
+/* =========================
+   CONTENU PRINCIPAL
+   ========================= */
+
+.concours-content {
+  flex: 1;
+
+  padding: 45px 50px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   TITRE + FILTRES
+   ========================= */
+
+.concours-header {
+  display: flex;
+  align-items: center;
+
+  gap: 40px;
+
+  margin-bottom: 35px;
+}
+
+.concours-header h1 {
+  margin: 0;
+
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.concours-header select {
+  width: 150px;
+  height: 45px;
+
+  padding: 0 15px;
+
+  background: white;
+
+  border: 1px solid #555;
+  border-radius: 6px;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.filtre-wrapper {
+  position: relative;
+}
+
+.filtre-wrapper select {
+  appearance: none;
+  padding-right: 40px;
+}
+
+/* Notre propre flèche */
+.filtre-wrapper::after {
+  content: "";
+
+  width: 8px;
+  height: 8px;
+
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+
+  transform: rotate(45deg);
+
+  position: absolute;
+
+  /* POSITION DE LA FLÈCHE */
+  right: 15px;
+  top: 16px;
+
+  pointer-events: none;
+}
+/* =========================
+   CARTE CONCOURS
+   ========================= */
+
+.concours-card {
+  min-height: 75px;
+
+  margin-bottom: 28px;
+
+  padding: 15px 25px;
+
+  background: white;
+
+  border-left: 4px solid #080678;
+  border-radius: 0 10px 10px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   INFORMATIONS CONCOURS
+   ========================= */
+
+.concours-info h3 {
+  margin: 0 0 5px;
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.concours-info p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   ACTIONS
+   ========================= */
+
+.concours-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+}
+
+.pdf-button,
+.favori-button {
+  border: none;
+  background: transparent;
+
+  color: #080678;
+
+  font-size: 5px;
+
+  cursor: pointer;
+}
+
+.pdf-button:hover,
+.favori-button:hover {
+  opacity: 0.6;
+}
+
+.concours-actions button img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}

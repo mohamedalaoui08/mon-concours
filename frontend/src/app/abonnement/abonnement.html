@@ -1,20 +1,69 @@
-<h2>Nos offres d'abonnement</h2>
+<!-- =========================
+     PAGE ABONNEMENTS
+     ========================= -->
+<div class="abonnement-page">
 
-<div *ngFor="let offre of offres">
+  <!-- =========================
+       TITRE
+       ========================= -->
+  <div class="abonnement-header">
+    <h1>Choisissez votre abonnement</h1>
+    <p>
+      Accédez à toutes les ressources dont vous avez besoin
+      pour préparer vos concours.
+    </p>
+  </div>
 
-  <h3>{{ offre.nom }}</h3>
+  <!-- =========================
+       OFFRES
+       ========================= -->
+  <div class="offres-container">
 
-  <p>Prix : {{ offre.prix }} DH</p>
+    <div
+      *ngFor="let offre of offres"
+      class="offre-card">
 
-  <p>Durée : {{ offre.dureeJours }} jours</p>
+      <h2>{{ offre.nom }}</h2>
 
-  <p>{{ offre.description }}</p>
+      <div class="prix">
+        <span class="prix-valeur">{{ offre.prix }}</span>
+        <span class="prix-devise">DH</span>
+      </div>
 
-  <button *ngIf="estConnecte" (click)="souscrire(offre)">
-    Souscrire
-  </button>
+      <p class="duree">
+        {{ offre.dureeJours }} jours
+      </p>
 
-  <p *ngIf="messageAbonnement">
+      <div class="separateur"></div>
+
+      <p class="description">
+        {{ offre.description }}
+      </p>
+
+      <button
+        *ngIf="estConnecte"
+        class="souscrire-button"
+        (click)="souscrire(offre)">
+        Souscrire
+      </button>
+
+      <a
+        *ngIf="!estConnecte"
+        routerLink="/connexion"
+        class="connexion-button">
+        Se connecter pour souscrire
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- =========================
+       MESSAGE
+       ========================= -->
+  <p
+    *ngIf="messageAbonnement"
+    class="message-abonnement">
     {{ messageAbonnement }}
   </p>
 

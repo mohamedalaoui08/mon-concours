@@ -1,6 +1,7 @@
 package com.monconcours.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -15,7 +16,6 @@ public class Actualite {
     private String titre;
     private String contenu;
     private LocalDate datePublication;
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_ecole")
     private Ecole ecole;

@@ -1,15 +1,117 @@
-<h2>Liste des concours</h2>
+<!-- =========================
+     PAGE CONCOURS
+     ========================= -->
 
-<div *ngFor="let concoursItem of concours">
-  <h3>{{ concoursItem.nom }}</h3>
-  <p>Date : {{ concoursItem.date }}</p>
-  <p>Description : {{ concoursItem.description }}</p>
-  <button (click)="telechargerPdf(concoursItem.id)">
-    Télécharger le PDF
-  </button>
+<div class="concours-page">
 
-  <button *ngIf="estConnecte" (click)="ajouterFavori(concoursItem)">
-    Ajouter aux favoris
-  </button>
-  
+  <!-- =========================
+       MENU LATÉRAL
+       ========================= -->
+
+  <aside class="sidebar">
+
+    <div class="sidebar-logo">
+      <img src="Logo.png" alt="Mon Concours">
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <a routerLink="/dashboard">
+        <img src="icon-accueil.png" alt="">
+        <span>Accueil</span>
+      </a>
+
+      <a routerLink="/concours" class="active">
+        <img src="icon-concours.png" alt="">
+        <span>Concours</span>
+      </a>
+
+      <a routerLink="/qcm">
+        <img src="icon-qcm.png" alt="">
+        <span>QCM</span>
+      </a>
+
+      <a routerLink="/formation">
+        <img src="icon-astuces.png" alt="">
+        <span>Formation</span>
+      </a>
+
+      <a routerLink="/exercice">
+        <img src="icon-exercices.png" alt="">
+        <span>Exercices</span>
+      </a>
+
+      <a routerLink="/actualite">
+        <img src="icon-ecoles.png" alt="">
+        <span>Écoles</span>
+      </a>
+
+    </nav>
+
+<a routerLink="/profil" class="sidebar-profile">
+  <img src="icon-profil.png" alt="">
+  <span>Mon profil</span>
+</a>
+  </aside>
+
+
+  <!-- =========================
+       CONTENU PRINCIPAL
+       ========================= -->
+
+  <main class="concours-content">
+
+    <!-- TITRE + FILTRES -->
+    <div class="concours-header">
+
+      <h1>Concours</h1>
+<div class="filtre-wrapper">
+      <select [(ngModel)]="ecoleSelectionnee"
+        (change)="filtrerParEcole()" >
+        <option value="">École</option>
+        <option>ENSA</option>
+        <option>ENSAM</option>
+        <option>ENA</option>
+      </select>
+    </div>
+    </div>
+
+    <!-- =========================
+         LISTE DES CONCOURS
+         ========================= -->
+
+    <div
+      class="concours-card"
+      *ngFor="let concoursItem of concoursFiltres">
+
+      <div class="concours-info">
+
+        <h3>{{ concoursItem.nom }}</h3>
+
+
+
+      </div>
+
+      <div class="concours-actions">
+
+        <button
+          class="pdf-button"
+          (click)="telechargerPdf(concoursItem.id)">
+          <img src="icon-pdf.png" alt="PDF">
+        </button>
+
+        <button
+          class="favori-button"
+          *ngIf="estConnecte"
+          (click)="ajouterFavori(concoursItem)">
+           <img [src]="concoursItem.estFavori === true ? 'icon-favori-plein2.png' : 'icon-favori.png'"
+          alt="Favori">
+        </button>
+
+      </div>
+
+    </div>
+
+  </main>
+
 </div>

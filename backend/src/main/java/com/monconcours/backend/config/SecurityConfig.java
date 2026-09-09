@@ -36,7 +36,9 @@ public class SecurityConfig {
                                 "/login",
                                 "/ping",
                                 "/concours/public",
-                                "/error"
+                                "/error",
+                                "/mot-de-passe-oublie",
+                                "/reinitialiser-mot-de-passe"
                         ).permitAll()
                         // Role de demande d'inscription
 

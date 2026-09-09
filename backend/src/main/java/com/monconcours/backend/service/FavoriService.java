@@ -88,6 +88,14 @@ public class FavoriService {
             switch (type) {
 
                 case "QCM":
+
+                    if (favoriRepository.existsByEtudiantAndQcm_Id(
+                            etudiant,
+                            request.getContenuId())) {
+
+                        throw new RuntimeException("Ce QCM est déjà dans vos favoris");
+                    }
+
                     favori.setQcm(
                             qcmRepository.findById(request.getContenuId())
                                     .orElseThrow(() -> new RuntimeException("QCM non trouvé"))
@@ -95,6 +103,14 @@ public class FavoriService {
                     break;
 
                 case "CONCOURS":
+
+                    if (favoriRepository.existsByEtudiantAndConcours_Id(
+                            etudiant,
+                            request.getContenuId())) {
+
+                        throw new RuntimeException("Ce concours est déjà dans vos favoris");
+                    }
+
                     favori.setConcours(
                             concoursRepository.findById(request.getContenuId())
                                     .orElseThrow(() -> new RuntimeException("Concours non trouvé"))
@@ -102,6 +118,14 @@ public class FavoriService {
                     break;
 
                 case "EXERCICE":
+
+                    if (favoriRepository.existsByEtudiantAndExercice_Id(
+                            etudiant,
+                            request.getContenuId())) {
+
+                        throw new RuntimeException("Cet exercice est déjà dans vos favoris");
+                    }
+
                     favori.setExercice(
                             exerciceRepository.findById(request.getContenuId())
                                     .orElseThrow(() -> new RuntimeException("Exercice non trouvé"))
@@ -109,6 +133,14 @@ public class FavoriService {
                     break;
 
                 case "FORMATION":
+
+                    if (favoriRepository.existsByEtudiantAndFormation_Id(
+                            etudiant,
+                            request.getContenuId())) {
+
+                        throw new RuntimeException("Cette formation est déjà dans vos favoris");
+                    }
+
                     favori.setFormation(
                             formationRepository.findById(request.getContenuId())
                                     .orElseThrow(() -> new RuntimeException("Formation non trouvée"))
@@ -116,6 +148,14 @@ public class FavoriService {
                     break;
 
                 case "ACTUALITE":
+
+                    if (favoriRepository.existsByEtudiantAndActualite_Id(
+                            etudiant,
+                            request.getContenuId())) {
+
+                        throw new RuntimeException("Cette actualité est déjà dans vos favoris");
+                    }
+
                     favori.setActualite(
                             actualiteRepository.findById(request.getContenuId())
                                     .orElseThrow(() -> new RuntimeException("Actualité non trouvée"))

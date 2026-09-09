@@ -11,6 +11,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class Admin {
   private http = inject(HttpClient);
+  sectionActive: string = 'dashboard';
+
+changerSection(section: string) {
+  this.sectionActive = section;
+}
 
 concours: any[] = [];
 concoursAModifier: any = null;
@@ -40,6 +45,7 @@ offreAbonnementAModifier: any = null;
 etudiants: any[] = [];
 etudiantAModifier: any = null;
 admins: any[] = [];
+adminConnecte: any = null;
 adminAModifier: any = null;
 demandesInscription: any[] = [];
 
@@ -213,10 +219,17 @@ ngOnInit() {
   });
 
   this.http.get<any[]>('http://localhost:8080/admins').subscribe({
-    next: (reponse) => {
-      this.admins = reponse;
-      console.log('Admins reçus :', reponse);
-    },
+ next: (reponse) => {
+  this.admins = reponse;
+
+  const emailConnecte = localStorage.getItem('email');
+
+  this.adminConnecte = this.admins.find(
+    admin => admin.email === emailConnecte
+  );
+
+  console.log('Admin connecté :', this.adminConnecte);
+},
     error: (erreur) => {
       console.log('Erreur récupération admins :', erreur);
     }
@@ -1173,5 +1186,41 @@ ajouterAdmin() {
       console.log('Erreur ajout admin :', erreur);
     }
   });
+}
+
+enregistrerProfilAdmin() {
+
+  this.http.put(
+    `http://localhost:8080/admins/${this.adminConnecte.id}`,
+    this.adminConnecte
+  ).subscribe({
+
+    next: (reponse: any) => {
+      this.adminConnecte = reponse;
+
+      localStorage.setItem(
+        'email',
+        this.adminConnecte.email
+      );
+
+      console.log('Profil admin modifié :', reponse);
+    },
+
+    error: (erreur) => {
+      console.log(
+        'Erreur modification profil admin :',
+        erreur
+      );
+    }
+
+  });
+}
+
+
+deconnexionAdmin() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('email');
+
+  window.location.href = '/connexion';
 }
 }

@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-abonnement',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './abonnement.html',
   styleUrl: './abonnement.css',
 })

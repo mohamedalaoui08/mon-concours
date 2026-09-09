@@ -1,0 +1,342 @@
+/* =========================
+   PAGE EXERCICES
+   ========================= */
+
+.exercice-page {
+  min-height: 100vh;
+  display: flex;
+  background: #eafcff;
+  font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #080678;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.sidebar-logo {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-logo img {
+  width: 250px;
+  height: auto;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  color: #a7a7cc;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sidebar-nav a img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  opacity: 0.5;
+}
+
+.sidebar-nav a.active {
+  color: white;
+}
+
+.sidebar-nav a.active img {
+  opacity: 1;
+}
+
+.sidebar-nav a:hover {
+  color: white;
+}
+
+.sidebar-nav a:hover img {
+  opacity: 1;
+}
+
+.sidebar-profile {
+  margin-top: auto;
+  min-height: 85px;
+  border-top: 1px solid white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 30px;
+
+  color: white;
+  text-decoration: none;
+
+  font-size: 17px;
+  font-weight: 700;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.sidebar-profile img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.sidebar-profile img {
+  width: 32px;
+  height: 32px;
+}
+
+
+/* =========================
+   CONTENU
+   ========================= */
+
+.exercice-content {
+  flex: 1;
+  padding: 35px 45px;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.exercice-header {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  margin-bottom: 35px;
+}
+
+.exercice-header h1 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+
+/* =========================
+   FILTRE
+   ========================= */
+
+.filtre-wrapper select {
+  width: 155px;
+  height: 42px;
+  padding: 0 15px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: white;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   LISTE DES EXERCICES
+   ========================= */
+
+.exercice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.exercice-card {
+  min-height: 95px;
+  background: white;
+  border-radius: 10px;
+  padding: 22px 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.exercice-card:hover {
+  transform: translateY(-2px);
+}
+
+.exercice-infos h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.exercice-infos p {
+  margin: 0;
+  font-size: 16px;
+  color: #666;
+  font-weight: 700;
+}
+
+.exercice-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exercice-open img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+/* =========================
+   EXERCICE SÉLECTIONNÉ
+   ========================= */
+
+.exercice-selectionne {
+  margin-top: 40px;
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+}
+
+.exercice-selectionne h2 {
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.matiere-selectionnee {
+  color: #666;
+  font-weight: 700;
+}
+
+.enonce-exercice {
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid #d8e2e5;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+/* =========================
+   BOUTON RETOUR
+   ========================= */
+
+.exercice-selectionne {
+  position: relative;
+}
+
+.retour-button {
+  position: absolute;
+  top: 30px;
+  right: 35px;
+
+  border: none;
+  border-radius: 7px;
+  padding: 11px 25px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.retour-button:hover {
+  opacity: 0.85;
+}
+
+.filtre-wrapper {
+  position: relative;
+}
+
+.filtre-wrapper select {
+  width: 230px;
+  height: 50px;
+
+  padding: 0 50px 0 18px;
+
+  border: 1px solid #333;
+  border-radius: 7px;
+  background: white;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  appearance: none;
+  cursor: pointer;
+}
+
+/* Flèche personnalisée */
+.filtre-wrapper::after {
+  content: "";
+
+  width: 9px;
+  height: 9px;
+
+  border-right: 2px solid #111;
+  border-bottom: 2px solid #111;
+
+  transform: rotate(45deg);
+
+  position: absolute;
+  right: 20px;
+  top: 17px;
+
+  pointer-events: none;
+}
+
+/* =========================
+   ACTIONS EXERCICE
+   ========================= */
+
+.exercice-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.favori-button {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transform: translate(10px, 3px);
+}
+
+.favori-button img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.exercice-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exercice-open img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}

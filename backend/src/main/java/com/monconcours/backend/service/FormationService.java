@@ -43,6 +43,9 @@ public class FormationService {
         formationExistante.setDuree(nouvelleFormation.getDuree());
         formationExistante.setNiveau(nouvelleFormation.getNiveau());
         formationExistante.setDatePublication(nouvelleFormation.getDatePublication());
+        formationExistante.setMatiere(nouvelleFormation.getMatiere());
+        formationExistante.setType(nouvelleFormation.getType());
+
 
         return formationRepository.save(formationExistante);
     }

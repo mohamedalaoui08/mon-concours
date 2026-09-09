@@ -1,0 +1,89 @@
+.oubli-page {
+  min-height: 100vh;
+  background: #e9fbff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.oubli-card {
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  border-radius: 18px;
+  padding: 35px 40px 40px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+  display: block;
+  width: 210px;
+  margin: 0 auto 20px;
+}
+
+.oubli-card h1 {
+  margin: 0 0 10px;
+  text-align: center;
+  color: #080678;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.description {
+  margin: 0 0 30px;
+  text-align: center;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  color: #111;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  height: 46px;
+  margin-bottom: 20px;
+  padding: 0 14px;
+  border: 1px solid #aebec5;
+  border-radius: 7px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+button {
+  height: 48px;
+  border: none;
+  border-radius: 7px;
+  background: linear-gradient(#70d7ef, #080678);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.message-succes {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 700;
+  color: green;
+}
+
+.message-erreur {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 700;
+  color: #d02020;
+}

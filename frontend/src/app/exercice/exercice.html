@@ -1,25 +1,154 @@
-<h2>Liste des exercices</h2>
+<div class="exercice-page">
 
-<div *ngFor="let exerciceItem of exercices">
+  <!-- =========================
+       SIDEBAR
+       ========================= -->
+  <aside class="sidebar">
 
-  <h3>{{ exerciceItem.titre }}</h3>
+    <div class="sidebar-logo">
+      <img src="Logo.png" alt="Mon Concours">
+    </div>
 
-  <p>Matière : {{ exerciceItem.matiere }}</p>
+    <nav class="sidebar-nav">
 
-  <p>{{ exerciceItem.enonce }}</p>
+      <a routerLink="/dashboard">
+        <img src="icon-accueil.png" alt="">
+        <span>Accueil</span>
+      </a>
 
-  <button (click)="ouvrirExercice(exerciceItem)">
-    Voir l'exercice
+      <a routerLink="/concours">
+        <img src="icon-concours.png" alt="">
+        <span>Concours</span>
+      </a>
+
+      <a routerLink="/qcm">
+        <img src="icon-qcm.png" alt="">
+        <span>QCM</span>
+      </a>
+
+      <a routerLink="/formation">
+        <img src="icon-astuces.png" alt="">
+        <span>Formation</span>
+      </a>
+
+      <a routerLink="/exercice" class="active">
+        <img src="icon-exercices.png" alt="">
+        <span>Exercices</span>
+      </a>
+
+      <a routerLink="/actualite">
+        <img src="icon-ecoles.png" alt="">
+        <span>Écoles</span>
+      </a>
+
+    </nav>
+
+<a routerLink="/profil" class="sidebar-profile">
+  <img src="icon-profil.png" alt="">
+  <span>Mon profil</span>
+</a>
+
+  </aside>
+
+
+  <!-- =========================
+       CONTENU
+       ========================= -->
+  <main class="exercice-content">
+
+    <!-- =========================
+         HEADER
+         ========================= -->
+    <div class="exercice-header" *ngIf="!exerciceSelectionne">
+
+      <h1>Exercices</h1>
+
+      <div class="filtre-wrapper">
+ <select
+  [(ngModel)]="matiereSelectionnee"
+  (change)="filtrerParMatiere()">
+
+  <option value="">Matière</option>
+  <option value="Mathématiques">Mathématiques</option>
+  <option value="Physique">Physique</option>
+  <option value="Chimie">Chimie</option>
+
+</select>
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         LISTE DES EXERCICES
+         ========================= -->
+    <div class="exercice-list" *ngIf="!exerciceSelectionne">
+      <div
+        class="exercice-card"
+        *ngFor="let exerciceItem of exercicesFiltres"
+        (click)="ouvrirExercice(exerciceItem)">
+
+        <div class="exercice-infos">
+
+          <h3>
+            {{ exerciceItem.titre }}
+          </h3>
+
+          <p>
+            {{ exerciceItem.matiere }}
+          </p>
+
+        </div>
+
+<div class="exercice-actions">
+
+  <button
+    class="favori-button"
+    (click)="$event.stopPropagation(); ajouterFavori(exerciceItem)">
+
+    <img
+      [src]="exerciceItem.estFavori === true
+        ? 'icon-favori-plein2.png'
+        : 'icon-favori.png'"
+      alt="Favori">
   </button>
+
+  <div class="exercice-open">
+    <img src="icon-ouvrir.png" alt="Ouvrir l'exercice">
+  </div>
 
 </div>
 
-<div *ngIf="exerciceSelectionne">
+      </div>
 
-    <h2>{{ exerciceSelectionne.titre }}</h2>
-  
-    <p>Matière : {{ exerciceSelectionne.matiere }}</p>
-  
-    <p>Énoncé : {{ exerciceSelectionne.enonce }}</p>
-  
-  </div>
+    </div>
+
+
+    <!-- =========================
+         EXERCICE SÉLECTIONNÉ
+         ========================= -->
+    <section
+      *ngIf="exerciceSelectionne"
+      class="exercice-selectionne">
+      <button
+      class="retour-button"
+    (click)="fermerExercice()">
+    ← Retour aux exercices
+    </button>
+      <h2>
+        {{ exerciceSelectionne.titre }}
+      </h2>
+
+      <p class="matiere-selectionnee">
+        {{ exerciceSelectionne.matiere }}
+      </p>
+
+      <div class="enonce-exercice">
+        {{ exerciceSelectionne.enonce }}
+      </div>
+
+    </section>
+
+  </main>
+
+</div>

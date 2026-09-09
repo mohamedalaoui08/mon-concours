@@ -1,0 +1,40 @@
+<div class="oubli-page">
+
+  <div class="oubli-card">
+
+    <img src="Logo.png" alt="Mon Concours" class="logo">
+
+    <h1>Mot de passe oublié ?</h1>
+
+    <p class="description">
+      Saisissez votre adresse email pour recevoir un lien de réinitialisation.
+    </p>
+
+    <form (ngSubmit)="envoyerLien()">
+
+      <label>Adresse email</label>
+
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Votre email"
+        required>
+
+      <button type="submit">
+        Envoyer le lien
+      </button>
+
+    </form>
+
+    <p class="message-succes" *ngIf="message">
+      {{ message }}
+    </p>
+
+    <p class="message-erreur" *ngIf="erreur">
+      {{ erreur }}
+    </p>
+
+  </div>
+
+</div>

@@ -1,0 +1,551 @@
+/* =========================
+   SIDEBAR ADMIN
+   ========================= */
+
+.admin-sidebar {
+  width: 240px;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background: #080678;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+/* =========================
+   LOGO
+   ========================= */
+
+.admin-logo {
+  height: 85px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.admin-logo img {
+  width: 180px;
+  height: auto;
+}
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+.admin-nav {
+  flex: 1;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 25px;
+
+  gap: 0;
+}
+
+.admin-nav button {
+  width: 100%;
+  height: 39px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #a7a7cc;
+
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.admin-nav button img {
+  width: 23px;
+  height: 23px;
+
+  object-fit: contain;
+
+  opacity: 0.5;
+}
+
+.admin-nav button:hover,
+.admin-nav button.active {
+  color: white;
+}
+
+.admin-nav button:hover img,
+.admin-nav button.active img {
+  opacity: 1;
+}
+
+/* =========================
+   PROFIL ADMIN
+   ========================= */
+
+.admin-profile {
+  height: 68px;
+
+  flex-shrink: 0;
+
+  border-top: 1px solid white;
+  transform: translateY(10px);
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 25px;
+
+  box-sizing: border-box;
+}
+
+.admin-profile > img {
+  width: 30px;
+  height: 30px;
+
+  object-fit: contain;
+}
+
+.admin-profile div {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-profile span {
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.admin-profile small {
+  margin-top: 1px;
+
+  color: #a7a7cc;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+/* =========================
+   NAVIGATION
+   ========================= */
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 25px;
+  gap: 0;
+
+  flex: 1;
+}
+
+.admin-nav button {
+  width: 100%;
+  height: 47px;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #a7a7cc;
+
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.admin-nav button img {
+  width: 25px;
+  height: 25px;
+
+  object-fit: contain;
+
+  opacity: 0.5;
+}
+
+.admin-nav button:hover,
+.admin-nav button.active {
+  color: white;
+}
+
+.admin-nav button:hover img,
+.admin-nav button.active img {
+  opacity: 1;
+}
+
+/* =========================
+   PROFIL ADMIN
+   ========================= */
+
+/* =========================
+   PROFIL ADMIN
+   ========================= */
+
+.admin-profil-section h1 {
+  margin: 0 0 35px;
+  color: #000;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.profil-card {
+  width: 100%;
+  background: white;
+  border-radius: 18px;
+  padding: 35px 40px 45px;
+  box-sizing: border-box;
+}
+
+.profil-card h2 {
+  margin: 0 0 30px;
+  color: #000;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.profil-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 35px;
+}
+
+.profil-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profil-field label {
+  color: #000;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.profil-field input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid #aebec5;
+  border-radius: 7px;
+  background: white;
+  box-sizing: border-box;
+  font-size: 17px;
+  color: #111;
+}
+
+.profil-email {
+  grid-column: 1 / 3;
+}
+
+.profil-actions {
+  margin-top: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-enregistrer {
+  min-width: 285px;
+  height: 48px;
+  padding: 0 25px;
+  border: none;
+  border-radius: 7px;
+  background: linear-gradient(#70d7ef, #080678);
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-deconnexion {
+  min-width: 160px;
+  height: 48px;
+  padding: 0 22px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  background: #f2f2f2;
+  color: #d02020;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+/* =========================
+   CONTENU PRINCIPAL
+   ========================= */
+
+.admin-content {
+  margin-left: 240px;
+
+  width: calc(100% - 240px);
+  min-height: 100vh;
+
+  padding: 35px 45px;
+
+  background: #e9fbff;
+
+  box-sizing: border-box;
+}
+
+/* =========================
+   TITRES
+   ========================= */
+
+.admin-section > h1,
+.dashboard-section h1 {
+  margin: 0 0 25px;
+
+  color: #080678;
+
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.admin-section h2 {
+  margin: 0 0 20px;
+
+  color: #080678;
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.dashboard-welcome {
+  color: #444;
+
+  font-size: 18px;
+}
+
+/* =========================
+   FORMULAIRES
+   ========================= */
+
+.admin-form {
+  max-width: 700px;
+
+  margin-bottom: 35px;
+
+  padding: 28px;
+
+  background: white;
+
+  border-radius: 14px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  box-sizing: border-box;
+}
+
+.admin-form label {
+  margin-top: 5px;
+
+  color: #222;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.admin-form input,
+.admin-form select {
+  width: 100%;
+
+  min-height: 42px;
+
+  padding: 8px 12px;
+
+  border: 1px solid #ccc;
+  border-radius: 7px;
+
+  font-size: 15px;
+
+  box-sizing: border-box;
+}
+
+/* =========================
+   LISTES
+   ========================= */
+
+.admin-list {
+  margin-bottom: 35px;
+}
+
+.admin-item {
+  margin-bottom: 18px;
+
+  padding: 22px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+
+  box-sizing: border-box;
+}
+
+.admin-item h3 {
+  margin-top: 0;
+
+  color: #080678;
+}
+
+.admin-item p {
+  margin: 7px 0;
+
+  color: #333;
+}
+
+/* =========================
+   BOUTONS
+   ========================= */
+
+.admin-form button,
+.admin-item button {
+  min-height: 40px;
+
+  margin-top: 10px;
+  margin-right: 8px;
+
+  padding: 9px 18px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.admin-form button:hover,
+.admin-item button:hover {
+  opacity: 0.85;
+}
+
+/* =========================
+   SELECT ABONNEMENTS
+   ========================= */
+
+.admin-item select {
+  min-height: 38px;
+  padding: 7px 40px 7px 10px;
+  margin-right: 12px;
+
+  border: 1px solid #ccc;
+  border-radius: 7px;
+
+  appearance: none;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, #111 50%),
+    linear-gradient(135deg, #111 50%, transparent 50%);
+
+  background-position:
+    calc(100% - 18px) 50%,
+    calc(100% - 12px) 50%;
+
+  background-size: 7px 7px, 7px 7px;
+  background-repeat: no-repeat;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+
+  .admin-sidebar {
+    width: 210px;
+  }
+
+  .admin-content {
+    margin-left: 210px;
+    width: calc(100% - 210px);
+
+    padding: 30px;
+  }
+
+  .admin-nav {
+    padding: 0 18px;
+  }
+
+  .admin-nav button {
+    font-size: 14px;
+  }
+}
+
+/* =========================
+   DASHBOARD STATISTIQUES
+   ========================= */
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 14px;
+  padding: 28px 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat-label {
+  color: #555;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.stat-value {
+  color: #080678;
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.admin-profile {
+  cursor: pointer;
+}

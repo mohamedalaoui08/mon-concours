@@ -828,25 +828,53 @@
   }
   
   
-  /* =========================
-     RESPONSIVE
-     ========================= */
-  
-  @media (max-width: 850px) {
-  
-    .footer-content {
-      flex-direction: column;
-      gap: 40px;
-    }
-  
-    .footer-column {
-      width: 100%;
-    }
-  
-    .footer-bottom {
-      flex-direction: column;
-      gap: 20px;
-  
-      padding: 30px;
-    }
+  .ecoles-slider {
+  width: 100%;
+  min-height: 97px;
+  background: #ffffff;
+  overflow: hidden;
+
+  padding: 18px 30px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+}
+
+.ecoles-track {
+  width: max-content;
+
+  display: flex;
+  align-items: center;
+
+  gap: 55px;
+
+  animation: defilementEcoles 20s linear infinite;
+}
+
+.ecoles-track img {
+  width: 85px;
+  height: 70px;
+
+  object-fit: contain;
+  flex-shrink: 0;
+
+  opacity: 0.5;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.ecoles-track img:hover {
+  transform: scale(1.08);
+  opacity: 1;
+}
+
+@keyframes defilementEcoles {
+  from {
+    transform: translateX(0);
   }
+
+  to {
+    transform: translateX(calc(-50% - 27.5px));
+  }
+}

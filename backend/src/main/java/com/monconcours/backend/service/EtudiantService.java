@@ -6,14 +6,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class EtudiantService {
 
     private final EtudiantRepository etudiantRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public EtudiantService(EtudiantRepository etudiantRepository) {
+    public EtudiantService(
+            EtudiantRepository etudiantRepository,
+            PasswordEncoder passwordEncoder) {
+
         this.etudiantRepository = etudiantRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // CREATE
@@ -40,7 +46,6 @@ public class EtudiantService {
         etudiantExistant.setNom(nouvelEtudiant.getNom());
         etudiantExistant.setPrenom(nouvelEtudiant.getPrenom());
         etudiantExistant.setEmail(nouvelEtudiant.getEmail());
-        etudiantExistant.setMotDePasse(nouvelEtudiant.getMotDePasse());
         etudiantExistant.setDateNaissance(nouvelEtudiant.getDateNaissance());
         etudiantExistant.setNiveau(nouvelEtudiant.getNiveau());
 
@@ -51,4 +56,6 @@ public class EtudiantService {
     public void supprimerEtudiant(Integer id) {
         etudiantRepository.deleteById(id);
     }
+
+
 }

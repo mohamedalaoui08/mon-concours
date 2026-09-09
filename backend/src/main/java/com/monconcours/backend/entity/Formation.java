@@ -18,6 +18,8 @@ public class Formation {
     private Integer duree;
     private String niveau;
     private LocalDate datePublication;
+    private String matiere;
+    private String type;
 
     @OneToMany(mappedBy = "formation")
     private List<Favori> favori;
@@ -27,15 +29,19 @@ public class Formation {
     public Formation() {
     }
 
-    public Formation(String titre, String description, String contenu, Integer duree, String niveau, LocalDate datePublication) {
+    public Formation(Integer id, String titre, String description, String contenu, Integer duree, String niveau, LocalDate datePublication, String matiere, String type) {
+        this.id = id;
         this.titre = titre;
         this.description = description;
         this.contenu = contenu;
         this.duree = duree;
         this.niveau = niveau;
         this.datePublication = datePublication;
+        this.matiere = matiere;
+        this.type = type;
     }
-                /*      Getter      */
+
+    /*      Getter      */
 
     public Integer getId() {
         return id;
@@ -64,7 +70,16 @@ public class Formation {
     public LocalDate getDatePublication() {
         return datePublication;
     }
-                /*      Setter      */
+
+    public String getMatiere() {
+        return matiere;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    /*      Setter      */
 
     public void setId(Integer id) {
         this.id = id;
@@ -92,5 +107,13 @@ public class Formation {
 
     public void setDatePublication(LocalDate datePublication) {
         this.datePublication = datePublication;
+    }
+
+    public void setMatiere(String matiere) {
+        this.matiere = matiere;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

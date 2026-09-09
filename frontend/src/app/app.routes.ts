@@ -12,6 +12,10 @@ import { Admin } from './admin/admin';
 import { authGuard } from './auth-guard';
 import { adminGuard } from './admin-guard';
 import { Inscription } from './inscription/inscription';
+import { Dashboard } from './dashboard/dashboard';
+import { ReinitialiserMotDePasse } from './reinitialiser-mot-de-passe/reinitialiser-mot-de-passe';
+import { MotDePasseOublie } from './mot-de-passe-oublie/mot-de-passe-oublie';
+
 
 export const routes: Routes = [
   { path: '', component: Accueil },
@@ -24,8 +28,8 @@ export const routes: Routes = [
   { path: 'abonnement', component: Abonnement },
   { path: 'profil', component: Profil, canActivate: [authGuard] },
   { path: 'admin', component: Admin, canActivate: [adminGuard] },
-  {
-    path: 'inscription',
-    component: Inscription
-  }
+  { path: 'inscription',component: Inscription},
+  {path: 'dashboard',component: Dashboard,canActivate: [authGuard]},
+  {path: 'reinitialiser-mot-de-passe',component: ReinitialiserMotDePasse},
+  {path: 'mot-de-passe-oublie',component: MotDePasseOublie}
 ];

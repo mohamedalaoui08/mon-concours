@@ -1,11 +1,152 @@
-<h2>Actualités des écoles</h2>
+<div class="actualite-page">
 
-<div *ngFor="let actualiteItem of actualites">
+  <!-- =========================
+       SIDEBAR
+       ========================= -->
+  <aside class="sidebar">
 
-  <h3>{{ actualiteItem.titre }}</h3>
+    <div class="sidebar-logo">
+      <img src="Logo.png" alt="Mon Concours">
+    </div>
 
-  <p>Date : {{ actualiteItem.datePublication }}</p>
+    <nav class="sidebar-nav">
 
-  <p>{{ actualiteItem.contenu }}</p>
+      <a routerLink="/dashboard">
+        <img src="icon-accueil.png" alt="">
+        <span>Accueil</span>
+      </a>
+
+      <a routerLink="/concours">
+        <img src="icon-concours.png" alt="">
+        <span>Concours</span>
+      </a>
+
+      <a routerLink="/qcm">
+        <img src="icon-qcm.png" alt="">
+        <span>QCM</span>
+      </a>
+
+      <a routerLink="/formation">
+        <img src="icon-astuces.png" alt="">
+        <span>Formation</span>
+      </a>
+
+      <a routerLink="/exercice">
+        <img src="icon-exercices.png" alt="">
+        <span>Exercices</span>
+      </a>
+
+      <a routerLink="/actualite" class="active">
+        <img src="icon-ecoles.png" alt="">
+        <span>Écoles</span>
+      </a>
+
+    </nav>
+
+ <a routerLink="/profil" class="sidebar-profile">
+  <img src="icon-profil.png" alt="">
+  <span>Mon profil</span>
+</a>
+  </aside>
+
+
+  <!-- =========================
+       CONTENU
+       ========================= -->
+  <main class="actualite-content">
+
+    <!-- =========================
+         LISTE DES ACTUALITÉS
+         ========================= -->
+    <div *ngIf="!actualiteSelectionnee">
+
+      <h1>Actualité des écoles</h1>
+
+      <div class="actualite-grid">
+
+        <div
+          class="actualite-card"
+          *ngFor="let actualiteItem of actualites">
+
+          <div class="actualite-card-top">
+
+<div class="actualite-infos">
+
+  <h3>{{ actualiteItem.ecole?.nom }}</h3>
+
+  <p class="ecole-description">
+    {{ actualiteItem.ecole?.description }}
+  </p>
+
+  <p class="actualite-titre">
+    {{ actualiteItem.titre }}
+  </p>
+
+  <p class="actualite-date">
+    {{ actualiteItem.datePublication }}
+  </p>
+
+</div>
+
+          </div>
+          <button
+  class="favori-button"
+  (click)="ajouterFavori(actualiteItem)">
+
+  <img
+    [src]="actualiteItem.estFavori === true
+      ? 'icon-favori-plein2.png'
+      : 'icon-favori.png'"
+    alt="Favori">
+
+</button>
+
+          <button
+            class="afficher-button"
+            (click)="ouvrirActualite(actualiteItem)">
+
+            Afficher
+
+            <img src="icon-ouvrir2.png" alt="Afficher">
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         ACTUALITÉ SÉLECTIONNÉE
+         ========================= -->
+    <section
+      *ngIf="actualiteSelectionnee"
+      class="actualite-selectionnee">
+
+      <button
+        class="retour-button"
+        (click)="fermerActualite()">
+
+        ← Retour aux actualités
+
+      </button>
+
+      <h2>
+        {{ actualiteSelectionnee.titre }}
+      </h2>
+
+      <p class="actualite-date">
+        {{ actualiteSelectionnee.datePublication }}
+      </p>
+
+      <div class="actualite-contenu">
+        {{ actualiteSelectionnee.contenu }}
+      </div>
+
+    </section>
+
+  </main>
 
 </div>

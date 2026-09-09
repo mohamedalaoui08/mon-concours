@@ -1,0 +1,223 @@
+/* =========================
+   STRUCTURE GÉNÉRALE
+   ========================= */
+
+.dashboard {
+  min-height: 100vh;
+  display: flex;
+  background: #eafcff;
+  font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   MENU LATÉRAL
+   ========================= */
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #080678;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   LOGO
+   ========================= */
+
+.sidebar-logo {
+  height: 130px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-logo img {
+  width: 250px;
+  height: auto;
+}
+
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0px 30px;
+  gap: 0px;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 12px 0;
+
+  color: #a7a7cc;
+
+  text-decoration: none;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sidebar-nav a:hover {
+  color: white;
+}
+/* Au survol : l'icône devient aussi visible à 100% */
+.sidebar-nav a:hover img {
+  opacity: 1;
+}
+
+.sidebar-nav a.active {
+  color: white;
+}
+
+
+/* =========================
+   PROFIL EN BAS
+   ========================= */
+.sidebar-profile {
+  margin-top: auto;
+  min-height: 85px;
+  border-top: 1px solid white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 30px;
+
+  color: white;
+  text-decoration: none;
+
+  font-size: 17px;
+  font-weight: 700;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.sidebar-profile img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+
+/* =========================
+   CONTENU PRINCIPAL
+   ========================= */
+
+.dashboard-content {
+  flex: 1;
+
+  min-height: 100vh;
+
+  padding: 60px 70px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   ICÔNES DU MENU
+   ========================= */
+
+.sidebar-nav a img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+
+  /* Toutes les icônes sont moins visibles */
+  opacity: 0.5;
+}
+
+/* Accueil = icône active à 100 % */
+.sidebar-nav a.active img {
+  opacity: 1;
+}
+.sidebar-profile img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* =========================
+   BANNIÈRE DE BIENVENUE
+   ========================= */
+
+.welcome-card {
+  width: 99%;
+  height: 240px;
+
+ background: radial-gradient(circle at 55% 50%, #0d50b4 0%, #0e2f7a 45%, #06133f 100%);
+  border-radius: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 35px 50px;
+  margin: -10px 12px;
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================
+   TEXTE DE BIENVENUE
+   ========================= */
+
+.welcome-text {
+  width: 55%;
+  color: white;
+}
+
+.welcome-text h1 {
+  margin: 0 0 20px;
+
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.welcome-text p {
+  margin: 0;
+
+  font-size: 18px;
+  line-height: 1.5;
+
+  color: #d9d9ef;
+}
+
+
+/* =========================
+   IMAGE
+   ========================= */
+
+.welcome-image {
+  width: 40%;
+  height: 100%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-image img {
+  max-width: 100%;
+  max-height: 205px;
+  position: absolute; top: 85px; right: 77px;
+
+  object-fit: contain;
+}

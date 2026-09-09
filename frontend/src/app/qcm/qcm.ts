@@ -1,38 +1,60 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-
+import { ActivatedRoute, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-qcm',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './qcm.html',
   styleUrl: './qcm.css',
 })
 export class Qcm {
 
   private http = inject(HttpClient);
-
+  private route = inject(ActivatedRoute);
   qcms: any[] = [];
   qcmSelectionne: any = null;
   choixSelectionnes: number[] = [];
   resultatQcm: any = null;
+  
 
   ngOnInit() {
     this.http.get<any[]>('http://localhost:8080/qcms')
       .subscribe({
-        next: (reponse) => {
-          this.qcms = reponse;
-          console.log('QCM reçus :', reponse);
-        },
+next: (reponse) => {
+  this.qcms = reponse;
+
+  const idFavori = this.route.snapshot.queryParamMap.get('id');
+
+  if (idFavori) {
+    const qcmTrouve = reponse.find(
+      qcm => qcm.id === Number(idFavori)
+    );
+
+    if (qcmTrouve) {
+      this.ouvrirQcm(qcmTrouve);
+    }
+  }
+
+  console.log('QCM reçus :', reponse);
+},
         error: (erreur) => {
           console.log('Erreur QCM :', erreur);
         }
       });
   }
-  ouvrirQcm(qcm: any) {
-    this.qcmSelectionne = qcm;
-   
-  }
+ouvrirQcm(qcm: any) {
+  this.http.get<any>(`http://localhost:8080/qcms/${qcm.id}`)
+    .subscribe({
+      next: (reponse) => {
+        this.qcmSelectionne = reponse;
+        console.log('QCM complet ouvert :', reponse);
+      },
+      error: (erreur) => {
+        console.log('Erreur ouverture QCM :', erreur);
+      }
+    });
+}
 
   selectionnerChoix(questionId: number, choixId: number) {
     this.choixSelectionnes[questionId] = choixId;
@@ -59,5 +81,11 @@ export class Qcm {
       console.log('Erreur validation QCM :', erreur);
     }
   });
+}
+
+fermerQcm() {
+  this.qcmSelectionne = null;
+  this.choixSelectionnes = [];
+  this.resultatQcm = null;
 }
 }
