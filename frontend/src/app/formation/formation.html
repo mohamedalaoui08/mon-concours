@@ -89,12 +89,26 @@
 
     </div>
 
+    <div
+  *ngIf="accesFormationsRefuse && !formationSelectionnee"
+  class="acces-refuse">
+
+  <h2>Accès aux formations non inclus</h2>
+
+  <p>
+    Votre abonnement actuel ne permet pas d'accéder aux formations.
+  </p>
+
+  <a routerLink="/abonnement">
+    Voir les offres d'abonnement
+  </a>
+
+</div>
 
   <!-- =========================
      LISTE DES FORMATIONS
      ========================= -->
-<div *ngIf="!formationSelectionnee">
-
+<div *ngIf="!formationSelectionnee && !accesFormationsRefuse">
   <div
     *ngFor="let formationItem of formationsFiltres"
     class="formation-card">

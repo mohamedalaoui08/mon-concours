@@ -1175,6 +1175,35 @@
         <input
           type="number"
           [(ngModel)]="nouvelleOffreAbonnement.dureeJours">
+        <label>Permissions de l'offre :</label>
+
+<label>
+  <input
+    type="checkbox"
+    [(ngModel)]="nouvelleOffreAbonnement.accesConcours">
+  Accès à tous les concours
+</label>
+
+<label>
+  <input
+    type="checkbox"
+    [(ngModel)]="nouvelleOffreAbonnement.accesQcm">
+  Accès aux QCM
+</label>
+
+<label>
+  <input
+    type="checkbox"
+    [(ngModel)]="nouvelleOffreAbonnement.accesExercices">
+  Accès aux exercices
+</label>
+
+<label>
+  <input
+    type="checkbox"
+    [(ngModel)]="nouvelleOffreAbonnement.accesFormations">
+  Accès aux formations
+</label>
 
         <button (click)="ajouterOffreAbonnement()">
           Ajouter l'offre
@@ -1248,6 +1277,35 @@
         <input
           type="number"
           [(ngModel)]="offreAbonnementAModifier.dureeJours">
+        <label>Permissions de l'offre :</label>
+
+<label>
+  <input
+    type="checkbox"
+    [(ngModel)]="offreAbonnementAModifier.accesConcours">
+  Accès à tous les concours
+</label>
+
+<label>
+  <input
+    type="checkbox"
+    [(ngModel)]="offreAbonnementAModifier.accesQcm">
+  Accès aux QCM
+</label>
+
+<label>
+  <input
+    type="checkbox"
+    [(ngModel)]="offreAbonnementAModifier.accesExercices">
+  Accès aux exercices
+</label>
+
+<label>
+  <input
+    type="checkbox"
+    [(ngModel)]="offreAbonnementAModifier.accesFormations">
+  Accès aux formations
+</label>
 
         <button (click)="modifierOffreAbonnement()">
           Enregistrer les modifications

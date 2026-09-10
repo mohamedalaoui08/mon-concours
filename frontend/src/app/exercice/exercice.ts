@@ -17,6 +17,7 @@ export class Exercice {
 
   exercices: any[] = [];
   exercicesFiltres: any[] = [];
+  accesExercicesRefuse: boolean = false;
 
   matiereSelectionnee = '';
 
@@ -63,9 +64,12 @@ export class Exercice {
 
   console.log('Exercices reçus :', reponse);
 },
-        error: (erreur) => {
-          console.log('Erreur exercices :', erreur);
-        }
+  error: (erreur) => {
+  console.log('Erreur exercices :', erreur);
+  this.exercices = [];
+  this.exercicesFiltres = [];
+  this.accesExercicesRefuse = true;
+    }
       });
   }
 

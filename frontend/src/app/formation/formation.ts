@@ -15,6 +15,7 @@ export class Formation {
   private route = inject(ActivatedRoute);
   formations: any[] = [];
   formationsFiltres: any[] = [];
+  accesFormationsRefuse: boolean = false;
   
 
 
@@ -56,9 +57,12 @@ if (idFormation) {
   });
         console.log('Formations reçues :', reponse);
       },
-      error: (erreur) => {
-        console.log('Erreur formations :', erreur);
-      }
+  error: (erreur) => {
+  console.log('Erreur formations :', erreur);
+  this.formations = [];
+  this.formationsFiltres = [];
+  this.accesFormationsRefuse = true;
+}
     });
 }
 

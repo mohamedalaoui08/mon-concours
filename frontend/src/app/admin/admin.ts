@@ -62,7 +62,11 @@ nouvelleOffreAbonnement: any = {
   nom: '',
   description: '',
   prix: 0,
-  dureeJours: 0
+  dureeJours: 0,
+  accesConcours: false,
+  accesQcm: false,
+  accesExercices: false,
+  accesFormations: false
 };
 
 nouvelleEcole: any = {

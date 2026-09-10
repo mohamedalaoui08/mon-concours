@@ -15,6 +15,7 @@ public class Concours {
     private LocalDate date;
     private String description;
     private String fichierPdf;
+    private boolean publicConcours;
     @ManyToOne
     @JoinColumn(name = "id_ecole")
     private Ecole ecole;
@@ -26,14 +27,21 @@ public class Concours {
     public Concours() {
     }
 
-    public Concours(String nom, LocalDate date, String fichierPdf, String description, Ecole ecole) {
+    public Concours(
+            String nom,
+            LocalDate date,
+            String fichierPdf,
+            String description,
+            Ecole ecole,
+            boolean publicConcours) {
+
         this.nom = nom;
         this.date = date;
         this.fichierPdf = fichierPdf;
         this.description = description;
         this.ecole = ecole;
-    }
-                        /*  Getter    */
+        this.publicConcours = publicConcours;
+    }              /*  Getter    */
 
     public Integer getId() {
         return id;
@@ -59,6 +67,8 @@ public class Concours {
         return ecole;
     }
 
+    public boolean isPublicConcours() {return publicConcours;}
+
                     /*  Setter  */
 
     public void setId(Integer id) {
@@ -83,5 +93,8 @@ public class Concours {
 
     public void setEcole(Ecole ecole) {
         this.ecole = ecole;
+    }
+    public void setPublicConcours(boolean publicConcours) {
+        this.publicConcours = publicConcours;
     }
 }

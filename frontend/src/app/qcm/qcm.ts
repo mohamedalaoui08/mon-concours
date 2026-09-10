@@ -16,6 +16,7 @@ export class Qcm {
   qcmSelectionne: any = null;
   choixSelectionnes: number[] = [];
   resultatQcm: any = null;
+  accesQcmRefuse: boolean = false;
   meilleursScores: { [qcmId: number]: number } = {};
   
 
@@ -52,9 +53,11 @@ next: (reponse) => {
 
   console.log('QCM reçus :', reponse);
 },
-        error: (erreur) => {
-          console.log('Erreur QCM :', erreur);
-        }
+     error: (erreur) => {
+  console.log('Erreur QCM :', erreur);
+  this.qcms = [];
+  this.accesQcmRefuse = true;
+}
       });
   }
 ouvrirQcm(qcm: any) {

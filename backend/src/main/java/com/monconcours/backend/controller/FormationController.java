@@ -54,9 +54,16 @@ public class FormationController {
         Etudiant etudiant = etudiantRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
 
-        if (abonnementService.obtenirAbonnementActif(etudiant).isEmpty()) {
+        var abonnement = abonnementService.obtenirAbonnementActif(etudiant)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Un abonnement actif est nécessaire pour consulter les formations"
+                        )
+                );
+
+        if (!abonnement.getOffreAbonnement().isAccesFormations()) {
             throw new RuntimeException(
-                    "Un abonnement actif est nécessaire pour consulter les formations"
+                    "Votre abonnement ne permet pas l'accès aux formations"
             );
         }
 
@@ -82,9 +89,16 @@ public class FormationController {
         Etudiant etudiant = etudiantRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
 
-        if (abonnementService.obtenirAbonnementActif(etudiant).isEmpty()) {
+        var abonnement = abonnementService.obtenirAbonnementActif(etudiant)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Un abonnement actif est nécessaire pour consulter les formations"
+                        )
+                );
+
+        if (!abonnement.getOffreAbonnement().isAccesFormations()) {
             throw new RuntimeException(
-                    "Un abonnement actif est nécessaire pour consulter les formations"
+                    "Votre abonnement ne permet pas l'accès aux formations"
             );
         }
 

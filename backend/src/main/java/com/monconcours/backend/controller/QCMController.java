@@ -47,9 +47,16 @@ public class QCMController {
         Etudiant etudiant = etudiantRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
 
-        if (abonnementService.obtenirAbonnementActif(etudiant).isEmpty()) {
+        var abonnement = abonnementService.obtenirAbonnementActif(etudiant)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Un abonnement actif est nécessaire pour consulter les QCM"
+                        )
+                );
+
+        if (!abonnement.getOffreAbonnement().isAccesQcm()) {
             throw new RuntimeException(
-                    "Un abonnement actif est nécessaire pour consulter les QCM"
+                    "Votre abonnement ne permet pas l'accès aux QCM"
             );
         }
 
@@ -74,10 +81,16 @@ public class QCMController {
 
         Etudiant etudiant = etudiantRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+        var abonnement = abonnementService.obtenirAbonnementActif(etudiant)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Un abonnement actif est nécessaire pour consulter les QCM"
+                        )
+                );
 
-        if (abonnementService.obtenirAbonnementActif(etudiant).isEmpty()) {
+        if (!abonnement.getOffreAbonnement().isAccesQcm()) {
             throw new RuntimeException(
-                    "Un abonnement actif est nécessaire pour consulter les QCM"
+                    "Votre abonnement ne permet pas l'accès aux QCM"
             );
         }
 
@@ -110,6 +123,23 @@ public class QCMController {
 
         Etudiant etudiant = etudiantRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        var abonnement = abonnementService.obtenirAbonnementActif(etudiant)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Un abonnement actif est nécessaire pour passer les QCM"
+                        )
+                );
+
+        System.out.println("EMAIL = " + email);
+        System.out.println("OFFRE = " + abonnement.getOffreAbonnement().getNom());
+        System.out.println("ACCES QCM = " + abonnement.getOffreAbonnement().isAccesQcm());
+
+        if (!abonnement.getOffreAbonnement().isAccesQcm()) {
+            throw new RuntimeException(
+                    "Votre abonnement ne permet pas l'accès aux QCM"
+            );
+        }
 
         return qcmService.enregistrerResultat(
                 id,

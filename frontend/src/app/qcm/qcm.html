@@ -72,11 +72,28 @@
 
     </div>
 
+    <div
+  *ngIf="accesQcmRefuse && !qcmSelectionne"
+  class="acces-refuse">
+
+  <h2>Accès aux QCM non inclus</h2>
+
+  <p>
+    Votre abonnement actuel ne permet pas d'accéder aux QCM.
+  </p>
+
+  <a routerLink="/abonnement">
+    Voir les offres d'abonnement
+  </a>
+
+</div>
 
     <!-- =========================
          LISTE DES QCM
          ========================= -->
-  <div class="qcm-grid" *ngIf="!qcmSelectionne">
+<div
+  class="qcm-grid"
+  *ngIf="!qcmSelectionne && !accesQcmRefuse">
 
       <div
         class="qcm-card"

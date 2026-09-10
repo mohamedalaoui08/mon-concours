@@ -41,6 +41,21 @@ public class OffreAbonnementService {
         offreExistante.setDescription(nouvelleOffre.getDescription());
         offreExistante.setPrix(nouvelleOffre.getPrix());
         offreExistante.setDureeJours(nouvelleOffre.getDureeJours());
+        offreExistante.setAccesConcours(
+                nouvelleOffre.isAccesConcours()
+        );
+
+        offreExistante.setAccesQcm(
+                nouvelleOffre.isAccesQcm()
+        );
+
+        offreExistante.setAccesExercices(
+                nouvelleOffre.isAccesExercices()
+        );
+
+        offreExistante.setAccesFormations(
+                nouvelleOffre.isAccesFormations()
+        );
 
         return offreAbonnementRepository.save(offreExistante);
     }
