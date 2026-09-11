@@ -10,6 +10,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
   styleUrl: './actualite.css',
 })
 export class Actualite {
+
+  estConnecte = !!localStorage.getItem('token');
   private http = inject(HttpClient);
   private route = inject(ActivatedRoute);
 
@@ -20,21 +22,23 @@ ngOnInit() {
     .subscribe({
 next: (reponse) => {
   this.actualites = reponse;
+if (this.estConnecte) {
   this.http.get<any[]>('http://localhost:8080/favoris/mes-favoris')
-  .subscribe({
-    next: (favoris) => {
-      this.actualites.forEach(actualiteItem => {
-        actualiteItem.estFavori = favoris.some(
-          favori =>
-            favori.typeContenu === 'ACTUALITE' &&
-            favori.contenuId === actualiteItem.id
-        );
-      });
-    },
-    error: (erreur) => {
-      console.log('Erreur chargement favoris :', erreur);
-    }
-  });
+    .subscribe({
+      next: (favoris) => {
+        this.actualites.forEach(actualiteItem => {
+          actualiteItem.estFavori = favoris.some(
+            favori =>
+              favori.typeContenu === 'ACTUALITE' &&
+              favori.contenuId === actualiteItem.id
+          );
+        });
+      },
+      error: (erreur) => {
+        console.log('Erreur chargement favoris :', erreur);
+      }
+    });
+}
 
   const idFavori = this.route.snapshot.queryParamMap.get('id');
 

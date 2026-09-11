@@ -1,0 +1,359 @@
+/* =========================
+   HEADER - MON CONCOURS
+   ========================= */
+
+.header {
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+  
+    background: #07056f;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 0 55px;
+  }
+
+  /* =========================
+   LOGO
+   ========================= */
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-image {
+    width: 200px;
+    height: auto;
+    display: block;
+  }
+  
+
+  /* =========================
+   MENU
+   ========================= */
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  
+  .nav a {
+    color: white;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  
+  .nav a:hover {
+    opacity: 0.8;
+  }
+
+  /* =========================
+   SE CONNECTER
+   ========================= */
+  
+  .nav a[href="/connexion"] {
+    color: #5ee7f2;
+  }
+
+  /* =========================
+   BOUTON S'INSCRIRE
+   ========================= */
+
+  
+  .nav .btn-inscription {
+    background: linear-gradient(180deg, #9beaf3, #18268f);
+    padding: 14px 27px;
+    border-radius: 30px;
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  /* =========================
+   LANGUE
+   ========================= */
+
+  
+  .langue {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+.service-hero {
+  text-align: center;
+  padding: 45px 20px 55px;
+  max-width: 950px;
+  margin: auto;
+}
+
+.service-label {
+  color: #080678;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.service-hero h1 {
+  margin: 18px 0 22px;
+  color: #080678;
+  font-size: 48px;
+  line-height: 1.15;
+}
+
+.service-hero p {
+  max-width: 760px;
+  margin: auto;
+  font-size: 19px;
+  line-height: 1.7;
+  color: #555;
+}
+
+.fonctionnalites {
+  max-width: 1150px;
+  margin: auto;
+  padding: 20px 30px 80px;
+}
+
+.fonctionnalite {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+  padding: 70px 0;
+  border-bottom: 1px solid #dce8f2;
+}
+
+.fonctionnalite.inverse .fonctionnalite-texte {
+  order: 2;
+}
+
+.fonctionnalite.inverse .fonctionnalite-visuel {
+  order: 1;
+}
+
+.numero {
+  display: inline-block;
+  color: #70d7ef;
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.fonctionnalite-texte h2 {
+  color: #080678;
+  font-size: 36px;
+  margin: 0 0 18px;
+}
+
+.fonctionnalite-texte p {
+  margin: 0;
+  color: #555;
+  font-size: 18px;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.fonctionnalite-visuel {
+  min-height: 300px;
+  background: linear-gradient(145deg, #edfaff, #dbeefe);
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 12px 30px rgba(8, 6, 120, 0.08);
+}
+
+.visuel-numero {
+  font-size: 70px;
+  font-weight: 800;
+  color: rgba(8, 6, 120, 0.12);
+  margin-bottom: 10px;
+}
+
+.fonctionnalite-visuel span {
+  color: #080678;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.fonctionnement {
+  background: #080678;
+  padding: 80px 40px;
+}
+
+.fonctionnement-titre {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 55px;
+}
+
+.fonctionnement-titre span {
+  color: #70d7ef;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.fonctionnement-titre h2 {
+  color: white;
+  font-size: 38px;
+  margin: 15px 0 0;
+}
+
+.etapes {
+  max-width: 1150px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.etape {
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  min-height: 170px;
+}
+
+.etape strong {
+  color: #70d7ef;
+  font-size: 25px;
+}
+
+.etape h3 {
+  color: #080678;
+  font-size: 20px;
+  margin: 14px 0 10px;
+}
+
+.etape p {
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.service-fin {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+}
+
+.service-fin h2 {
+  color: #080678;
+  font-size: 38px;
+  margin: 0 0 15px;
+}
+
+.service-fin p {
+  color: #555;
+  font-size: 18px;
+}
+
+.service-fin-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.service-fin-actions a {
+  padding: 14px 28px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.btn-inscription {
+  background: linear-gradient(#70d7ef, #080678);
+  color: white;
+}
+
+.btn-connexion {
+  background: white;
+  color: #080678;
+  border: 2px solid #080678;
+}
+
+@media (max-width: 850px) {
+  .service-nav {
+    display: none;
+  }
+
+  .service-hero h1 {
+    font-size: 36px;
+  }
+
+  .fonctionnalite {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .fonctionnalite.inverse .fonctionnalite-texte,
+  .fonctionnalite.inverse .fonctionnalite-visuel {
+    order: initial;
+  }
+
+  .etapes {
+    grid-template-columns: 1fr;
+  }
+}
+
+.blocs-service {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 10px 30px 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.bloc-service {
+  background: white;
+  border-radius: 16px;
+  padding: 30px 35px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.bloc-service h2 {
+  color: #080678;
+  font-size: 26px;
+  margin: 0 0 15px;
+}
+
+.bloc-service p {
+  color: #555;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.btn-connexion {
+  display: block;
+  padding: 20px 40px;
+  border-radius: 10px;
+  background: linear-gradient(#70d7ef, #080678);
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: 0.25s;
+}
+
+.btn-connexion:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}

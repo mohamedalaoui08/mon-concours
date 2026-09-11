@@ -76,6 +76,13 @@
       </button>
 
       <button
+  [class.active]="sectionActive === 'service'"
+  (click)="changerSection('service')">
+  <img src="icon-astuces.png" alt="">
+  <span>Service</span>
+</button>
+
+      <button
         [class.active]="sectionActive === 'inscriptions'"
         (click)="changerSection('inscriptions')">
         <img src="icon-profil.png" alt="">
@@ -1436,6 +1443,93 @@
       </div>
 
     </section>
+
+<!-- =====================================================
+     SERVICE
+     ===================================================== -->
+
+<section
+  *ngIf="sectionActive === 'service'"
+  class="admin-section">
+
+  <h1>Gestion de la page Service</h1>
+
+  <!-- Ajouter un bloc -->
+
+  <div class="admin-form">
+
+    <h2>Ajouter un bloc</h2>
+
+    <label>Titre :</label>
+    <input [(ngModel)]="nouveauContenuService.titre">
+
+    <label>Contenu :</label>
+    <textarea
+      rows="6"
+      [(ngModel)]="nouveauContenuService.description">
+    </textarea>
+
+    <button (click)="ajouterContenuService()">
+      Ajouter le bloc
+    </button>
+
+  </div>
+
+
+  <!-- Blocs existants -->
+
+  <div class="admin-list">
+
+    <h2>Blocs de la page Service</h2>
+
+    <div
+      *ngFor="let contenu of contenusService"
+      class="admin-item">
+
+      <h3>{{ contenu.titre }}</h3>
+
+      <p>
+        {{ contenu.description }}
+      </p>
+
+      <button (click)="selectionnerContenuService(contenu)">
+        Modifier
+      </button>
+
+      <button (click)="supprimerContenuService(contenu.id)">
+        Supprimer
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Modifier un bloc -->
+
+  <div
+    *ngIf="contenuServiceAModifier"
+    class="admin-form">
+
+    <h2>Modifier le bloc</h2>
+
+    <label>Titre :</label>
+    <input [(ngModel)]="contenuServiceAModifier.titre">
+
+    <label>Contenu :</label>
+    <textarea
+      rows="6"
+      [(ngModel)]="contenuServiceAModifier.description">
+    </textarea>
+
+    <button (click)="modifierContenuService()">
+      Enregistrer les modifications
+    </button>
+
+  </div>
+
+</section>
+
 
 <section
   *ngIf="sectionActive === 'profil'"

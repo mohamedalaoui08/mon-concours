@@ -9,6 +9,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.List;
 import java.util.Optional;
 import java.security.SecureRandom;
+import javax.naming.directory.Attributes;
+import javax.naming.directory.DirContext;
+import javax.naming.directory.InitialDirContext;
 
 @Service
 public class DemandeInscriptionService {
@@ -32,6 +35,12 @@ public class DemandeInscriptionService {
     }
     // CREATE
     public DemandeInscription ajouterDemande(DemandeInscription demande) {
+
+        if (!domaineEmailExiste(demande.getEmail())) {
+            throw new RuntimeException(
+                    "L'adresse email utilise un domaine inexistant"
+            );
+        }
 
         if (demandeInscriptionRepository.existsByEmail(demande.getEmail())) {
             throw new RuntimeException("Une demande avec cet email existe déjà");
@@ -98,5 +107,24 @@ public class DemandeInscriptionService {
         demande.setStatut("REFUSEE");
 
         return demandeInscriptionRepository.save(demande);
+    }
+
+    private boolean domaineEmailExiste(String email) {
+
+        try {
+            String domaine = email.substring(email.indexOf("@") + 1);
+
+            DirContext contexte = new InitialDirContext();
+
+            Attributes attributs = contexte.getAttributes(
+                    "dns:/" + domaine,
+                    new String[]{"MX"}
+            );
+
+            return attributs.get("MX") != null;
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

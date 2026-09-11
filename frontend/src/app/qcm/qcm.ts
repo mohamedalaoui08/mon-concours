@@ -17,7 +17,7 @@ export class Qcm {
   choixSelectionnes: number[] = [];
   resultatQcm: any = null;
   accesQcmRefuse: boolean = false;
-  meilleursScores: { [qcmId: number]: number } = {};
+  meilleursScores: { [qcmId: number]: number | undefined } = {};
   
 
   ngOnInit() {

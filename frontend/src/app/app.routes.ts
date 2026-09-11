@@ -15,6 +15,7 @@ import { Inscription } from './inscription/inscription';
 import { Dashboard } from './dashboard/dashboard';
 import { ReinitialiserMotDePasse } from './reinitialiser-mot-de-passe/reinitialiser-mot-de-passe';
 import { MotDePasseOublie } from './mot-de-passe-oublie/mot-de-passe-oublie';
+import { Service } from './service/service';
 
 
 export const routes: Routes = [
@@ -31,5 +32,6 @@ export const routes: Routes = [
   { path: 'inscription',component: Inscription},
   {path: 'dashboard',component: Dashboard,canActivate: [authGuard]},
   {path: 'reinitialiser-mot-de-passe',component: ReinitialiserMotDePasse},
-  {path: 'mot-de-passe-oublie',component: MotDePasseOublie}
+  {path: 'mot-de-passe-oublie',component: MotDePasseOublie},
+  { path: 'service', component: Service },
 ];

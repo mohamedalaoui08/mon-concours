@@ -51,6 +51,15 @@ demandesInscription: any[] = [];
 
 abonnements: any[] = [];
 
+contenusService: any[] = [];
+
+contenuServiceAModifier: any = null;
+
+nouveauContenuService: any = {
+  titre: '',
+  description: ''
+};
+
 nouvelAdmin: any = {
   nom: '',
   prenom: '',
@@ -256,6 +265,16 @@ ngOnInit() {
   },
   error: (erreur) => {
     console.log('Erreur abonnements admin :', erreur);
+  }
+});
+
+this.http.get<any[]>('http://localhost:8080/contenus-service').subscribe({
+  next: (reponse) => {
+    this.contenusService = reponse;
+    console.log('Contenus Service reçus :', reponse);
+  },
+  error: (erreur) => {
+    console.log('Erreur contenus Service :', erreur);
   }
 });
 
@@ -1220,6 +1239,75 @@ enregistrerProfilAdmin() {
   });
 }
 
+ajouterContenuService() {
+  this.http.post<any>(
+    'http://localhost:8080/contenus-service',
+    this.nouveauContenuService
+  ).subscribe({
+    next: (reponse) => {
+      this.contenusService.push(reponse);
+
+      this.nouveauContenuService = {
+        titre: '',
+        description: ''
+      };
+
+      console.log('Bloc Service ajouté :', reponse);
+    },
+    error: (erreur) => {
+      console.log('Erreur ajout bloc Service :', erreur);
+    }
+  });
+}
+
+
+selectionnerContenuService(contenu: any) {
+  this.contenuServiceAModifier = { ...contenu };
+}
+
+
+modifierContenuService() {
+  this.http.put<any>(
+    `http://localhost:8080/contenus-service/${this.contenuServiceAModifier.id}`,
+    this.contenuServiceAModifier
+  ).subscribe({
+    next: (reponse) => {
+
+      const index = this.contenusService.findIndex(
+        contenu => contenu.id === reponse.id
+      );
+
+      if (index !== -1) {
+        this.contenusService[index] = reponse;
+      }
+
+      this.contenuServiceAModifier = null;
+
+      console.log('Bloc Service modifié :', reponse);
+    },
+    error: (erreur) => {
+      console.log('Erreur modification bloc Service :', erreur);
+    }
+  });
+}
+
+
+supprimerContenuService(id: number) {
+  this.http.delete(
+    `http://localhost:8080/contenus-service/${id}`
+  ).subscribe({
+    next: () => {
+      this.contenusService = this.contenusService.filter(
+        contenu => contenu.id !== id
+      );
+
+      console.log('Bloc Service supprimé');
+    },
+    error: (erreur) => {
+      console.log('Erreur suppression bloc Service :', erreur);
+    }
+  });
+}
 
 deconnexionAdmin() {
   localStorage.removeItem('token');

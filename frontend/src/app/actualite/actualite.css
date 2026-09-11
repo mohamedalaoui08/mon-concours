@@ -294,3 +294,37 @@
   height: 27px;
   object-fit: contain;
 }
+
+.sidebar-visiteur {
+  padding: 25px 30px;
+  text-align: center;
+}
+
+.sidebar-visiteur p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.btn-connexion-visiteur {
+  display: block;
+  padding: 13px 20px;
+  border-radius: 10px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 700;
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  transition: 0.25s;
+}
+
+.btn-connexion-visiteur:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}

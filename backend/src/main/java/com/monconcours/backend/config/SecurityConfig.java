@@ -89,7 +89,7 @@ public class SecurityConfig {
                         .hasRole("ADMIN")
                         // ROLE DES ACTUALITES
                         .requestMatchers(HttpMethod.GET, "/actualites/**")
-                        .hasAnyRole("ETUDIANT", "ADMIN")
+                        .permitAll()
 
                         .requestMatchers(HttpMethod.POST, "/actualites/**")
                         .hasRole("ADMIN")
@@ -113,7 +113,7 @@ public class SecurityConfig {
                         .hasRole("ADMIN")
                         // ROLE DES ECOLES
                         .requestMatchers(HttpMethod.GET, "/ecoles/**")
-                        .permitAll()
+                        .hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.POST, "/ecoles/**")
                         .hasRole("ADMIN")
@@ -212,6 +212,18 @@ public class SecurityConfig {
                         // ROLE D'ADMIN
 
                         .requestMatchers("/admins/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/contenus-service/**")
+                        .permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/contenus-service/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.PUT, "/contenus-service/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.DELETE, "/contenus-service/**")
                         .hasRole("ADMIN")
                         .anyRequest().authenticated()
                 );

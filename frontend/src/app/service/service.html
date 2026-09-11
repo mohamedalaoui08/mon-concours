@@ -1,0 +1,73 @@
+<div class="service-page">
+
+<header class="header">
+
+  <div class="logo">
+    <img src="Logo.png" alt="Mon Concours" class="logo-image">
+  </div>
+
+  <nav class="nav">
+    <a routerLink="/">Accueil</a>
+    <a routerLink="/concours">Concours</a>
+    <a routerLink="/service">Service</a>
+    <a routerLink="/abonnement">Abonnements</a>
+    <a routerLink="/actualite">Actualité</a>
+
+    <ng-container *ngIf="!estConnecte">
+      <a routerLink="/connexion">Se connecter</a>
+      <a routerLink="/inscription" class="btn-inscription">S’inscrire</a>
+    </ng-container>
+
+    <span class="langue">FR</span>
+  </nav>
+
+</header>
+
+  <!-- INTRODUCTION -->
+  <section class="service-hero">
+
+    <h1>
+      Tout ce qu’il vous faut<br>
+      pour préparer vos concours
+    </h1>
+
+    <p>
+      Mon Concours rassemble les outils nécessaires pour vous entraîner,
+      progresser et mieux préparer les concours d'accès aux grandes écoles.
+    </p>
+
+  </section>
+
+
+  <!-- FONCTIONNALITÉS DYNAMIQUES -->
+<section class="blocs-service">
+
+  <div class="bloc-service" *ngFor="let contenu of contenus">
+
+    <h2>{{ contenu.titre }}</h2>
+
+    <p>{{ contenu.description }}</p>
+
+  </div>
+
+</section>
+
+
+  <!-- FIN DE PAGE -->
+<section class="service-fin" *ngIf="!estConnecte">
+
+  <h2>Connectez-vous pour accéder à votre espace</h2>
+
+  <p>
+    Retrouvez vos contenus, vos favoris et votre abonnement.
+  </p>
+
+  <div class="service-fin-actions">
+    <a routerLink="/connexion" class="btn-connexion">
+      Se connecter
+    </a>
+  </div>
+
+</section>
+
+</div>

@@ -3,11 +3,14 @@
   <!-- =========================
        SIDEBAR
        ========================= -->
-  <aside class="sidebar">
+<aside class="sidebar">
 
-    <div class="sidebar-logo">
-      <img src="Logo.png" alt="Mon Concours">
-    </div>
+  <div class="sidebar-logo">
+    <img src="Logo.png" alt="Mon Concours">
+  </div>
+
+  <!-- SIDEBAR ETUDIANT -->
+  <ng-container *ngIf="estConnecte">
 
     <nav class="sidebar-nav">
 
@@ -43,12 +46,29 @@
 
     </nav>
 
- <a routerLink="/profil" class="sidebar-profile">
-  <img src="icon-profil.png" alt="">
-  <span>Mon profil</span>
-</a>
-  </aside>
+    <a routerLink="/profil" class="sidebar-profile">
+      <img src="icon-profil.png" alt="">
+      <span>Mon profil</span>
+    </a>
 
+  </ng-container>
+
+  <!-- SIDEBAR VISITEUR -->
+  <ng-container *ngIf="!estConnecte">
+
+    <div class="sidebar-visiteur">
+
+      <p>Découvrez les dernières actualités des écoles</p>
+
+      <a routerLink="/connexion" class="btn-connexion-visiteur">
+        Se connecter
+      </a>
+
+    </div>
+
+  </ng-container>
+
+</aside>
 
   <!-- =========================
        CONTENU
