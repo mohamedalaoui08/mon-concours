@@ -1247,14 +1247,30 @@
           </p>
 
           <button
-            (click)="selectionnerOffreAbonnement(offreItem)">
-            Modifier
-          </button>
+  (click)="selectionnerOffreAbonnement(offreItem)">
+  Modifier
+</button>
 
-          <button
-            (click)="supprimerOffreAbonnement(offreItem.id)">
-            Supprimer
-          </button>
+<button
+  (click)="supprimerOffreAbonnement(offreItem.id)">
+  Supprimer
+</button>
+
+<button
+  *ngIf="offreItem.active"
+  class="desactiver-button"
+  (click)="desactiverOffre(offreItem.id)">
+  Désactiver
+</button>
+
+<button
+  *ngIf="!offreItem.active"
+  class="reactiver-button"
+  (click)="reactiverOffre(offreItem.id)">
+  Réactiver
+</button>
+          
+
 
         </div>
 

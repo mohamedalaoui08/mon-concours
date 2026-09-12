@@ -16,6 +16,7 @@ export class Abonnement {
 offres: any[] = [];
 abonnementActif: any = null;
 messageAbonnement: string = '';
+offreDetailsOuverts: number | null = null;
 estConnecte = !!localStorage.getItem('token');
 
 ngOnInit() {
@@ -36,7 +37,7 @@ ngOnInit() {
 
 }
 
-  this.http.get<any[]>('http://localhost:8080/offres-abonnement')
+  this.http.get<any[]>('http://localhost:8080/offres-abonnement/actives')
     .subscribe({
       next: (reponse) => {
         this.offres = reponse;
@@ -117,5 +118,13 @@ changerAbonnement(offre: any) {
     }
   });
 
+}
+
+afficherDetails(offreId: number) {
+  if (this.offreDetailsOuverts === offreId) {
+    this.offreDetailsOuverts = null;
+  } else {
+    this.offreDetailsOuverts = offreId;
+  }
 }
 }

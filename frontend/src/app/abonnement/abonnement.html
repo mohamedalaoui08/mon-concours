@@ -39,6 +39,39 @@
       <p class="description">
         {{ offre.description }}
       </p>
+
+      <button
+  class="details-offre-button"
+  (click)="afficherDetails(offre.id)">
+  {{ offreDetailsOuverts === offre.id ? 'Masquer les accès ↑' : 'Voir les accès ↓' }}
+</button>
+
+
+<div
+  *ngIf="offreDetailsOuverts === offre.id"
+  class="details-offre">
+
+  <p *ngIf="offre.accesConcours">
+    <span class="check-acces">✅</span>
+    Concours
+  </p>
+
+  <p *ngIf="offre.accesQcm">
+    <span class="check-acces">✅</span>
+    QCM
+  </p>
+
+  <p *ngIf="offre.accesExercices">
+    <span class="check-acces">✅</span>
+    Exercices
+  </p>
+
+  <p *ngIf="offre.accesFormations">
+    <span class="check-acces">✅</span>
+    Formations
+  </p>
+
+</div>
 <!-- Aucun abonnement actif sur cette offre -->
 <!-- Aucun abonnement actif : Souscrire -->
 <button

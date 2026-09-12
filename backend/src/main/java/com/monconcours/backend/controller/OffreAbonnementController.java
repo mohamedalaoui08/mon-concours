@@ -43,4 +43,19 @@ public class OffreAbonnementController {
     public void supprimerOffre(@PathVariable Integer id) {
         offreAbonnementService.supprimerOffre(id);
     }
+
+    @PutMapping("/offres-abonnement/{id}/desactiver")
+    public OffreAbonnement desactiverOffre(@PathVariable Integer id) {
+        return offreAbonnementService.desactiverOffre(id);
+    }
+
+    @PutMapping("/offres-abonnement/{id}/reactiver")
+    public OffreAbonnement reactiverOffre(@PathVariable Integer id) {
+        return offreAbonnementService.reactiverOffre(id);
+    }
+
+    @GetMapping("/offres-abonnement/actives")
+    public List<OffreAbonnement> getOffresActives() {
+        return offreAbonnementService.getOffresActives();
+    }
 }

@@ -17,6 +17,7 @@ public class OffreAbonnement {
     private boolean accesQcm;
     private boolean accesExercices;
     private boolean accesFormations;
+    private boolean active = true;
 
                     /*      Constructeur        */
 
@@ -31,7 +32,8 @@ public class OffreAbonnement {
             boolean accesConcours,
             boolean accesQcm,
             boolean accesExercices,
-            boolean accesFormations) {
+            boolean accesFormations,
+            boolean active) {
 
         this.nom = nom;
         this.description = description;
@@ -41,6 +43,7 @@ public class OffreAbonnement {
         this.accesQcm = accesQcm;
         this.accesExercices = accesExercices;
         this.accesFormations = accesFormations;
+        this.active = active;
     }            /*      Getter      */
 
     public Integer getId() {
@@ -79,6 +82,8 @@ public class OffreAbonnement {
         return accesFormations;
     }
 
+    public boolean isActive() {return active;}
+
                 /*      Setter      */
 
     public void setId(Integer id) {
@@ -103,6 +108,9 @@ public class OffreAbonnement {
 
     public void setAccesConcours(boolean accesConcours) {
         this.accesConcours = accesConcours;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public void setAccesQcm(boolean accesQcm) {

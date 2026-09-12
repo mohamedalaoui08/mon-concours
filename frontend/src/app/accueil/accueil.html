@@ -255,67 +255,72 @@
      SECTION ABONNEMENTS
      ========================= -->
 
-     <section class="home-abonnements">
+<section class="home-abonnements">
 
-      <!-- Titre -->
-      <h2>Nos abonnements</h2>
-    
-      <!-- Cartes des abonnements -->
-      <div class="abonnement-cards">
-    
-        <!-- =========================
-             PACK GRATUIT
-             ========================= -->
-        <div class="abonnement-card">
-    
-          <h3>Pack Gratuit</h3>
-    
-          <p>✅ Accès à quelques concours</p>
-          <p>✅ QCM limités</p>
-          <p>✅ Actualités des écoles</p>
-    
-          <p>❌ Accès complet</p>
-          <p>❌ Contenus premium</p>
-    
+  <h2>Nos abonnements</h2>
+
+  <div class="offres-container">
+
+    <div
+      *ngFor="let offre of offres"
+      class="offre-card-home">
+
+      <div class="offre-top">
+
+        <h3>{{ offre.nom }}</h3>
+
+        <p class="offre-description">
+          {{ offre.description }}
+        </p>
+
+        <div class="offre-prix">
+          <span class="prix-valeur">{{ offre.prix }}</span>
+          <span class="prix-devise">DH</span>
         </div>
-    
-    
-        <!-- =========================
-             PACK STANDARD
-             ========================= -->
-        <div class="abonnement-card">
-    
-          <h3>Pack Standard</h3>
-    
-          <p>✅ Accès aux concours</p>
-          <p>✅ QCM</p>
-          <p>✅ Exercices</p>
-          <p>✅ Actualités des écoles</p>
-    
-          <p>❌ Accès premium complet</p>
-    
-        </div>
-    
-    
-        <!-- =========================
-             PACK PREMIUM
-             ========================= -->
-        <div class="abonnement-card">
-    
-          <h3>Pack Premium</h3>
-    
-          <p>✅ Tous les concours</p>
-          <p>✅ Tous les QCM</p>
-          <p>✅ Tous les exercices</p>
-          <p>✅ Formations</p>
-          <p>✅ Actualités des écoles</p>
-    
-        </div>
-    
+
+        <p class="offre-duree">
+          {{ offre.dureeJours }} jours
+        </p>
+
       </div>
-    
-    </section>
 
+
+      <div class="offre-acces">
+
+        <p *ngIf="offre.accesConcours">
+          <span class="check">✓</span>
+          Concours
+        </p>
+
+        <p *ngIf="offre.accesQcm">
+          <span class="check">✓</span>
+          QCM
+        </p>
+
+        <p *ngIf="offre.accesExercices">
+          <span class="check">✓</span>
+          Exercices
+        </p>
+
+        <p *ngIf="offre.accesFormations">
+          <span class="check">✓</span>
+          Formations
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="abonnements-voir-plus">
+    <a routerLink="/abonnement">
+      Voir plus →
+    </a>
+  </div>
+
+</section>
     <!-- =========================
      SECTION AVIS
      ========================= -->
@@ -380,10 +385,9 @@
         <div class="footer-column">
           <h3>À propos</h3>
     
-          <a href="#">Qui sommes-nous ?</a>
-          <a href="#">Notre mission</a>
-          <a href="#">Contact</a>
-          <a href="#">Nos écoles</a>
+          <a href="/service">Qui sommes-nous ?</a>
+          <a href="/service">Notre mission</a>
+          <a href="/service">Contact</a>
         </div>
     
     
@@ -404,8 +408,7 @@
     
           <a routerLink="/connexion">Se connecter</a>
           <a routerLink="/abonnement">Abonnements</a>
-          <a routerLink="/profil">Mon profil</a>
-          <a href="#">Aide</a>
+          <a href="/service">Aide</a>
         </div>
     
     

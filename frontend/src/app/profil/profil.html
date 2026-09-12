@@ -145,11 +145,11 @@
          </p>
           </div>
 
-          <button
-            class="delete-button"
-            (click)="supprimerFavori(favori.id)">
-            Supprimer
-          </button>
+     <button
+  class="delete-button"
+  (click)="supprimerFavori(favori.id); $event.stopPropagation()">
+  Supprimer
+</button>
 
         </div>
 

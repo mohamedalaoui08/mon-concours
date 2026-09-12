@@ -12,4 +12,5 @@ public interface AbonnementRepository extends JpaRepository<Abonnement, Integer>
             Etudiant etudiant,
             String statut
     );
+    boolean existsByOffreAbonnementId(Integer offreId);
 }

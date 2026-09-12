@@ -490,95 +490,233 @@
 }
 
 /* =========================
-   SECTION ABONNEMENTS
+   SECTION ABONNEMENTS ACCUEIL
    ========================= */
 
-   .home-abonnements {
-    background: #080678;
-  
-    padding: 65px 8% 90px;
-  
-    font-family: Arial, sans-serif;
-  }
-  
-  
-  /* =========================
-     TITRE ABONNEMENTS
-     ========================= */
-  
-  .home-abonnements h2 {
-    margin: 0 0 45px;
-  
-    text-align: center;
-  
-    color: #62dff2;
-  
-    font-size: 48px;
-    font-weight: 800;
-  }
-  
-  
-  /* =========================
-     CONTENEUR DES CARTES
-     ========================= */
-  
-  .abonnement-cards {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-  
-    gap: 70px;
-  }
-  
-  
-  /* =========================
-     CARTE ABONNEMENT
-     ========================= */
-  
-  .abonnement-card {
-    width: 280px;
-    min-height: 380px;
-  
-    background: white;
-  
-    border-radius: 18px;
-  
-    padding: 28px 30px;
-  
-    box-sizing: border-box;
-  }
-  
-  
-  /* =========================
-     TITRE DE LA CARTE
-     ========================= */
-  
-  .abonnement-card h3 {
-    margin: 0 0 35px;
-  
-    text-align: center;
-  
-    color: #000000;
-  
-    font-size: 27px;
-    font-weight: 800;
-  }
-  
-  
-  /* =========================
-     CONTENU DE LA CARTE
-     ========================= */
-  
-  .abonnement-card p {
-    margin: 14px 0;
-  
-    color: #111111;
-  
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-  
+.home-abonnements {
+  background: #03045E;
+  padding: 60px 40px 70px;
+}
+
+.home-abonnements > h2 {
+  margin: 0 0 55px;
+
+  text-align: center;
+
+  color: #5ee7f2;
+
+  font-size: 46px;
+  font-weight: 800;
+
+  font-family: Arial, sans-serif;
+}
+
+/* =========================
+   CONTENEUR DES CARTES
+   ========================= */
+
+.offres-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+
+  gap: 30px;
+
+  flex-wrap: wrap;
+}
+
+/* =========================
+   CARTE
+   ========================= */
+
+.offre-card-home {
+  width: 430px;
+
+  background: #ffffff;
+
+  border-radius: 24px;
+
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.07);
+
+  transition: 0.25s;
+}
+
+.offre-card-home:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.11);
+}
+
+/* =========================
+   PARTIE HAUTE
+   ========================= */
+
+.offre-top {
+  padding: 26px 24px 24px;
+}
+
+.offre-top h3 {
+  margin: 0 0 8px;
+
+  color: #111;
+
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.offre-description {
+  min-height: 45px;
+
+  margin: 0 0 28px;
+
+  color: #777;
+
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* =========================
+   PRIX
+   ========================= */
+
+.offre-prix {
+  display: flex;
+  align-items: flex-end;
+
+  margin-bottom: 8px;
+
+  color: #080678;
+}
+
+.prix-valeur {
+  font-family: Arial, sans-serif;
+
+  font-size: 52px;
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+.prix-devise {
+  margin-left: 7px;
+  margin-bottom: 5px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.offre-duree {
+  margin: 0;
+
+  color: #777;
+
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+
+/* =========================
+   BLOC DES ACCÈS
+   ========================= */
+
+.offre-acces {
+  min-height: 170px;
+
+  margin-top: 8px;
+
+  padding: 22px 22px;
+
+  background: #f0f1f3;
+
+  border-radius: 20px;
+
+  box-sizing: border-box;
+}
+
+.offre-acces p {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  margin: 13px 0;
+
+  color: #222;
+
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* =========================
+   PETIT CHECK
+   ========================= */
+
+.check {
+  width: 22px;
+  height: 22px;
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+
+  border-radius: 50%;
+
+  color: #080678;
+
+  font-size: 13px;
+  font-weight: 900;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* =========================
+   VOIR PLUS
+   ========================= */
+
+.abonnements-voir-plus {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 50px;
+}
+
+.abonnements-voir-plus a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 32px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  border-radius: 10px;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+
+  transition: 0.25s;
+}
+
+.abonnements-voir-plus a:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
   
   /* =========================
      RESPONSIVE
@@ -878,3 +1016,81 @@
     transform: translateX(calc(-50% - 27.5px));
   }
 }
+
+.offres-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.offre-card {
+  width: 300px;
+  min-height: 380px;
+
+  background: white;
+  border-radius: 16px;
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+
+  transition: 0.2s;
+}
+
+.offre-card:hover {
+  transform: translateY(-6px);
+}
+
+.offre-card h2 {
+  margin: 0;
+  text-align: center;
+  color: #080678;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.prix {
+  margin-top: 25px;
+  text-align: center;
+  color: #080678;
+}
+
+.prix-valeur {
+  font-size: 44px;
+  font-weight: 800;
+}
+
+.prix-devise {
+  margin-left: 6px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.duree {
+  text-align: center;
+  margin-top: 5px;
+  color: #777;
+  font-size: 16px;
+}
+
+.separateur {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 22px 0;
+}
+
+.description {
+  flex: 1;
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #333;
+}
+

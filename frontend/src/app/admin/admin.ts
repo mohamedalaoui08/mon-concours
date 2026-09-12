@@ -211,16 +211,6 @@ ngOnInit() {
     }
   });
 
-  this.http.get<any[]>('http://localhost:8080/offres-abonnement').subscribe({
-    next: (reponse) => {
-      this.offresAbonnement = reponse;
-      console.log('Offres abonnement admin reçues :', reponse);
-    },
-    error: (erreur) => {
-      console.log('Erreur offres abonnement admin :', erreur);
-    }
-  });
-
   this.http.get<any[]>('http://localhost:8080/etudiants').subscribe({
     next: (reponse) => {
       this.etudiants = reponse;
@@ -230,6 +220,7 @@ ngOnInit() {
       console.log('Erreur étudiants admin :', erreur);
     }
   });
+  this.chargerOffresAbonnement();
 
   this.http.get<any[]>('http://localhost:8080/admins').subscribe({
  next: (reponse) => {
@@ -1314,5 +1305,46 @@ deconnexionAdmin() {
   localStorage.removeItem('email');
 
   window.location.href = '/connexion';
+}
+
+desactiverOffre(id: number) {
+  this.http.put(
+    `http://localhost:8080/offres-abonnement/${id}/desactiver`,
+    null
+  ).subscribe({
+    next: () => {
+      this.chargerOffresAbonnement();
+    },
+    error: (erreur) => {
+      console.log('Erreur désactivation offre :', erreur);
+    }
+  });
+}
+
+reactiverOffre(id: number) {
+  this.http.put(
+    `http://localhost:8080/offres-abonnement/${id}/reactiver`,
+    null
+  ).subscribe({
+    next: () => {
+      this.chargerOffresAbonnement();
+    },
+    error: (erreur) => {
+      console.log('Erreur réactivation offre :', erreur);
+    }
+  });
+}
+
+chargerOffresAbonnement() {
+  this.http.get<any[]>('http://localhost:8080/offres-abonnement')
+    .subscribe({
+      next: (reponse) => {
+        this.offresAbonnement = reponse;
+        console.log('Offres abonnement admin reçues :', reponse);
+      },
+      error: (erreur) => {
+        console.log('Erreur offres abonnement admin :', erreur);
+      }
+    });
 }
 }
