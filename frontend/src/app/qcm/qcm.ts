@@ -105,4 +105,10 @@ fermerQcm() {
   this.choixSelectionnes = [];
   this.resultatQcm = null;
 }
+
+sidebarReduite = false;
+
+toggleSidebar() {
+  this.sidebarReduite = !this.sidebarReduite;
+}
 }

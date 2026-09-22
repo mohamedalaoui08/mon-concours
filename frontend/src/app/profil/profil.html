@@ -3,12 +3,28 @@
   <!-- =========================
        SIDEBAR
        ========================= -->
-  <aside class="sidebar">
 
+  <aside
+    class="sidebar"
+    [class.sidebar-reduite]="sidebarReduite">
+
+    <!-- FLÈCHE -->
+    <button
+      class="sidebar-toggle"
+      (click)="toggleSidebar()">
+
+      <img
+        [src]="sidebarReduite ? 'fleche-droite.png' : 'fleche-gauche.png'"
+        alt="Menu">
+
+    </button>
+
+    <!-- LOGO -->
     <div class="sidebar-logo">
       <img src="Logo.png" alt="Mon Concours">
     </div>
 
+    <!-- NAVIGATION -->
     <nav class="sidebar-nav">
 
       <a routerLink="/dashboard">
@@ -43,6 +59,7 @@
 
     </nav>
 
+    <!-- PROFIL -->
     <div class="sidebar-profile active">
       <img src="icon-profil.png" alt="">
       <span>Mon profil</span>
@@ -54,15 +71,20 @@
   <!-- =========================
        CONTENU PROFIL
        ========================= -->
-  <main class="profil-content">
+
+  <main
+    class="profil-content"
+    [class.content-sidebar-reduite]="sidebarReduite">
 
     <h1>Mon profil</h1>
 
     <div class="profil-card" *ngIf="profil">
 
+
       <!-- =========================
            INFORMATIONS PERSONNELLES
            ========================= -->
+
       <section class="profil-section">
 
         <h2>Informations personnelles</h2>
@@ -81,6 +103,7 @@
 
           <div class="champ champ-large">
             <label>Email</label>
+
             <input
               [value]="profil.email"
               readonly>
@@ -88,6 +111,7 @@
 
           <div class="champ">
             <label>Date de naissance</label>
+
             <input
               type="date"
               [(ngModel)]="profil.dateNaissance">
@@ -99,6 +123,7 @@
           </div>
 
         </div>
+
 
         <div class="profil-actions">
 
@@ -122,94 +147,108 @@
       <!-- =========================
            FAVORIS
            ========================= -->
+
       <section class="profil-section">
 
         <h2>Mes favoris</h2>
 
-      <div
-        class="favori-card"
-        *ngFor="let favori of favoris"
-        (click)="ouvrirFavori(favori)">
+        <div
+          class="favori-card"
+          *ngFor="let favori of favoris"
+          (click)="ouvrirFavori(favori)">
 
-         <div>
-        <p class="favori-type">
-          {{ favori.typeContenu }}
-        </p>
+          <div>
 
-         <h3>
-        {{ favori.titre }}
-         </h3>
+            <p class="favori-type">
+              {{ favori.typeContenu }}
+            </p>
 
-         <p>
-         Ajouté le : {{ favori.dateAjout }}
-         </p>
+            <h3>
+              {{ favori.titre }}
+            </h3>
+
+            <p>
+              Ajouté le : {{ favori.dateAjout }}
+            </p>
+
           </div>
 
-     <button
-  class="delete-button"
-  (click)="supprimerFavori(favori.id); $event.stopPropagation()">
-  Supprimer
-</button>
+          <button
+            class="delete-button"
+            (click)="supprimerFavori(favori.id); $event.stopPropagation()">
+            Supprimer
+          </button>
 
         </div>
 
       </section>
 
-<!-- =========================
-     ABONNEMENT
-     ========================= -->
-<section class="profil-section">
 
-  <h2>Mon abonnement</h2>
+      <!-- =========================
+           ABONNEMENT
+           ========================= -->
 
-  <!-- Abonnement actif -->
-  <div *ngIf="abonnementActif" class="abonnement-profil">
+      <section class="profil-section">
 
-    <div>
-      <h3>
-        {{ abonnementActif.offreAbonnement?.nom }}
-      </h3>
+        <h2>Mon abonnement</h2>
 
-      <p>
-        Statut : {{ abonnementActif.statut }}
-      </p>
+        <!-- Abonnement actif -->
 
-      <p>
-        Du {{ abonnementActif.dateDebut }}
-        au {{ abonnementActif.dateFin }}
-      </p>
+        <div
+          *ngIf="abonnementActif"
+          class="abonnement-profil">
 
-      <a
-        routerLink="/abonnement"
-        class="abonnement-button">
-        Gérer mon abonnement
-      </a>
-    </div>
+          <div>
 
-  </div>
+            <h3>
+              {{ abonnementActif.offreAbonnement?.nom }}
+            </h3>
+
+            <p>
+              Statut : {{ abonnementActif.statut }}
+            </p>
+
+            <p>
+              Du {{ abonnementActif.dateDebut }}
+              au {{ abonnementActif.dateFin }}
+            </p>
+
+            <a
+              routerLink="/abonnement"
+              class="abonnement-button">
+              Gérer mon abonnement
+            </a>
+
+          </div>
+
+        </div>
 
 
-  <!-- Aucun abonnement actif -->
-  <div *ngIf="!abonnementActif" class="abonnement-profil">
+        <!-- Aucun abonnement actif -->
 
-    <p>
-      Vous n'avez aucun abonnement actif.
-    </p>
+        <div
+          *ngIf="!abonnementActif"
+          class="abonnement-profil">
 
-    <a
-      routerLink="/abonnement"
-      class="abonnement-button">
-      Ajouter un abonnement
-    </a>
+          <p>
+            Vous n'avez aucun abonnement actif.
+          </p>
 
-  </div>
+          <a
+            routerLink="/abonnement"
+            class="abonnement-button">
+            Ajouter un abonnement
+          </a>
 
-</section>
+        </div>
+
+      </section>
 
 
       <!-- =========================
            RESULTATS QCM
            ========================= -->
+
       <section class="profil-section">
 
         <h2>Mes résultats QCM</h2>

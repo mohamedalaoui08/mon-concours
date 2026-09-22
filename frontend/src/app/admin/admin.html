@@ -4,8 +4,26 @@
        SIDEBAR ADMIN
        ===================================================== -->
 
-  <aside class="admin-sidebar">
+  <aside
+    class="admin-sidebar"
+    [class.sidebar-reduite]="sidebarReduite">
 
+    <!-- Flèche réduire / agrandir -->
+<button
+  class="sidebar-toggle"
+  (click)="toggleSidebar()">
+
+  <img
+    *ngIf="!sidebarReduite"
+    src="fleche-gauche.png"
+    alt="Réduire">
+
+  <img
+    *ngIf="sidebarReduite"
+    src="fleche-droite.png"
+    alt="Agrandir">
+
+</button>
     <div class="admin-logo">
       <img src="Logo.png" alt="Mon Concours">
     </div>
@@ -76,11 +94,11 @@
       </button>
 
       <button
-  [class.active]="sectionActive === 'service'"
-  (click)="changerSection('service')">
-  <img src="icon-astuces.png" alt="">
-  <span>Service</span>
-</button>
+        [class.active]="sectionActive === 'service'"
+        (click)="changerSection('service')">
+        <img src="icon-astuces.png" alt="">
+        <span>Service</span>
+      </button>
 
       <button
         [class.active]="sectionActive === 'inscriptions'"
@@ -91,18 +109,19 @@
 
     </nav>
 
-<div
-  class="admin-profile"
-  (click)="changerSection('profil')">
+    <div
+      class="admin-profile"
+      (click)="changerSection('profil')">
 
-  <img src="icon-profil.png" alt="">
+      <img src="icon-profil.png" alt="">
 
-  <div>
-    <span>Mon profil</span>
-    <small>Admin</small>
-  </div>
+      <div>
+        <span>Mon profil</span>
+        <small>Admin</small>
+      </div>
 
-</div>
+    </div>
+
   </aside>
 
 
@@ -110,7 +129,9 @@
        CONTENU PRINCIPAL
        ===================================================== -->
 
-  <main class="admin-content">
+<main
+  class="admin-content"
+  [class.content-sidebar-reduite]="sidebarReduite">
 
 
     <!-- =====================================================
@@ -121,35 +142,259 @@
   *ngIf="sectionActive === 'dashboard'"
   class="admin-section dashboard-section">
 
-  <h1>Tableau de bord</h1>
+  <!-- =========================
+       TITRE
+       ========================= -->
+
+  <div class="dashboard-header">
+    <p>ESPACE D'ADMINISTRATION</p>
+    <h1>Tableau de bord</h1>
+  </div>
+
+
+  <!-- =========================
+       BANNIÈRE
+       ========================= -->
+
+  <div class="dashboard-banner">
+
+    <div class="dashboard-banner-text">
+      <span>MON CONCOURS</span>
+
+      <h2>
+        Gestion de la plateforme
+      </h2>
+
+      <p>
+        Suivez les étudiants, les concours, les contenus pédagogiques
+        et les abonnements depuis votre espace d'administration.
+      </p>
+    </div>
+
+    <div class="dashboard-banner-decoration">
+      ✦
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       STATISTIQUES PRINCIPALES
+       ========================= -->
 
   <div class="dashboard-stats">
 
-    <div class="stat-card">
-      <span class="stat-label">Étudiants</span>
-      <strong class="stat-value">{{ etudiants.length }}</strong>
+    <div class="dashboard-stat-card">
+
+      <div class="dashboard-stat-icon">
+        <img src="icon-etudiant1.png" alt="">
+      </div>
+
+      <p>Étudiants</p>
+
+      <h3>{{ etudiants.length }}</h3>
+
+      <span>Étudiants enregistrés</span>
+
     </div>
 
-    <div class="stat-card">
-      <span class="stat-label">Concours</span>
-      <strong class="stat-value">{{ concours.length }}</strong>
+
+    <div class="dashboard-stat-card">
+
+      <div class="dashboard-stat-icon">
+        <img src="icon-concours1.png" alt="">
+      </div>
+
+      <p>Concours</p>
+
+      <h3>{{ concours.length }}</h3>
+
+      <span>Concours disponibles</span>
+
     </div>
 
-    <div class="stat-card">
-      <span class="stat-label">QCM</span>
-      <strong class="stat-value">{{ qcms.length }}</strong>
+
+    <div class="dashboard-stat-card">
+
+      <div class="dashboard-stat-icon">
+        <img src="icon-qcm1.png" alt="">
+      </div>
+
+      <p>QCM</p>
+
+      <h3>{{ qcms.length }}</h3>
+
+      <span>QCM disponibles</span>
+
     </div>
 
-    <div class="stat-card">
-      <span class="stat-label">Demandes en attente</span>
 
-      <strong class="stat-value">
-        {{
-          demandesInscription.filter(
-            demande => demande.statut === 'EN_ATTENTE'
-          ).length
-        }}
-      </strong>
+    <div class="dashboard-stat-card">
+
+      <div class="dashboard-stat-icon">
+        <img src="icon-inscription1.png" alt="">
+      </div>
+
+      <p>Demandes en attente</p>
+
+      <h3>
+        {{ demandesInscription.length }}
+      </h3>
+
+      <span>Demandes d'inscription</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       APERÇU DE LA PLATEFORME
+       ========================= -->
+
+  <div class="dashboard-section-title">
+
+    <p>CONTENU</p>
+
+    <h2>Aperçu de la plateforme</h2>
+
+    <span>
+      Répartition actuelle des ressources disponibles.
+    </span>
+
+  </div>
+
+
+  <div class="dashboard-overview">
+
+    <div class="dashboard-overview-card">
+
+      <div class="overview-top">
+
+        <div class="overview-icon">
+          <img src="icon-foramtion.png" alt="">
+        </div>
+
+        <div>
+          <p>Formations</p>
+          <h3>{{ formations.length }}</h3>
+        </div>
+
+      </div>
+
+      <span>Contenus de formation</span>
+
+    </div>
+
+
+    <div class="dashboard-overview-card">
+
+      <div class="overview-top">
+
+        <div class="overview-icon">
+          <img src="icon-exercices1.png" alt="">
+        </div>
+
+        <div>
+          <p>Exercices</p>
+          <h3>{{ exercices.length }}</h3>
+        </div>
+
+      </div>
+
+      <span>Exercices disponibles</span>
+
+    </div>
+
+
+    <div class="dashboard-overview-card">
+
+      <div class="overview-top">
+
+        <div class="overview-icon">
+          <img src="icon-ecoles1.png" alt="">
+        </div>
+
+        <div>
+          <p>Écoles</p>
+          <h3>{{ ecoles.length }}</h3>
+        </div>
+
+      </div>
+
+      <span>Écoles enregistrées</span>
+
+    </div>
+
+
+    <div class="dashboard-overview-card">
+
+      <div class="overview-top">
+
+        <div class="overview-icon">
+          <img src="icon-actualites.png" alt="">
+        </div>
+
+        <div>
+          <p>Actualités</p>
+          <h3>{{ actualites.length }}</h3>
+        </div>
+
+      </div>
+
+      <span>Actualités publiées</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       ABONNEMENTS
+       ========================= -->
+
+  <div class="dashboard-section-title">
+
+    <p>ABONNEMENTS</p>
+
+    <h2>Gestion des abonnements</h2>
+
+    <span>
+      Vue générale des abonnements et des offres de la plateforme.
+    </span>
+
+  </div>
+
+
+  <div class="dashboard-abonnements">
+
+    <div class="dashboard-abonnement-card">
+
+      <div class="abonnement-card-icon">
+        <img src="icon-abonnement1.png" alt="">
+      </div>
+
+      <div>
+        <p>Abonnements</p>
+        <h3>{{ abonnements.length }}</h3>
+        <span>Abonnements enregistrés</span>
+      </div>
+
+    </div>
+
+
+    <div class="dashboard-abonnement-card">
+
+      <div class="abonnement-card-icon">
+        <img src="icon-abonnement2.png" alt="">
+      </div>
+
+      <div>
+        <p>Offres d'abonnement</p>
+        <h3>{{ offresAbonnement.length }}</h3>
+        <span>Offres créées</span>
+      </div>
+
     </div>
 
   </div>
@@ -1433,6 +1678,11 @@
           <strong>Statut :</strong>
           {{ demandeItem.statut }}
         </p>
+
+<p *ngIf="demandeItem.offreAbonnement">
+  <strong>Abonnement choisi :</strong>
+  {{ demandeItem.offreAbonnement.nom }} - {{ demandeItem.offreAbonnement.prix }} DH
+</p>
 
         <button
           *ngIf="

@@ -16,19 +16,37 @@
 
 .sidebar {
   width: 240px;
-  min-height: 100vh;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
   background: #080678;
   color: white;
+
   display: flex;
   flex-direction: column;
+
   box-sizing: border-box;
+  overflow: hidden;
+
+  transition: all 0.3s ease;
 }
+
+
+/* =========================
+   LOGO
+   ========================= */
 
 .sidebar-logo {
   height: 130px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  flex-shrink: 0;
 }
 
 .sidebar-logo img {
@@ -36,19 +54,32 @@
   height: auto;
 }
 
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
 .sidebar-nav {
   display: flex;
   flex-direction: column;
+
   padding: 0 30px;
+
+  flex: 1;
 }
 
 .sidebar-nav a {
   display: flex;
   align-items: center;
+
   gap: 14px;
+
   padding: 12px 0;
+
   color: #a7a7cc;
+
   text-decoration: none;
+
   font-size: 20px;
   font-weight: 700;
 }
@@ -56,53 +87,60 @@
 .sidebar-nav a img {
   width: 28px;
   height: 28px;
+
   object-fit: contain;
+
   opacity: 0.5;
 }
 
-.sidebar-nav a.active {
-  color: white;
-}
-
-.sidebar-nav a.active img {
-  opacity: 1;
-}
-
+.sidebar-nav a.active,
 .sidebar-nav a:hover {
   color: white;
 }
 
+.sidebar-nav a.active img,
 .sidebar-nav a:hover img {
   opacity: 1;
 }
 
+
+/* =========================
+   PROFIL
+   ========================= */
+
 .sidebar-profile {
   margin-top: auto;
+
   min-height: 85px;
+
   border-top: 1px solid white;
+
   display: flex;
   align-items: center;
+
   gap: 15px;
+
   padding: 0 30px;
 
   color: white;
+
   text-decoration: none;
 
   font-size: 17px;
   font-weight: 700;
+
   box-sizing: border-box;
+
   cursor: pointer;
+
+  flex-shrink: 0;
 }
 
 .sidebar-profile img {
   width: 32px;
   height: 32px;
+
   object-fit: contain;
-}
-
-.sidebar-profile img {
-  width: 32px;
-  height: 32px;
 }
 
 
@@ -111,20 +149,35 @@
    ========================= */
 
 .qcm-content {
-  flex: 1;
+  margin-left: 240px;
+
+  width: calc(100% - 240px);
+  min-height: 100vh;
+
   padding: 35px 45px;
+
   box-sizing: border-box;
+
+  transition: all 0.3s ease;
 }
+
+
+/* =========================
+   HEADER
+   ========================= */
 
 .qcm-header {
   display: flex;
   align-items: center;
+
   gap: 110px;
+
   margin-bottom: 40px;
 }
 
 .qcm-header h1 {
   margin: 0;
+
   font-size: 36px;
   font-weight: 800;
 }
@@ -134,27 +187,27 @@
    FILTRE
    ========================= */
 
-.filtre-wrapper select {
-  width: 155px;
-  height: 42px;
-  padding: 0 15px;
-  border: 1px solid #333;
-  border-radius: 6px;
-  background: white;
-  font-size: 18px;
-  font-weight: 700;
-}
-
 .filtre-wrapper {
   position: relative;
 }
 
 .filtre-wrapper select {
+  width: 155px;
+  height: 42px;
+
+  padding: 0 40px 0 15px;
+
+  border: 1px solid #333;
+  border-radius: 6px;
+
+  background: white;
+
+  font-size: 18px;
+  font-weight: 700;
+
   appearance: none;
-  padding-right: 40px;
 }
 
-/* Notre propre flèche */
 .filtre-wrapper::after {
   content: "";
 
@@ -168,12 +221,12 @@
 
   position: absolute;
 
-  /* POSITION DE LA FLÈCHE */
   right: 15px;
   top: 14px;
 
   pointer-events: none;
 }
+
 
 /* =========================
    GRILLE QCM
@@ -181,16 +234,23 @@
 
 .qcm-grid {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
+
   gap: 42px 55px;
 }
 
 .qcm-card {
   height: 190px;
+
   background: white;
+
   border-radius: 7px;
+
   padding: 20px 20px 15px;
+
   box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -198,6 +258,7 @@
 
 .qcm-card h3 {
   margin: 0;
+
   font-size: 20px;
   font-weight: 800;
 }
@@ -216,11 +277,14 @@
 .qcm-score {
   width: 50px;
   height: 50px;
+
   border: 1.5px solid #111;
   border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 17px;
   font-weight: 800;
 }
@@ -228,11 +292,16 @@
 .passer-button {
   border: none;
   border-radius: 6px;
+
   padding: 8px 17px;
+
   background: linear-gradient(#70d7ef, #080678);
+
   color: white;
+
   font-size: 18px;
   font-weight: 800;
+
   cursor: pointer;
 }
 
@@ -240,16 +309,22 @@
   opacity: 0.85;
 }
 
+
 /* =========================
    QCM SÉLECTIONNÉ
    ========================= */
 
 .qcm-selectionne {
   margin-top: 50px;
+
   background: white;
+
   border-radius: 15px;
+
   padding: 30px;
+
   box-sizing: border-box;
+
   position: relative;
 }
 
@@ -257,27 +332,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   margin-bottom: 30px;
 }
 
 .qcm-selectionne-header h2 {
   margin: 5px 0 0;
+
   font-size: 28px;
 }
 
 .qcm-label {
   margin: 0;
+
   color: #777;
+
   font-size: 14px;
   font-weight: 700;
 }
 
 .qcm-duree {
   background: #eafcff;
+
   padding: 10px 18px;
+
   border-radius: 20px;
+
   font-weight: 700;
 }
+
 
 /* =========================
    QUESTION
@@ -286,21 +369,27 @@
 .question-card {
   border: 1px solid #dfe8eb;
   border-radius: 12px;
+
   padding: 25px;
+
   margin-bottom: 20px;
 }
 
 .question-numero {
   margin: 0 0 8px;
+
   color: #666;
+
   font-size: 14px;
   font-weight: 700;
 }
 
 .question-card h3 {
   margin: 0 0 25px;
+
   font-size: 20px;
 }
+
 
 /* =========================
    CHOIX
@@ -309,12 +398,14 @@
 .choix-list {
   display: flex;
   flex-direction: column;
+
   gap: 12px;
 }
 
 .choix-item {
   display: flex;
   align-items: center;
+
   gap: 12px;
 
   padding: 13px 15px;
@@ -334,62 +425,41 @@
   height: 18px;
 }
 
+
 /* =========================
-   BOUTON VALIDER
+   ACTIONS QCM
    ========================= */
 
 .qcm-actions {
   display: grid;
+
   grid-template-columns: 1fr 1fr 1fr;
+
   align-items: center;
+
   margin-top: 25px;
 }
 
-.valider-button {
-  border: none;
-  border-radius: 7px;
-
-  padding: 11px 25px;
-
-  background: linear-gradient(#70d7ef, #080678);
-
-  color: white;
-  font-size: 18px;
-  font-weight: 800;
-
-  cursor: pointer;
-}
-
-.valider-button:hover {
-  opacity: 0.85;
-}
-
-/* =========================
-   BOUTON RETOUR
-   ========================= */
-
+.valider-button,
 .retour-button {
-
   border: none;
   border-radius: 7px;
+
   padding: 11px 25px;
 
   background: linear-gradient(#70d7ef, #080678);
 
   color: white;
+
   font-size: 18px;
   font-weight: 800;
 
   cursor: pointer;
 }
 
+.valider-button:hover,
 .retour-button:hover {
   opacity: 0.85;
-}
-
-.qcm-resultat {
-  margin-top: 20px;
-  margin-bottom: 15px;
 }
 
 .retour-button {
@@ -398,7 +468,9 @@
 
 .qcm-resultat {
   justify-self: center;
+
   margin: 0;
+
   font-size: 22px;
   font-weight: 800;
 }
@@ -407,33 +479,142 @@
   justify-self: end;
 }
 
+
+/* =========================
+   ACCÈS REFUSÉ
+   ========================= */
+
 .acces-refuse {
   margin-top: 45px;
+
   background: white;
+
   border-radius: 15px;
+
   padding: 35px;
+
   max-width: 600px;
 }
 
 .acces-refuse h2 {
   margin: 0 0 15px;
+
   font-size: 28px;
+
   color: #080678;
 }
 
 .acces-refuse p {
   font-size: 18px;
+
   margin-bottom: 25px;
 }
 
 .acces-refuse a {
   display: inline-block;
+
   padding: 13px 25px;
+
   border-radius: 8px;
+
   background: linear-gradient(#70d7ef, #080678);
+
   color: white;
+
   text-decoration: none;
+
   font-size: 17px;
   font-weight: 700;
+
   cursor: pointer;
+}
+
+
+/* =========================
+   FLÈCHE SIDEBAR
+   ========================= */
+
+.sidebar-toggle {
+  position: absolute;
+
+  top: 18px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 10;
+}
+
+.sidebar-toggle img {
+  width: 28px;
+  height: 28px;
+
+  object-fit: contain;
+
+  opacity: 1;
+}
+
+
+/* =========================
+   SIDEBAR RÉDUITE
+   ========================= */
+
+.sidebar.sidebar-reduite {
+  width: 80px;
+}
+
+.sidebar.sidebar-reduite .sidebar-logo img {
+  display: none;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav {
+  padding: 70px 0 0;
+
+  align-items: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a {
+  justify-content: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a span {
+  display: none;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a img {
+  width: 27px;
+  height: 27px;
+}
+
+.sidebar.sidebar-reduite .sidebar-profile {
+  padding: 0;
+
+  justify-content: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-profile span {
+  display: none;
+}
+
+
+/* =========================
+   CONTENU SIDEBAR RÉDUITE
+   ========================= */
+
+.qcm-content.content-sidebar-reduite {
+  margin-left: 80px;
+
+  width: calc(100% - 80px);
 }

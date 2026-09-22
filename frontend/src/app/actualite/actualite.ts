@@ -89,4 +89,10 @@ ajouterFavori(actualite: any) {
   });
 }
 
+sidebarReduite = false;
+
+toggleSidebar() {
+  this.sidebarReduite = !this.sidebarReduite;
+}
+
 }

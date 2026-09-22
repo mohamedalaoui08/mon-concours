@@ -115,4 +115,10 @@ export class Exercice {
     }
   });
 }
+
+sidebarReduite = false;
+
+toggleSidebar() {
+  this.sidebarReduite = !this.sidebarReduite;
+}
 }

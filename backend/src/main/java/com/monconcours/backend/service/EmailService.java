@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
     private final JavaMailSender mailSender;
+
     public EmailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
 
-    public void envoyerCodeConnexion(String email, String code) {
+    public void envoyerCodeConnexion(
+            String email,
+            String code,
+            String lien) {
 
         SimpleMailMessage message = new SimpleMailMessage();
 
@@ -21,8 +25,15 @@ public class EmailService {
 
         message.setText(
                 "Votre compte Mon Concours a ete cree.\n\n" +
+
                         "Votre code de connexion est : " + code + "\n\n" +
-                        "Vous pouvez maintenant vous connecter avec votre email et ce code."
+
+                        "Vous pouvez utiliser ce code pour vous connecter.\n\n" +
+
+                        "Vous pouvez également choisir votre propre mot de passe en cliquant sur ce lien :\n" +
+                        lien + "\n\n" +
+
+                        "Ce lien est valable pendant 15 minutes."
         );
 
         mailSender.send(message);
@@ -33,7 +44,9 @@ public class EmailService {
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setTo(email);
-        message.setSubject("Réinitialisation de votre mot de passe - Mon Concours");
+        message.setSubject(
+                "Réinitialisation de votre mot de passe - Mon Concours"
+        );
 
         message.setText(
                 "Vous avez demandé la réinitialisation de votre mot de passe.\n\n" +

@@ -1347,4 +1347,10 @@ chargerOffresAbonnement() {
       }
     });
 }
+
+sidebarReduite = false;
+
+toggleSidebar() {
+  this.sidebarReduite = !this.sidebarReduite;
+}
 }

@@ -16,19 +16,35 @@
 
 .sidebar {
   width: 240px;
-  min-height: 100vh;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
   background: #080678;
   color: white;
+
   display: flex;
   flex-direction: column;
+
   box-sizing: border-box;
+  overflow: hidden;
+
+  transition: all 0.3s ease;
 }
+
+
+/* =========================
+   LOGO
+   ========================= */
 
 .sidebar-logo {
   height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .sidebar-logo img {
@@ -36,10 +52,16 @@
   height: auto;
 }
 
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
 .sidebar-nav {
   display: flex;
   flex-direction: column;
   padding: 0 30px;
+  flex: 1;
 }
 
 .sidebar-nav a {
@@ -60,29 +82,30 @@
   opacity: 0.5;
 }
 
-.sidebar-nav a.active {
-  color: white;
-}
-
-.sidebar-nav a.active img {
-  opacity: 1;
-}
-
+.sidebar-nav a.active,
 .sidebar-nav a:hover {
   color: white;
 }
 
+.sidebar-nav a.active img,
 .sidebar-nav a:hover img {
   opacity: 1;
 }
+
+
+/* =========================
+   PROFIL
+   ========================= */
 
 .sidebar-profile {
   margin-top: auto;
   min-height: 85px;
   border-top: 1px solid white;
+
   display: flex;
   align-items: center;
   gap: 15px;
+
   padding: 0 30px;
 
   color: white;
@@ -90,14 +113,11 @@
 
   font-size: 17px;
   font-weight: 700;
+
   box-sizing: border-box;
   cursor: pointer;
-}
 
-.sidebar-profile img {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .sidebar-profile img {
@@ -112,9 +132,16 @@
    ========================= */
 
 .formation-content {
-  flex: 1;
+  margin-left: 240px;
+
+  width: calc(100% - 240px);
+  min-height: 100vh;
+
   padding: 35px 45px;
+
   box-sizing: border-box;
+
+  transition: all 0.3s ease;
 }
 
 .formation-content > h2 {
@@ -122,6 +149,7 @@
   font-size: 36px;
   font-weight: 800;
 }
+
 
 /* =========================
    FILTRES FORMATION
@@ -133,14 +161,11 @@
   margin-bottom: 35px;
 }
 
-/* =========================
-   SELECT COMME LA MAQUETTE
-   ========================= */
-
 .formation-filtres select {
-width: 280px;
-height: 48px;
-padding: 0 55px 0 15px;
+  width: 280px;
+  height: 48px;
+
+  padding: 0 55px 0 15px;
 
   border: 2px solid #333;
   border-radius: 10px;
@@ -156,8 +181,9 @@ padding: 0 55px 0 15px;
   background-position: right 20px center;
   background-size: 24px 19px;
 
-font-size: 19px;
-font-weight: 400;
+  font-size: 19px;
+  font-weight: 400;
+
   cursor: pointer;
 }
 
@@ -169,43 +195,29 @@ font-weight: 400;
 .formation-card {
   background: white;
   border-radius: 10px;
+
   padding: 25px;
   margin-bottom: 25px;
+
   box-sizing: border-box;
 }
 
 .formation-card h3 {
   margin: 0 0 15px;
+
   font-size: 22px;
   font-weight: 800;
 }
 
 .formation-card p {
   margin: 8px 0;
+
   color: #666;
+
   font-size: 15px;
   font-weight: 600;
 }
 
-.voir-formation-button {
-  margin-top: 18px;
-  border: none;
-  border-radius: 7px;
-  padding: 10px 18px;
-  background: linear-gradient(#70d7ef, #080678);
-  color: white;
-  font-size: 16px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.formation-card button:hover {
-  opacity: 0.85;
-}
-
-/* =========================
-   ACTIONS FORMATION
-   ========================= */
 
 /* =========================
    ACTIONS FORMATION
@@ -213,11 +225,14 @@ font-weight: 400;
 
 .formation-actions {
   width: 100%;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   margin-top: 25px;
 }
+
 
 /* =========================
    BOUTON VOIR FORMATION
@@ -226,17 +241,23 @@ font-weight: 400;
 .voir-formation-button {
   border: none;
   border-radius: 7px;
+
   padding: 10px 18px;
+
   background: linear-gradient(#70d7ef, #080678);
+
   color: white;
+
   font-size: 16px;
   font-weight: 800;
+
   cursor: pointer;
 }
 
 .voir-formation-button:hover {
   opacity: 0.85;
 }
+
 
 /* =========================
    BOUTON FAVORI
@@ -245,8 +266,10 @@ font-weight: 400;
 .favori-button {
   border: none;
   background: transparent;
+
   padding: 0;
   margin: 0;
+
   cursor: pointer;
 }
 
@@ -257,10 +280,14 @@ font-weight: 400;
 .favori-button img {
   width: 29px;
   height: 29px;
+
   display: block;
+
   object-fit: contain;
+
   transform: translate(-10px, 8px);
 }
+
 
 /* =========================
    DETAIL FORMATION
@@ -268,22 +295,28 @@ font-weight: 400;
 
 .formation-detail {
   background: white;
+
   border-radius: 12px;
+
   padding: 30px;
   margin-top: 20px;
+
   box-sizing: border-box;
 }
 
 .formation-detail h2 {
   margin: 20px 0;
+
   font-size: 28px;
   font-weight: 800;
 }
 
 .formation-detail p {
   margin: 12px 0;
+
   font-size: 17px;
 }
+
 
 /* =========================
    BOUTON RETOUR
@@ -292,11 +325,16 @@ font-weight: 400;
 .retour-formation-button {
   border: none;
   border-radius: 7px;
+
   padding: 10px 18px;
+
   background: linear-gradient(#70d7ef, #080678);
+
   color: white;
+
   font-size: 16px;
   font-weight: 800;
+
   cursor: pointer;
 }
 
@@ -304,33 +342,140 @@ font-weight: 400;
   opacity: 0.85;
 }
 
+
+/* =========================
+   ACCÈS REFUSÉ
+   ========================= */
+
 .acces-refuse {
   margin-top: 45px;
+
   background: white;
+
   border-radius: 15px;
+
   padding: 35px;
+
   max-width: 600px;
 }
 
 .acces-refuse h2 {
   margin: 0 0 15px;
+
   font-size: 28px;
+
   color: #080678;
 }
 
 .acces-refuse p {
   font-size: 18px;
+
   margin-bottom: 25px;
 }
 
 .acces-refuse a {
   display: inline-block;
+
   padding: 13px 25px;
+
   border-radius: 8px;
+
   background: linear-gradient(#70d7ef, #080678);
+
   color: white;
+
   text-decoration: none;
+
   font-size: 17px;
   font-weight: 700;
+
   cursor: pointer;
+}
+
+
+/* =========================
+   FLÈCHE SIDEBAR
+   ========================= */
+
+.sidebar-toggle {
+  position: absolute;
+
+  top: 18px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 10;
+}
+
+.sidebar-toggle img {
+  width: 28px;
+  height: 28px;
+
+  object-fit: contain;
+
+  opacity: 1;
+}
+
+
+/* =========================
+   SIDEBAR RÉDUITE
+   ========================= */
+
+.sidebar.sidebar-reduite {
+  width: 80px;
+}
+
+.sidebar.sidebar-reduite .sidebar-logo img {
+  display: none;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav {
+  padding: 70px 0 0;
+  align-items: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a {
+  justify-content: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a span {
+  display: none;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a img {
+  width: 27px;
+  height: 27px;
+}
+
+.sidebar.sidebar-reduite .sidebar-profile {
+  padding: 0;
+  justify-content: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-profile span {
+  display: none;
+}
+
+
+/* =========================
+   CONTENU SIDEBAR RÉDUITE
+   ========================= */
+
+.formation-content.content-sidebar-reduite {
+  margin-left: 80px;
+
+  width: calc(100% - 80px);
 }

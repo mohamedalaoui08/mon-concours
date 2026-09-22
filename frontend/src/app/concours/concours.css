@@ -16,18 +16,22 @@
 
 .sidebar {
   width: 240px;
+  height: 100vh;
 
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   background: #080678;
-
   color: white;
 
   display: flex;
-
   flex-direction: column;
 
   box-sizing: border-box;
+  overflow: hidden;
+
+  transition: all 0.3s ease;
 }
 
 
@@ -39,15 +43,14 @@
   height: 130px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
+
+  flex-shrink: 0;
 }
 
 .sidebar-logo img {
   width: 250px;
-
   height: auto;
 }
 
@@ -58,17 +61,16 @@
 
 .sidebar-nav {
   display: flex;
-
   flex-direction: column;
 
-  padding: 0px 30px;
+  padding: 0 30px;
+  gap: 0;
 
-  gap: 0px;
+  flex: 1;
 }
 
 .sidebar-nav a {
   display: flex;
-
   align-items: center;
 
   gap: 14px;
@@ -80,30 +82,16 @@
   text-decoration: none;
 
   font-size: 20px;
-
   font-weight: 700;
 }
 
-.sidebar-nav a:hover {
-  color: white;
-}
-
-.sidebar-nav a:hover img {
-  opacity: 1;
-}
-
+.sidebar-nav a:hover,
 .sidebar-nav a.active {
   color: white;
 }
 
-
-/* =========================
-   ICÔNES DU MENU
-   ========================= */
-
 .sidebar-nav a img {
   width: 28px;
-
   height: 28px;
 
   object-fit: contain;
@@ -111,6 +99,7 @@
   opacity: 0.5;
 }
 
+.sidebar-nav a:hover img,
 .sidebar-nav a.active img {
   opacity: 1;
 }
@@ -122,46 +111,102 @@
 
 .sidebar-profile {
   margin-top: auto;
+
   min-height: 85px;
+
   border-top: 1px solid white;
+
   display: flex;
   align-items: center;
+
   gap: 15px;
+
   padding: 0 30px;
 
   color: white;
+
   text-decoration: none;
 
   font-size: 17px;
   font-weight: 700;
+
   box-sizing: border-box;
+
   cursor: pointer;
+
+  flex-shrink: 0;
 }
 
 .sidebar-profile img {
   width: 32px;
   height: 32px;
-  object-fit: contain;
-}
-
-.sidebar-profile img {
-  width: 32px;
-
-  height: 32px;
 
   object-fit: contain;
 }
+
+
+/* =========================
+   SIDEBAR VISITEUR
+   ========================= */
+
+.sidebar-visiteur {
+  padding: 25px 30px;
+
+  text-align: center;
+}
+
+.sidebar-visiteur p {
+  color: rgba(255, 255, 255, 0.75);
+
+  font-size: 16px;
+  line-height: 1.5;
+
+  margin-bottom: 25px;
+}
+
+.btn-connexion-visiteur {
+  display: block;
+
+  padding: 13px 20px;
+
+  border-radius: 10px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  transition: 0.25s;
+}
+
+.btn-connexion-visiteur:hover {
+  transform: translateY(-2px);
+
+  opacity: 0.9;
+}
+
 
 /* =========================
    CONTENU PRINCIPAL
    ========================= */
 
 .concours-content {
-  flex: 1;
+  margin-left: 240px;
+
+  width: calc(100% - 240px);
+  min-height: 100vh;
 
   padding: 45px 50px;
 
   box-sizing: border-box;
+
+  transition: all 0.3s ease;
 }
 
 
@@ -206,10 +251,10 @@
 
 .filtre-wrapper select {
   appearance: none;
+
   padding-right: 40px;
 }
 
-/* Notre propre flèche */
 .filtre-wrapper::after {
   content: "";
 
@@ -223,12 +268,13 @@
 
   position: absolute;
 
-  /* POSITION DE LA FLÈCHE */
   right: 15px;
   top: 16px;
 
   pointer-events: none;
 }
+
+
 /* =========================
    CARTE CONCOURS
    ========================= */
@@ -287,6 +333,7 @@
 .pdf-button,
 .favori-button {
   border: none;
+
   background: transparent;
 
   color: #080678;
@@ -304,39 +351,96 @@
 .concours-actions button img {
   width: 20px;
   height: 20px;
+
   object-fit: contain;
 }
 
-.sidebar-visiteur {
-  padding: 25px 30px;
-  text-align: center;
+
+/* =========================
+   BOUTON FLÈCHE
+   ========================= */
+
+.sidebar-toggle {
+  position: absolute;
+
+  top: 18px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 10;
 }
 
-.sidebar-visiteur p {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 25px;
+.sidebar-toggle img {
+  width: 28px;
+  height: 28px;
+
+  object-fit: contain;
+
+  opacity: 1;
 }
 
-.btn-connexion-visiteur {
-  display: block;
-  padding: 13px 20px;
-  border-radius: 10px;
 
-  background: linear-gradient(#70d7ef, #080678);
+/* =========================
+   SIDEBAR RÉDUITE
+   ========================= */
 
-  color: white;
-  text-decoration: none;
-  font-size: 17px;
-  font-weight: 700;
-
-  border: 1px solid rgba(255, 255, 255, 0.4);
-
-  transition: 0.25s;
+.sidebar.sidebar-reduite {
+  width: 80px;
 }
 
-.btn-connexion-visiteur:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
+.sidebar.sidebar-reduite .sidebar-logo img {
+  display: none;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav {
+  padding: 70px 0 0;
+
+  align-items: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a {
+  justify-content: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a span {
+  display: none;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a img {
+  width: 27px;
+  height: 27px;
+}
+
+.sidebar.sidebar-reduite .sidebar-profile {
+  padding: 0;
+
+  justify-content: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-profile span {
+  display: none;
+}
+
+
+/* =========================
+   CONTENU SIDEBAR RÉDUITE
+   ========================= */
+
+.concours-content.content-sidebar-reduite {
+  margin-left: 80px;
+
+  width: calc(100% - 80px);
 }

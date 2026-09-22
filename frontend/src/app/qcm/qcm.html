@@ -3,11 +3,28 @@
   <!-- =========================
        SIDEBAR
        ========================= -->
-  <aside class="sidebar">
+
+  <aside
+    class="sidebar"
+    [class.sidebar-reduite]="sidebarReduite">
+
+    <!-- FLÈCHE -->
+    <button
+      class="sidebar-toggle"
+      (click)="toggleSidebar()">
+
+      <img
+        [src]="sidebarReduite ? 'fleche-droite.png' : 'fleche-gauche.png'"
+        alt="Menu">
+
+    </button>
+
+    <!-- LOGO -->
     <div class="sidebar-logo">
       <img src="Logo.png" alt="Mon Concours">
     </div>
 
+    <!-- NAVIGATION -->
     <nav class="sidebar-nav">
 
       <a routerLink="/dashboard">
@@ -42,21 +59,27 @@
 
     </nav>
 
-<a routerLink="/profil" class="sidebar-profile">
-  <img src="icon-profil.png" alt="">
-  <span>Mon profil</span>
-</a>
+    <!-- PROFIL -->
+    <a routerLink="/profil" class="sidebar-profile">
+      <img src="icon-profil.png" alt="">
+      <span>Mon profil</span>
+    </a>
+
   </aside>
 
 
   <!-- =========================
        CONTENU
        ========================= -->
-  <main class="qcm-content">
+
+  <main
+    class="qcm-content"
+    [class.content-sidebar-reduite]="sidebarReduite">
 
     <!-- =========================
          HEADER
          ========================= -->
+
     <div class="qcm-header" *ngIf="!qcmSelectionne">
 
       <h1>QCM</h1>
@@ -72,28 +95,35 @@
 
     </div>
 
+
+    <!-- =========================
+         ACCÈS REFUSÉ
+         ========================= -->
+
     <div
-  *ngIf="accesQcmRefuse && !qcmSelectionne"
-  class="acces-refuse">
+      *ngIf="accesQcmRefuse && !qcmSelectionne"
+      class="acces-refuse">
 
-  <h2>Accès aux QCM non inclus</h2>
+      <h2>Accès aux QCM non inclus</h2>
 
-  <p>
-    Votre abonnement actuel ne permet pas d'accéder aux QCM.
-  </p>
+      <p>
+        Votre abonnement actuel ne permet pas d'accéder aux QCM.
+      </p>
 
-  <a routerLink="/abonnement">
-    Voir les offres d'abonnement
-  </a>
+      <a routerLink="/abonnement">
+        Voir les offres d'abonnement
+      </a>
 
-</div>
+    </div>
+
 
     <!-- =========================
          LISTE DES QCM
          ========================= -->
-<div
-  class="qcm-grid"
-  *ngIf="!qcmSelectionne && !accesQcmRefuse">
+
+    <div
+      class="qcm-grid"
+      *ngIf="!qcmSelectionne && !accesQcmRefuse">
 
       <div
         class="qcm-card"
@@ -103,9 +133,9 @@
 
         <div class="qcm-card-bottom">
 
-        <div class="qcm-score">
-        {{ meilleursScores[qcmItem.id] ?? 0 }}/20
-        </div>
+          <div class="qcm-score">
+            {{ meilleursScores[qcmItem.id] ?? 0 }}/20
+          </div>
 
           <button
             class="passer-button"
@@ -123,14 +153,15 @@
     <!-- =========================
          QCM SÉLECTIONNÉ
          ========================= -->
+
     <section
       *ngIf="qcmSelectionne"
       class="qcm-selectionne">
 
-
       <div class="qcm-selectionne-header">
 
         <div>
+
           <p class="qcm-label">
             QCM sélectionné
           </p>
@@ -138,6 +169,7 @@
           <h2>
             {{ qcmSelectionne.titre }}
           </h2>
+
         </div>
 
         <div class="qcm-duree">
@@ -147,9 +179,8 @@
       </div>
 
 
-      <!-- =========================
-           QUESTIONS
-           ========================= -->
+      <!-- QUESTIONS -->
+
       <div
         class="question-card"
         *ngFor="let question of qcmSelectionne.questions; let i = index">
@@ -162,10 +193,6 @@
           {{ question.enonce }}
         </h3>
 
-
-        <!-- =========================
-             CHOIX
-             ========================= -->
         <div class="choix-list">
 
           <label
@@ -175,8 +202,7 @@
             <input
               type="radio"
               [name]="'question-' + question.id"
-              (change)="selectionnerChoix(question.id, choix.id)"
-            >
+              (change)="selectionnerChoix(question.id, choix.id)">
 
             <span>
               {{ choix.texte }}
@@ -190,32 +216,32 @@
 
 
       <!-- =========================
-           BOUTON VALIDER
+           ACTIONS
            ========================= -->
-<div class="qcm-actions">
 
-            <button
-       class="retour-button"
-      (click)="fermerQcm()">
-       ← Retour aux QCM
+      <div class="qcm-actions">
+
+        <button
+          class="retour-button"
+          (click)="fermerQcm()">
+          ← Retour aux QCM
         </button>
-        
 
-<div class="qcm-resultat">
+        <div class="qcm-resultat">
 
-  <span *ngIf="resultatQcm">
-    Résultat : {{ resultatQcm.score }}
-  </span>
+          <span *ngIf="resultatQcm">
+            Résultat : {{ resultatQcm.score }}
+          </span>
 
-</div>
+        </div>
 
-  <button
-    class="valider-button"
-    (click)="validerQcm()">
-    Valider le QCM
-  </button>
+        <button
+          class="valider-button"
+          (click)="validerQcm()">
+          Valider le QCM
+        </button>
 
-</div>
+      </div>
 
     </section>
 

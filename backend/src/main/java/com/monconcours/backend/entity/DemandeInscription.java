@@ -31,12 +31,29 @@ public class DemandeInscription {
 
     private String statut;
 
+    @NotNull(message = "L'offre d'abonnement est obligatoire")
+    @ManyToOne
+    @JoinColumn(name = "id_offre_abonnement")
+    @org.hibernate.annotations.NotFound(
+            action = org.hibernate.annotations.NotFoundAction.IGNORE
+    )
+    private OffreAbonnement offreAbonnement;
+
                             /*      Constructeur        */
 
     public DemandeInscription() {
     }
 
-    public DemandeInscription(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String niveau, String statut) {
+    public DemandeInscription(
+            Integer id,
+            String nom,
+            String prenom,
+            String email,
+            LocalDate dateNaissance,
+            String niveau,
+            String statut,
+            OffreAbonnement offreAbonnement) {
+
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -44,8 +61,8 @@ public class DemandeInscription {
         this.dateNaissance = dateNaissance;
         this.niveau = niveau;
         this.statut = statut;
+        this.offreAbonnement = offreAbonnement;
     }
-
                             /*      Getter      */
 
     public Integer getId() {
@@ -75,7 +92,12 @@ public class DemandeInscription {
     public String getStatut() {
         return statut;
     }
-                                /*         Setter       */
+
+    public OffreAbonnement getOffreAbonnement() {
+        return offreAbonnement;
+    }
+
+    /*         Setter       */
 
     public void setId(Integer id) {
         this.id = id;
@@ -103,5 +125,9 @@ public class DemandeInscription {
 
     public void setStatut(String statut) {
         this.statut = statut;
+    }
+
+    public void setOffreAbonnement(OffreAbonnement offreAbonnement) {
+        this.offreAbonnement = offreAbonnement;
     }
 }

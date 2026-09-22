@@ -2,24 +2,38 @@ package com.monconcours.backend.service;
 
 import com.monconcours.backend.entity.Etudiant;
 import com.monconcours.backend.repository.EtudiantRepository;
+import com.monconcours.backend.repository.FavoriRepository;
+import com.monconcours.backend.repository.ResultatRepository;
+import com.monconcours.backend.repository.AbonnementRepository;
+
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class EtudiantService {
 
     private final EtudiantRepository etudiantRepository;
     private final PasswordEncoder passwordEncoder;
+    private final FavoriRepository favoriRepository;
+    private final ResultatRepository resultatRepository;
+    private final AbonnementRepository abonnementRepository;
 
     public EtudiantService(
             EtudiantRepository etudiantRepository,
-            PasswordEncoder passwordEncoder) {
+            PasswordEncoder passwordEncoder,
+            FavoriRepository favoriRepository,
+            ResultatRepository resultatRepository,
+            AbonnementRepository abonnementRepository) {
 
         this.etudiantRepository = etudiantRepository;
         this.passwordEncoder = passwordEncoder;
+        this.favoriRepository = favoriRepository;
+        this.resultatRepository = resultatRepository;
+        this.abonnementRepository = abonnementRepository;
     }
 
     // CREATE
@@ -53,9 +67,24 @@ public class EtudiantService {
     }
 
     // DELETE
+    @Transactional
     public void supprimerEtudiant(Integer id) {
-        etudiantRepository.deleteById(id);
+
+        Etudiant etudiant = etudiantRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Etudiant non trouvé"));
+
+        favoriRepository.deleteAll(
+                favoriRepository.findByEtudiant(etudiant)
+        );
+
+        resultatRepository.deleteAll(
+                resultatRepository.findByEtudiant(etudiant)
+        );
+
+        abonnementRepository.deleteAll(
+                abonnementRepository.findByEtudiant(etudiant)
+        );
+
+        etudiantRepository.delete(etudiant);
     }
-
-
 }

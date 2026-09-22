@@ -13,4 +13,10 @@ import { RouterLink } from '@angular/router';
 
 })
 
-export class Dashboard {}
+export class Dashboard {
+sidebarReduite = false;
+
+toggleSidebar() {
+  this.sidebarReduite = !this.sidebarReduite;
+}
+}

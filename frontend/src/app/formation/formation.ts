@@ -107,4 +107,9 @@ ajouterFavori(formation: any) {
   });
 }
 
+sidebarReduite = false;
+
+toggleSidebar() {
+  this.sidebarReduite = !this.sidebarReduite;
+}
 }

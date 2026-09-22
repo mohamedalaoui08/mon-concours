@@ -117,6 +117,25 @@
               </select>
       
             </div>
+
+            <select
+  [(ngModel)]="offreSelectionneeId"
+  name="offreAbonnement"
+  required>
+
+  <option [ngValue]="null" disabled>
+    Choisir un abonnement
+  </option>
+
+  <option
+    *ngFor="let offre of offres"
+    [ngValue]="offre.id">
+
+    {{ offre.nom }} - {{ offre.prix }} DH / {{ offre.dureeJours }} jours
+
+  </option>
+
+</select>
       
       
             <!-- Bouton -->

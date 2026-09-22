@@ -7,7 +7,21 @@
   <!-- =========================
        MENU LATÉRAL
        ========================= -->
-  <aside class="sidebar">
+
+  <aside
+    class="sidebar"
+    [class.sidebar-reduite]="sidebarReduite">
+
+    <!-- FLÈCHE -->
+    <button
+      class="sidebar-toggle"
+      (click)="toggleSidebar()">
+
+      <img
+        [src]="sidebarReduite ? 'fleche-droite.png' : 'fleche-gauche.png'"
+        alt="Menu">
+
+    </button>
 
     <!-- LOGO -->
     <div class="sidebar-logo">
@@ -15,74 +29,381 @@
     </div>
 
     <!-- NAVIGATION -->
-   <nav class="sidebar-nav">
+    <nav class="sidebar-nav">
 
-  <a routerLink="/dashboard" class="active">
-    <img src="icon-accueil.png" alt="">
-    <span>Accueil</span>
-  </a>
+      <a routerLink="/dashboard" class="active">
+        <img src="icon-accueil.png" alt="">
+        <span>Accueil</span>
+      </a>
 
-  <a routerLink="/concours">
-    <img src="icon-concours.png" alt="">
-    <span>Concours</span>
-  </a>
+      <a routerLink="/concours">
+        <img src="icon-concours.png" alt="">
+        <span>Concours</span>
+      </a>
 
-  <a routerLink="/qcm">
-    <img src="icon-qcm.png" alt="">
-    <span>QCM</span>
-  </a>
+      <a routerLink="/qcm">
+        <img src="icon-qcm.png" alt="">
+        <span>QCM</span>
+      </a>
 
-  <a routerLink="/formation">
-    <img src="icon-astuces.png" alt="">
-    <span>Formation</span>
-  </a>
+      <a routerLink="/formation">
+        <img src="icon-astuces.png" alt="">
+        <span>Formation</span>
+      </a>
 
-  <a routerLink="/exercice">
-    <img src="icon-exercices.png" alt="">
-    <span>Exercices</span>
-  </a>
+      <a routerLink="/exercice">
+        <img src="icon-exercices.png" alt="">
+        <span>Exercices</span>
+      </a>
 
-  <a routerLink="/actualite">
-    <img src="icon-ecoles.png" alt="">
-    <span>Écoles</span>
-  </a>
+      <a routerLink="/actualite">
+        <img src="icon-ecoles.png" alt="">
+        <span>Écoles</span>
+      </a>
 
-</nav>
-    <!-- PROFIL EN BAS -->
-<a routerLink="/profil" class="sidebar-profile">
-  <img src="icon-profil.png" alt="">
-  <span>Mon profil</span>
-</a>
+    </nav>
+
+    <!-- PROFIL -->
+    <a routerLink="/profil" class="sidebar-profile">
+      <img src="icon-profil.png" alt="">
+      <span>Mon profil</span>
+    </a>
+
   </aside>
 
 
-  <!-- =========================
-       CONTENU PRINCIPAL
-       ========================= -->
-  <main class="dashboard-content">
-
-    <!-- On ajoutera ici la bannière
-         et les statistiques -->
-         <!-- =========================
-     BANNIÈRE DE BIENVENUE
+ <!-- =========================
+     CONTENU PRINCIPAL
      ========================= -->
 
-<section class="welcome-card">
+<main
+  class="dashboard-content"
+  [class.content-sidebar-reduite]="sidebarReduite">
 
-  <div class="welcome-text">
-    <h1>Bienvenue 👋</h1>
+  <!-- =========================
+       BANNIÈRE DE BIENVENUE
+       ========================= -->
 
-    <p>
-      Continue ta préparation et rapproche-toi de ton objectif.
-    </p>
-  </div>
+  <section class="welcome-card">
 
-  <div class="welcome-image">
-    <img src="dashboard-etudiant.png" alt="Étudiant">
-  </div>
+    <div class="welcome-text">
 
-</section>
+      <h1>Bienvenue 👋</h1>
 
-  </main>
+      <p>
+        Continue ta préparation et rapproche-toi de ton objectif.
+      </p>
 
-</div>
+    </div>
+
+    <div class="welcome-image">
+      <img
+        src="dashboard-etudiant.png"
+        alt="Étudiant">
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MA PRÉPARATION
+       ========================= -->
+
+  <section class="dashboard-section">
+
+    <div class="section-header">
+      <h2>Ma préparation</h2>
+    </div>
+
+    <div class="dashboard-stats">
+
+      <div class="dashboard-stat-card">
+
+        <img src="icon-concours1.png" alt="">
+
+        <div>
+          <span class="stat-label">Concours</span>
+          <strong class="stat-value">6</strong>
+          <small>disponibles</small>
+        </div>
+
+      </div>
+
+
+      <div class="dashboard-stat-card">
+
+        <img src="icon-qcm1.png" alt="">
+
+        <div>
+          <span class="stat-label">QCM réalisés</span>
+          <strong class="stat-value">12</strong>
+          <small>QCM terminés</small>
+        </div>
+
+      </div>
+
+
+      <div class="dashboard-stat-card">
+
+        <img src="icon-exercices1.png" alt="">
+
+        <div>
+          <span class="stat-label">Exercices</span>
+          <strong class="stat-value">18</strong>
+          <small>exercices terminés</small>
+        </div>
+
+      </div>
+
+
+      <div class="dashboard-stat-card">
+
+        <img src="score.png" alt="">
+
+        <div>
+          <span class="stat-label">Score moyen</span>
+          <strong class="stat-value">78%</strong>
+          <small>sur tes QCM</small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MA PROGRESSION
+       ========================= -->
+
+  <section class="dashboard-section">
+
+    <div class="section-header">
+
+      <div>
+        <h2>Ma progression</h2>
+        <p>Visualise ton avancement dans ta préparation.</p>
+      </div>
+
+      <strong class="progression-total">
+        65%
+      </strong>
+
+    </div>
+
+
+    <div class="progression-bar">
+
+      <div class="progression-bar-fill"></div>
+
+    </div>
+
+
+    <div class="progression-details">
+
+      <div>
+        <span>QCM</span>
+        <strong>70%</strong>
+      </div>
+
+      <div>
+        <span>Exercices</span>
+        <strong>55%</strong>
+      </div>
+
+      <div>
+        <span>Concours</span>
+        <strong>60%</strong>
+      </div>
+
+      <div>
+        <span>Formation</span>
+        <strong>75%</strong>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONTINUER MA PRÉPARATION
+       ========================= -->
+
+  <section class="dashboard-section">
+
+    <div class="section-header">
+
+      <div>
+        <h2>Continuer ma préparation</h2>
+        <p>Reprends ton travail là où tu t'es arrêté.</p>
+      </div>
+
+    </div>
+
+
+    <div class="continue-card">
+
+      <div class="continue-icon">
+        <img src="icon-qcm1.png" alt="">
+      </div>
+
+
+      <div class="continue-info">
+
+        <span class="continue-type">
+          QCM
+        </span>
+
+        <h3>
+          QCM Mathématiques — Niveau 2
+        </h3>
+
+        <p>
+          15 questions · Progression 60%
+        </p>
+
+        <div class="mini-progress">
+          <div class="mini-progress-fill"></div>
+        </div>
+
+      </div>
+
+
+      <button class="continue-button">
+        Continuer →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MES FAVORIS
+       ========================= -->
+
+  <section class="dashboard-section">
+
+    <div class="section-header">
+
+      <div>
+        <h2>Mes favoris</h2>
+        <p>Retrouve rapidement les contenus que tu as enregistrés.</p>
+      </div>
+
+      <a routerLink="/profil" class="voir-tout">
+        Voir tout →
+      </a>
+
+    </div>
+
+
+    <div class="dashboard-favoris">
+
+      <div class="dashboard-favori-card">
+
+        <span>Concours</span>
+
+        <h3>ENSA 2026</h3>
+
+        <p>Concours</p>
+
+      </div>
+
+
+      <div class="dashboard-favori-card">
+
+        <span>QCM</span>
+
+        <h3>Mathématiques</h3>
+
+        <p>QCM</p>
+
+      </div>
+
+
+      <div class="dashboard-favori-card">
+
+        <span>Exercice</span>
+
+        <h3>Physique</h3>
+
+        <p>Exercice</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ACTUALITÉS DES ÉCOLES
+       ========================= -->
+
+  <section class="dashboard-section">
+
+    <div class="section-header">
+
+      <div>
+        <h2>Actualités des écoles</h2>
+        <p>Découvre les dernières informations des écoles.</p>
+      </div>
+
+      <a routerLink="/actualite" class="voir-tout">
+        Voir tout →
+      </a>
+
+    </div>
+
+
+    <div class="dashboard-actualites">
+
+      <div class="dashboard-actualite-card">
+
+        <div class="actualite-icon">
+          <img src="icon-ecoles1.png" alt="">
+        </div>
+
+        <div>
+          <span>ENSA</span>
+
+          <h3>
+            Nouvelle actualité de l'école
+          </h3>
+
+          <p>
+            Consulte les dernières informations publiées.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="dashboard-actualite-card">
+
+        <div class="actualite-icon">
+          <img src="icon-ecoles1.png" alt="">
+        </div>
+
+        <div>
+          <span>ENSAM</span>
+
+          <h3>
+            Informations importantes
+          </h3>
+
+          <p>
+            Découvre les dernières nouvelles de l'école.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>

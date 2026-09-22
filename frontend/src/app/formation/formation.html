@@ -3,12 +3,28 @@
   <!-- =========================
        SIDEBAR
        ========================= -->
-  <aside class="sidebar">
 
+  <aside
+    class="sidebar"
+    [class.sidebar-reduite]="sidebarReduite">
+
+    <!-- FLÈCHE -->
+    <button
+      class="sidebar-toggle"
+      (click)="toggleSidebar()">
+
+      <img
+        [src]="sidebarReduite ? 'fleche-droite.png' : 'fleche-gauche.png'"
+        alt="Menu">
+
+    </button>
+
+    <!-- LOGO -->
     <div class="sidebar-logo">
       <img src="Logo.png" alt="Mon Concours">
     </div>
 
+    <!-- NAVIGATION -->
     <nav class="sidebar-nav">
 
       <a routerLink="/dashboard">
@@ -43,10 +59,11 @@
 
     </nav>
 
-<a routerLink="/profil" class="sidebar-profile">
-  <img src="icon-profil.png" alt="">
-  <span>Mon profil</span>
-</a>
+    <!-- PROFIL -->
+    <a routerLink="/profil" class="sidebar-profile">
+      <img src="icon-profil.png" alt="">
+      <span>Mon profil</span>
+    </a>
 
   </aside>
 
@@ -54,13 +71,18 @@
   <!-- =========================
        CONTENU FORMATION
        ========================= -->
-  <main class="formation-content">
+
+  <main
+    class="formation-content"
+    [class.content-sidebar-reduite]="sidebarReduite">
 
     <h2>Formations</h2>
+
 
     <!-- =========================
          FILTRES
          ========================= -->
+
     <div
       class="formation-filtres"
       *ngIf="!formationSelectionnee">
@@ -89,88 +111,101 @@
 
     </div>
 
+
+    <!-- =========================
+         ACCÈS REFUSÉ
+         ========================= -->
+
     <div
-  *ngIf="accesFormationsRefuse && !formationSelectionnee"
-  class="acces-refuse">
+      *ngIf="accesFormationsRefuse && !formationSelectionnee"
+      class="acces-refuse">
 
-  <h2>Accès aux formations non inclus</h2>
+      <h2>Accès aux formations non inclus</h2>
 
-  <p>
-    Votre abonnement actuel ne permet pas d'accéder aux formations.
-  </p>
+      <p>
+        Votre abonnement actuel ne permet pas d'accéder aux formations.
+      </p>
 
-  <a routerLink="/abonnement">
-    Voir les offres d'abonnement
-  </a>
-
-</div>
-
-  <!-- =========================
-     LISTE DES FORMATIONS
-     ========================= -->
-<div *ngIf="!formationSelectionnee && !accesFormationsRefuse">
-  <div
-    *ngFor="let formationItem of formationsFiltres"
-    class="formation-card">
-
-    <h3>{{ formationItem.titre }}</h3>
-
-    <p>Matière : {{ formationItem.matiere }}</p>
-    <p>Type : {{ formationItem.type }}</p>
-    <p>Niveau : {{ formationItem.niveau }}</p>
-    <p>Durée : {{ formationItem.duree }} min</p>
-    <p>{{ formationItem.description }}</p>
-
-    <div class="formation-actions">
-
-      <button
-        class="voir-formation-button"
-        (click)="ouvrirFormation(formationItem)">
-        Voir la formation
-      </button>
-
-      <button
-        class="favori-button"
-        (click)="$event.stopPropagation(); ajouterFavori(formationItem)">
-
-        <img
-          [src]="formationItem.estFavori === true
-            ? 'icon-favori-plein2.png'
-            : 'icon-favori.png'"
-          alt="Favori">
-
-      </button>
+      <a routerLink="/abonnement">
+        Voir les offres d'abonnement
+      </a>
 
     </div>
 
-  </div>
 
-</div>
+    <!-- =========================
+         LISTE DES FORMATIONS
+         ========================= -->
+
+    <div *ngIf="!formationSelectionnee && !accesFormationsRefuse">
+
+      <div
+        *ngFor="let formationItem of formationsFiltres"
+        class="formation-card">
+
+        <h3>{{ formationItem.titre }}</h3>
+
+        <p>Matière : {{ formationItem.matiere }}</p>
+        <p>Type : {{ formationItem.type }}</p>
+        <p>Niveau : {{ formationItem.niveau }}</p>
+        <p>Durée : {{ formationItem.duree }} min</p>
+        <p>{{ formationItem.description }}</p>
+
+        <div class="formation-actions">
+
+          <button
+            class="voir-formation-button"
+            (click)="ouvrirFormation(formationItem)">
+            Voir la formation
+          </button>
+
+          <button
+            class="favori-button"
+            (click)="$event.stopPropagation(); ajouterFavori(formationItem)">
+
+            <img
+              [src]="formationItem.estFavori === true
+                ? 'icon-favori-plein2.png'
+                : 'icon-favori.png'"
+              alt="Favori">
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
 
 
-<!-- =========================
-     FORMATION SÉLECTIONNÉE
-     ========================= -->
-<div
-  *ngIf="formationSelectionnee"
-  class="formation-detail">
+    <!-- =========================
+         FORMATION SÉLECTIONNÉE
+         ========================= -->
 
-  <button
-    class="retour-formation-button"
-    (click)="formationSelectionnee = null">
-    ← Retour aux formations
-  </button>
+    <div
+      *ngIf="formationSelectionnee"
+      class="formation-detail">
 
-  <h2>{{ formationSelectionnee.titre }}</h2>
+      <button
+        class="retour-formation-button"
+        (click)="formationSelectionnee = null">
+        ← Retour aux formations
+      </button>
 
-  <p>Matière : {{ formationSelectionnee.matiere }}</p>
-  <p>Type : {{ formationSelectionnee.type }}</p>
-  <p>Niveau : {{ formationSelectionnee.niveau }}</p>
-  <p>Durée : {{ formationSelectionnee.duree }} min</p>
-  <p>{{ formationSelectionnee.description }}</p>
+      <h2>{{ formationSelectionnee.titre }}</h2>
 
-  <div>
-    {{ formationSelectionnee.contenu }}
-  </div>
+      <p>Matière : {{ formationSelectionnee.matiere }}</p>
+      <p>Type : {{ formationSelectionnee.type }}</p>
+      <p>Niveau : {{ formationSelectionnee.niveau }}</p>
+      <p>Durée : {{ formationSelectionnee.duree }} min</p>
+      <p>{{ formationSelectionnee.description }}</p>
+
+      <div>
+        {{ formationSelectionnee.contenu }}
+      </div>
+
+    </div>
+
+  </main>
 
 </div>

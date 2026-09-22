@@ -353,7 +353,7 @@
 .admin-form {
   max-width: 700px;
 
-  margin-bottom: 35px;
+  margin: 0 auto 35px;
 
   padding: 28px;
 
@@ -549,3 +549,602 @@
 .admin-profile {
   cursor: pointer;
 }
+
+/* =========================
+   SIDEBAR RÉDUCTIBLE
+   ========================= */
+
+.admin-sidebar,
+.admin-content {
+  transition: all 0.3s ease;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  top: 18px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  background: transparent;
+
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Sidebar réduite */
+
+.admin-sidebar.sidebar-reduite {
+  width: 80px;
+}
+
+.admin-sidebar.sidebar-reduite .admin-logo img {
+  display: none;
+}
+
+.admin-sidebar.sidebar-reduite .admin-nav {
+  padding: 70px 0 0;
+  align-items: center;
+}
+
+.admin-sidebar.sidebar-reduite .admin-nav button {
+  justify-content: center;
+}
+
+.admin-sidebar.sidebar-reduite .admin-nav button span {
+  display: none;
+}
+
+.admin-sidebar.sidebar-reduite .admin-nav button img {
+  width: 27px;
+  height: 27px;
+}
+
+.admin-sidebar.sidebar-reduite .admin-profile {
+  padding: 0;
+  justify-content: center;
+}
+
+.admin-sidebar.sidebar-reduite .admin-profile div {
+  display: none;
+}
+
+.admin-content.content-sidebar-reduite {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+.sidebar-toggle img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* =========================================================
+   NOUVEAU DASHBOARD ADMIN
+   ========================================================= */
+
+
+/* =========================
+   EN-TÊTE
+   ========================= */
+
+.dashboard-header {
+  margin-bottom: 25px;
+}
+
+.dashboard-header p {
+  margin: 0 0 6px;
+
+  color: #080678;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.dashboard-header h1 {
+  margin: 0 !important;
+
+  color: #111 !important;
+
+  font-size: 36px !important;
+  font-weight: 800;
+}
+
+
+/* =========================
+   BANNIÈRE
+   ========================= */
+
+.dashboard-banner {
+  position: relative;
+
+  min-height: 190px;
+
+  padding: 38px 45px;
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+    120deg,
+    #080678 0%,
+    #1716a3 55%,
+    #70d7ef 100%
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 8px 25px rgba(8, 6, 120, 0.15);
+}
+
+.dashboard-banner::before {
+  content: "";
+
+  position: absolute;
+
+  width: 260px;
+  height: 260px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  top: -130px;
+  right: 90px;
+}
+
+.dashboard-banner::after {
+  content: "";
+
+  position: absolute;
+
+  width: 190px;
+  height: 190px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.07);
+
+  bottom: -110px;
+  right: -30px;
+}
+
+.dashboard-banner-text {
+  position: relative;
+  z-index: 2;
+
+  max-width: 650px;
+}
+
+.dashboard-banner-text > span {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #8eeaff;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.dashboard-banner-text h2 {
+  margin: 0 0 13px !important;
+
+  color: white !important;
+
+  font-size: 31px !important;
+  font-weight: 800;
+}
+
+.dashboard-banner-text p {
+  margin: 0;
+
+  max-width: 610px;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.dashboard-banner-decoration {
+  position: relative;
+  z-index: 2;
+
+  padding-right: 35px;
+
+  color: rgba(255, 255, 255, 0.8);
+
+  font-size: 85px;
+  line-height: 1;
+}
+
+
+/* =========================
+   STATISTIQUES PRINCIPALES
+   ========================= */
+
+.dashboard-stats {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 22px;
+
+  margin-top: 28px;
+}
+
+.dashboard-stat-card {
+  min-height: 185px;
+
+  padding: 24px;
+
+  background: white;
+
+  border: 1px solid #e2eaed;
+  border-radius: 15px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-stat-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-stat-icon {
+  width: 45px;
+  height: 45px;
+
+  margin-bottom: 18px;
+
+  border-radius: 11px;
+
+  background: #eefcff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-stat-icon img {
+  width: 26px;
+  height: 26px;
+
+  object-fit: contain;
+}
+
+.dashboard-stat-card > p {
+  margin: 0 0 7px;
+
+  color: #555;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.dashboard-stat-card > h3 {
+  margin: 0 0 8px;
+
+  color: #080678;
+
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.dashboard-stat-card > span {
+  color: #8a8a8a;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   TITRES DES BLOCS
+   ========================= */
+
+.dashboard-section-title {
+  margin-top: 48px;
+  margin-bottom: 22px;
+}
+
+.dashboard-section-title > p {
+  margin: 0 0 5px;
+
+  color: #080678;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.dashboard-section-title > h2 {
+  margin: 0 0 7px !important;
+
+  color: #111 !important;
+
+  font-size: 25px !important;
+  font-weight: 800;
+}
+
+.dashboard-section-title > span {
+  color: #777;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   APERÇU DE LA PLATEFORME
+   ========================= */
+
+.dashboard-overview {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+.dashboard-overview-card {
+  padding: 22px;
+
+  background: white;
+
+  border: 1px solid #e2eaed;
+  border-radius: 15px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+
+  transition: transform 0.2s ease;
+}
+
+.dashboard-overview-card:hover {
+  transform: translateY(-3px);
+}
+
+.overview-top {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 17px;
+}
+
+.overview-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background: #eefcff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overview-icon img {
+  width: 27px;
+  height: 27px;
+
+  object-fit: contain;
+}
+
+.overview-top p {
+  margin: 0 0 3px;
+
+  color: #555;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.overview-top h3 {
+  margin: 0;
+
+  color: #080678;
+
+  font-size: 27px;
+  font-weight: 800;
+}
+
+.dashboard-overview-card > span {
+  color: #888;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   ABONNEMENTS
+   ========================= */
+
+.dashboard-abonnements {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 25px;
+
+  padding-bottom: 35px;
+}
+
+.dashboard-abonnement-card {
+  min-height: 135px;
+
+  padding: 25px 28px;
+
+  background: white;
+
+  border: 1px solid #e2eaed;
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 22px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+
+  transition: transform 0.2s ease;
+}
+
+.dashboard-abonnement-card:hover {
+  transform: translateY(-3px);
+}
+
+.abonnement-card-icon {
+  width: 60px;
+  height: 60px;
+
+  flex-shrink: 0;
+
+  border-radius: 15px;
+
+  background: #eefcff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.abonnement-card-icon img {
+  width: 32px;
+  height: 32px;
+
+  object-fit: contain;
+}
+
+.dashboard-abonnement-card p {
+  margin: 0 0 3px;
+
+  color: #555;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.dashboard-abonnement-card h3 {
+  margin: 0 0 4px;
+
+  color: #080678;
+
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.dashboard-abonnement-card span {
+  color: #888;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   SIDEBAR TOUJOURS FIXE À L'ÉCRAN
+   ========================================================= */
+
+.admin-sidebar {
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-height: 100vh !important;
+
+  position: fixed !important;
+
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+}
+
+
+/* Le contenu peut être aussi long qu'il veut */
+
+.admin-content {
+  min-height: 100vh;
+}
+
+
+/* =========================
+   RESPONSIVE DASHBOARD
+   ========================= */
+
+@media (max-width: 1200px) {
+
+  .dashboard-stats,
+  .dashboard-overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 750px) {
+
+  .dashboard-stats,
+  .dashboard-overview,
+  .dashboard-abonnements {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-banner {
+    padding: 30px;
+  }
+
+  .dashboard-banner-decoration {
+    display: none;
+  }
+
+}
+
+/* =========================
+   CHECKBOXES DES PERMISSIONS
+   ========================= */
+
+.admin-form input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.admin-form input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  vertical-align: middle;
+}
+

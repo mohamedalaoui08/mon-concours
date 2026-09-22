@@ -16,19 +16,37 @@
 
 .sidebar {
   width: 240px;
-  min-height: 100vh;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
   background: #080678;
   color: white;
+
   display: flex;
   flex-direction: column;
+
   box-sizing: border-box;
+  overflow: hidden;
+
+  transition: all 0.3s ease;
 }
+
+
+/* =========================
+   LOGO
+   ========================= */
 
 .sidebar-logo {
   height: 130px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  flex-shrink: 0;
 }
 
 .sidebar-logo img {
@@ -36,19 +54,32 @@
   height: auto;
 }
 
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
 .sidebar-nav {
   display: flex;
   flex-direction: column;
+
   padding: 0 30px;
+
+  flex: 1;
 }
 
 .sidebar-nav a {
   display: flex;
   align-items: center;
+
   gap: 14px;
+
   padding: 12px 0;
+
   color: #a7a7cc;
+
   text-decoration: none;
+
   font-size: 20px;
   font-weight: 700;
 }
@@ -56,53 +87,107 @@
 .sidebar-nav a img {
   width: 28px;
   height: 28px;
+
   object-fit: contain;
+
   opacity: 0.5;
 }
 
-.sidebar-nav a.active {
-  color: white;
-}
-
-.sidebar-nav a.active img {
-  opacity: 1;
-}
-
+.sidebar-nav a.active,
 .sidebar-nav a:hover {
   color: white;
 }
 
+.sidebar-nav a.active img,
 .sidebar-nav a:hover img {
   opacity: 1;
 }
 
+
+/* =========================
+   PROFIL
+   ========================= */
+
 .sidebar-profile {
   margin-top: auto;
+
   min-height: 85px;
+
   border-top: 1px solid white;
+
   display: flex;
   align-items: center;
+
   gap: 15px;
+
   padding: 0 30px;
 
   color: white;
+
   text-decoration: none;
 
   font-size: 17px;
   font-weight: 700;
+
   box-sizing: border-box;
+
   cursor: pointer;
+
+  flex-shrink: 0;
 }
 
 .sidebar-profile img {
   width: 32px;
   height: 32px;
+
   object-fit: contain;
 }
 
-.sidebar-profile img {
-  width: 32px;
-  height: 32px;
+
+/* =========================
+   SIDEBAR VISITEUR
+   ========================= */
+
+.sidebar-visiteur {
+  padding: 25px 30px;
+
+  text-align: center;
+}
+
+.sidebar-visiteur p {
+  color: rgba(255, 255, 255, 0.75);
+
+  font-size: 16px;
+  line-height: 1.5;
+
+  margin-bottom: 25px;
+}
+
+.btn-connexion-visiteur {
+  display: block;
+
+  padding: 13px 20px;
+
+  border-radius: 10px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  transition: 0.25s;
+}
+
+.btn-connexion-visiteur:hover {
+  transform: translateY(-2px);
+
+  opacity: 0.9;
 }
 
 
@@ -111,13 +196,21 @@
    ========================= */
 
 .actualite-content {
-  flex: 1;
+  margin-left: 240px;
+
+  width: calc(100% - 240px);
+  min-height: 100vh;
+
   padding: 35px 45px;
+
   box-sizing: border-box;
+
+  transition: all 0.3s ease;
 }
 
 .actualite-content h1 {
   margin: 0 0 35px;
+
   font-size: 36px;
   font-weight: 800;
 }
@@ -129,7 +222,9 @@
 
 .actualite-grid {
   display: grid;
+
   grid-template-columns: repeat(2, 1fr);
+
   gap: 40px 55px;
 }
 
@@ -140,8 +235,11 @@
 
 .actualite-card {
   min-height: 210px;
+
   background: white;
+
   border-radius: 10px;
+
   padding: 25px;
 
   display: flex;
@@ -149,17 +247,22 @@
   justify-content: space-between;
 
   box-sizing: border-box;
+
+  position: relative;
 }
 
 .actualite-card h3 {
   margin: 0;
+
   font-size: 21px;
   font-weight: 800;
 }
 
 .actualite-card p {
   margin: 10px 0 0;
+
   color: #666;
+
   font-size: 15px;
   font-weight: 600;
 }
@@ -174,16 +277,19 @@
 
   border: none;
   border-radius: 7px;
+
   padding: 9px 15px;
 
   background: linear-gradient(#70d7ef, #080678);
 
   color: white;
+
   font-size: 18px;
   font-weight: 800;
 
   display: flex;
   align-items: center;
+
   gap: 8px;
 
   cursor: pointer;
@@ -192,12 +298,47 @@
 .afficher-button img {
   width: 20px;
   height: 20px;
+
   object-fit: contain;
+
   transform: translate(4px, -1.5px);
 }
 
 .afficher-button:hover {
   opacity: 0.85;
+}
+
+
+/* =========================
+   FAVORI ACTUALITÉ
+   ========================= */
+
+.favori-button {
+  position: absolute;
+
+  left: 25px;
+  bottom: 25px;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favori-button img {
+  width: 27px;
+  height: 27px;
+
+  object-fit: contain;
 }
 
 
@@ -209,7 +350,9 @@
   position: relative;
 
   background: white;
+
   border-radius: 15px;
+
   padding: 35px;
 
   box-sizing: border-box;
@@ -217,12 +360,15 @@
 
 .actualite-selectionnee h2 {
   margin: 0 0 10px;
+
   font-size: 30px;
 }
 
 .actualite-date {
   margin: 0 0 30px;
+
   color: #666;
+
   font-weight: 700;
 }
 
@@ -243,16 +389,19 @@
 
 .retour-button {
   position: absolute;
+
   top: 30px;
   right: 35px;
 
   border: none;
   border-radius: 7px;
+
   padding: 11px 25px;
 
   background: linear-gradient(#70d7ef, #080678);
 
   color: white;
+
   font-size: 18px;
   font-weight: 800;
 
@@ -263,68 +412,92 @@
   opacity: 0.85;
 }
 
+
 /* =========================
-   FAVORI ACTUALITÉ
+   FLÈCHE SIDEBAR
    ========================= */
 
-.actualite-card {
-  position: relative;
-}
-
-.favori-button {
+.sidebar-toggle {
   position: absolute;
-  left: 25px;
-  bottom: 25px;
 
-  width: 42px;
-  height: 42px;
+  top: 18px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
 
   padding: 0;
+
   border: none;
   background: transparent;
-  cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 10;
 }
 
-.favori-button img {
+.sidebar-toggle img {
+  width: 28px;
+  height: 28px;
+
+  object-fit: contain;
+
+  opacity: 1;
+}
+
+
+/* =========================
+   SIDEBAR RÉDUITE
+   ========================= */
+
+.sidebar.sidebar-reduite {
+  width: 80px;
+}
+
+.sidebar.sidebar-reduite .sidebar-logo img {
+  display: none;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav {
+  padding: 70px 0 0;
+
+  align-items: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a {
+  justify-content: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a span {
+  display: none;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a img {
   width: 27px;
   height: 27px;
-  object-fit: contain;
 }
 
-.sidebar-visiteur {
-  padding: 25px 30px;
-  text-align: center;
+.sidebar.sidebar-reduite .sidebar-profile {
+  padding: 0;
+
+  justify-content: center;
 }
 
-.sidebar-visiteur p {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 25px;
+.sidebar.sidebar-reduite .sidebar-profile span {
+  display: none;
 }
 
-.btn-connexion-visiteur {
-  display: block;
-  padding: 13px 20px;
-  border-radius: 10px;
 
-  background: linear-gradient(#70d7ef, #080678);
+/* =========================
+   CONTENU SIDEBAR RÉDUITE
+   ========================= */
 
-  color: white;
-  text-decoration: none;
-  font-size: 17px;
-  font-weight: 700;
+.actualite-content.content-sidebar-reduite {
+  margin-left: 80px;
 
-  border: 1px solid rgba(255, 255, 255, 0.4);
-
-  transition: 0.25s;
-}
-
-.btn-connexion-visiteur:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
+  width: calc(100% - 80px);
 }

@@ -147,5 +147,9 @@ if (favori.typeContenu === 'FORMATION') {
 
 }
 
+sidebarReduite = false;
 
+toggleSidebar() {
+  this.sidebarReduite = !this.sidebarReduite;
+}
 }

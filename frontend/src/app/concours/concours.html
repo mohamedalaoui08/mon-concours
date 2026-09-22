@@ -8,90 +8,129 @@
        MENU LATÉRAL
        ========================= -->
 
-  <aside class="sidebar">
+  <aside
+    class="sidebar"
+    [class.sidebar-reduite]="sidebarReduite && estConnecte">
 
-  <div class="sidebar-logo">
-    <img src="Logo.png" alt="Mon Concours">
-  </div>
+    <!-- FLÈCHE ÉTUDIANT -->
+    <button
+      *ngIf="estConnecte"
+      class="sidebar-toggle"
+      (click)="toggleSidebar()">
 
-  <!-- SIDEBAR ETUDIANT -->
-  <ng-container *ngIf="estConnecte">
+      <img
+        [src]="sidebarReduite ? 'fleche-droite.png' : 'fleche-gauche.png'"
+        alt="Menu">
 
-    <nav class="sidebar-nav">
-      <a routerLink="/dashboard">
-        <img src="icon-accueil.png" alt="">
-        <span>Accueil</span>
-      </a>
+    </button>
 
-      <a routerLink="/concours" class="active">
-        <img src="icon-concours.png" alt="">
-        <span>Concours</span>
-      </a>
-
-      <a routerLink="/qcm">
-        <img src="icon-qcm.png" alt="">
-        <span>QCM</span>
-      </a>
-
-      <a routerLink="/formation">
-        <img src="icon-astuces.png" alt="">
-        <span>Formation</span>
-      </a>
-
-      <a routerLink="/exercice">
-        <img src="icon-exercices.png" alt="">
-        <span>Exercices</span>
-      </a>
-
-      <a routerLink="/actualite">
-        <img src="icon-ecoles.png" alt="">
-        <span>Écoles</span>
-      </a>
-    </nav>
-
-    <a routerLink="/profil" class="sidebar-profile">
-      <img src="icon-profil.png" alt="">
-      <span>Mon profil</span>
-    </a>
-
-  </ng-container>
-
-  <!-- SIDEBAR VISITEUR -->
-  <ng-container *ngIf="!estConnecte">
-
-    <div class="sidebar-visiteur">
-
-      <p>Préparez vos concours avec Mon Concours</p>
-
-      <a routerLink="/connexion" class="btn-connexion-visiteur">
-        Se connecter
-      </a>
-
+    <!-- LOGO -->
+    <div class="sidebar-logo">
+      <img src="Logo.png" alt="Mon Concours">
     </div>
 
-  </ng-container>
+    <!-- =========================
+         SIDEBAR ÉTUDIANT
+         ========================= -->
 
-</aside>
+    <ng-container *ngIf="estConnecte">
+
+      <nav class="sidebar-nav">
+
+        <a routerLink="/dashboard">
+          <img src="icon-accueil.png" alt="">
+          <span>Accueil</span>
+        </a>
+
+        <a routerLink="/concours" class="active">
+          <img src="icon-concours.png" alt="">
+          <span>Concours</span>
+        </a>
+
+        <a routerLink="/qcm">
+          <img src="icon-qcm.png" alt="">
+          <span>QCM</span>
+        </a>
+
+        <a routerLink="/formation">
+          <img src="icon-astuces.png" alt="">
+          <span>Formation</span>
+        </a>
+
+        <a routerLink="/exercice">
+          <img src="icon-exercices.png" alt="">
+          <span>Exercices</span>
+        </a>
+
+        <a routerLink="/actualite">
+          <img src="icon-ecoles.png" alt="">
+          <span>Écoles</span>
+        </a>
+
+      </nav>
+
+      <a routerLink="/profil" class="sidebar-profile">
+        <img src="icon-profil.png" alt="">
+        <span>Mon profil</span>
+      </a>
+
+    </ng-container>
+
+
+    <!-- =========================
+         SIDEBAR VISITEUR
+         ========================= -->
+
+    <ng-container *ngIf="!estConnecte">
+
+      <div class="sidebar-visiteur">
+
+        <p>Préparez vos concours avec Mon Concours</p>
+
+        <a
+          routerLink="/connexion"
+          class="btn-connexion-visiteur">
+          Se connecter
+        </a>
+
+      </div>
+
+    </ng-container>
+
+  </aside>
+
+
   <!-- =========================
        CONTENU PRINCIPAL
        ========================= -->
 
-  <main class="concours-content">
+  <main
+    class="concours-content"
+    [class.content-sidebar-reduite]="sidebarReduite && estConnecte">
 
     <!-- TITRE + FILTRES -->
+
     <div class="concours-header">
 
       <h1>Concours</h1>
-<div class="filtre-wrapper">
-      <select [(ngModel)]="ecoleSelectionnee"
-        (change)="filtrerParEcole()" >
-        <option value="">École</option>
-        <option>ENSA</option>
-        <option>ENSAM</option>
-        <option>ENA</option>
-      </select>
+
+      <div class="filtre-wrapper">
+
+        <select
+          [(ngModel)]="ecoleSelectionnee"
+          (change)="filtrerParEcole()">
+
+          <option value="">École</option>
+          <option>ENSA</option>
+          <option>ENSAM</option>
+          <option>ENA</option>
+
+        </select>
+
+      </div>
+
     </div>
-    </div>
+
 
     <!-- =========================
          LISTE DES CONCOURS
@@ -105,24 +144,31 @@
 
         <h3>{{ concoursItem.nom }}</h3>
 
-
-
       </div>
+
 
       <div class="concours-actions">
 
         <button
           class="pdf-button"
           (click)="telechargerPdf(concoursItem.id)">
+
           <img src="icon-pdf.png" alt="PDF">
+
         </button>
+
 
         <button
           class="favori-button"
           *ngIf="estConnecte"
           (click)="ajouterFavori(concoursItem)">
-           <img [src]="concoursItem.estFavori === true ? 'icon-favori-plein2.png' : 'icon-favori.png'"
-          alt="Favori">
+
+          <img
+            [src]="concoursItem.estFavori === true
+              ? 'icon-favori-plein2.png'
+              : 'icon-favori.png'"
+            alt="Favori">
+
         </button>
 
       </div>

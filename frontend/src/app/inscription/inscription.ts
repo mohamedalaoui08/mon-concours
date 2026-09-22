@@ -14,9 +14,8 @@ export class Inscription {
 
   private http = inject(HttpClient);
 
-  /* =========================
-     DONNÉES DU FORMULAIRE
-     ========================= */
+  offres: any[] = [];
+  offreSelectionneeId: number | null = null;
 
   demande = {
     nom: '',
@@ -26,23 +25,40 @@ export class Inscription {
     niveau: ''
   };
 
-
-  /* =========================
-     MESSAGE APRÈS ENVOI
-     ========================= */
-
   message = '';
 
-
-  /* =========================
-     ENVOYER LA DEMANDE
-     ========================= */
+  ngOnInit() {
+    this.http.get<any[]>(
+      'http://localhost:8080/offres-abonnement/actives'
+    ).subscribe({
+      next: (reponse) => {
+        this.offres = reponse;
+      },
+      error: (erreur) => {
+        console.log('Erreur chargement offres :', erreur);
+      }
+    });
+  }
 
   envoyerDemande() {
 
+    if (!this.offreSelectionneeId) {
+      this.message = 'Veuillez choisir un abonnement.';
+      return;
+    }
+
+const offreChoisie = this.offres.find(
+  offre => offre.id === this.offreSelectionneeId
+);
+
+const demandeAvecOffre = {
+  ...this.demande,
+  offreAbonnement: offreChoisie
+};
+
     this.http.post(
       'http://localhost:8080/demandes-inscription',
-      this.demande
+      demandeAvecOffre
     ).subscribe({
 
       next: () => {
@@ -57,6 +73,8 @@ export class Inscription {
           dateNaissance: '',
           niveau: ''
         };
+
+        this.offreSelectionneeId = null;
       },
 
       error: (erreur) => {

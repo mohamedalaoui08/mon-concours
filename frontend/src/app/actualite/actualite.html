@@ -3,81 +3,104 @@
   <!-- =========================
        SIDEBAR
        ========================= -->
-<aside class="sidebar">
 
-  <div class="sidebar-logo">
-    <img src="Logo.png" alt="Mon Concours">
-  </div>
+  <aside
+    class="sidebar"
+    [class.sidebar-reduite]="sidebarReduite && estConnecte">
 
-  <!-- SIDEBAR ETUDIANT -->
-  <ng-container *ngIf="estConnecte">
+    <!-- FLÈCHE ÉTUDIANT -->
+    <button
+      *ngIf="estConnecte"
+      class="sidebar-toggle"
+      (click)="toggleSidebar()">
 
-    <nav class="sidebar-nav">
+      <img
+        [src]="sidebarReduite ? 'fleche-droite.png' : 'fleche-gauche.png'"
+        alt="Menu">
 
-      <a routerLink="/dashboard">
-        <img src="icon-accueil.png" alt="">
-        <span>Accueil</span>
-      </a>
+    </button>
 
-      <a routerLink="/concours">
-        <img src="icon-concours.png" alt="">
-        <span>Concours</span>
-      </a>
-
-      <a routerLink="/qcm">
-        <img src="icon-qcm.png" alt="">
-        <span>QCM</span>
-      </a>
-
-      <a routerLink="/formation">
-        <img src="icon-astuces.png" alt="">
-        <span>Formation</span>
-      </a>
-
-      <a routerLink="/exercice">
-        <img src="icon-exercices.png" alt="">
-        <span>Exercices</span>
-      </a>
-
-      <a routerLink="/actualite" class="active">
-        <img src="icon-ecoles.png" alt="">
-        <span>Écoles</span>
-      </a>
-
-    </nav>
-
-    <a routerLink="/profil" class="sidebar-profile">
-      <img src="icon-profil.png" alt="">
-      <span>Mon profil</span>
-    </a>
-
-  </ng-container>
-
-  <!-- SIDEBAR VISITEUR -->
-  <ng-container *ngIf="!estConnecte">
-
-    <div class="sidebar-visiteur">
-
-      <p>Découvrez les dernières actualités des écoles</p>
-
-      <a routerLink="/connexion" class="btn-connexion-visiteur">
-        Se connecter
-      </a>
-
+    <!-- LOGO -->
+    <div class="sidebar-logo">
+      <img src="Logo.png" alt="Mon Concours">
     </div>
 
-  </ng-container>
+    <!-- SIDEBAR ETUDIANT -->
+    <ng-container *ngIf="estConnecte">
 
-</aside>
+      <nav class="sidebar-nav">
+
+        <a routerLink="/dashboard">
+          <img src="icon-accueil.png" alt="">
+          <span>Accueil</span>
+        </a>
+
+        <a routerLink="/concours">
+          <img src="icon-concours.png" alt="">
+          <span>Concours</span>
+        </a>
+
+        <a routerLink="/qcm">
+          <img src="icon-qcm.png" alt="">
+          <span>QCM</span>
+        </a>
+
+        <a routerLink="/formation">
+          <img src="icon-astuces.png" alt="">
+          <span>Formation</span>
+        </a>
+
+        <a routerLink="/exercice">
+          <img src="icon-exercices.png" alt="">
+          <span>Exercices</span>
+        </a>
+
+        <a routerLink="/actualite" class="active">
+          <img src="icon-ecoles.png" alt="">
+          <span>Écoles</span>
+        </a>
+
+      </nav>
+
+      <a routerLink="/profil" class="sidebar-profile">
+        <img src="icon-profil.png" alt="">
+        <span>Mon profil</span>
+      </a>
+
+    </ng-container>
+
+
+    <!-- SIDEBAR VISITEUR -->
+    <ng-container *ngIf="!estConnecte">
+
+      <div class="sidebar-visiteur">
+
+        <p>Découvrez les dernières actualités des écoles</p>
+
+        <a routerLink="/connexion" class="btn-connexion-visiteur">
+          Se connecter
+        </a>
+
+      </div>
+
+    </ng-container>
+
+  </aside>
+
 
   <!-- =========================
        CONTENU
        ========================= -->
-  <main class="actualite-content">
+
+  <main
+    class="actualite-content"
+    [class.content-sidebar-reduite]="sidebarReduite && estConnecte">
+
 
     <!-- =========================
          LISTE DES ACTUALITÉS
          ========================= -->
+
     <div *ngIf="!actualiteSelectionnee">
 
       <h1>Actualité des écoles</h1>
@@ -90,36 +113,39 @@
 
           <div class="actualite-card-top">
 
-<div class="actualite-infos">
+            <div class="actualite-infos">
 
-  <h3>{{ actualiteItem.ecole?.nom }}</h3>
+              <h3>{{ actualiteItem.ecole?.nom }}</h3>
 
-  <p class="ecole-description">
-    {{ actualiteItem.ecole?.description }}
-  </p>
+              <p class="ecole-description">
+                {{ actualiteItem.ecole?.description }}
+              </p>
 
-  <p class="actualite-titre">
-    {{ actualiteItem.titre }}
-  </p>
+              <p class="actualite-titre">
+                {{ actualiteItem.titre }}
+              </p>
 
-  <p class="actualite-date">
-    {{ actualiteItem.datePublication }}
-  </p>
+              <p class="actualite-date">
+                {{ actualiteItem.datePublication }}
+              </p>
 
-</div>
+            </div>
 
           </div>
+
+
           <button
-  class="favori-button"
-  (click)="ajouterFavori(actualiteItem)">
+            class="favori-button"
+            (click)="ajouterFavori(actualiteItem)">
 
-  <img
-    [src]="actualiteItem.estFavori === true
-      ? 'icon-favori-plein2.png'
-      : 'icon-favori.png'"
-    alt="Favori">
+            <img
+              [src]="actualiteItem.estFavori === true
+                ? 'icon-favori-plein2.png'
+                : 'icon-favori.png'"
+              alt="Favori">
 
-</button>
+          </button>
+
 
           <button
             class="afficher-button"
@@ -141,6 +167,7 @@
     <!-- =========================
          ACTUALITÉ SÉLECTIONNÉE
          ========================= -->
+
     <section
       *ngIf="actualiteSelectionnee"
       class="actualite-selectionnee">
@@ -148,9 +175,7 @@
       <button
         class="retour-button"
         (click)="fermerActualite()">
-
         ← Retour aux actualités
-
       </button>
 
       <h2>

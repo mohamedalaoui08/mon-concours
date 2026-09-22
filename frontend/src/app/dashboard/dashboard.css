@@ -16,7 +16,12 @@
 
 .sidebar {
   width: 240px;
-  min-height: 100vh;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
   background: #080678;
   color: white;
 
@@ -24,6 +29,9 @@
   flex-direction: column;
 
   box-sizing: border-box;
+  overflow: hidden;
+
+  transition: all 0.3s ease;
 }
 
 
@@ -37,6 +45,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  flex-shrink: 0;
 }
 
 .sidebar-logo img {
@@ -53,8 +63,10 @@
   display: flex;
   flex-direction: column;
 
-  padding: 0px 30px;
-  gap: 0px;
+  padding: 0 30px;
+  gap: 0;
+
+  flex: 1;
 }
 
 .sidebar-nav a {
@@ -73,43 +85,62 @@
   font-weight: 700;
 }
 
-.sidebar-nav a:hover {
-  color: white;
-}
-/* Au survol : l'icône devient aussi visible à 100% */
-.sidebar-nav a:hover img {
-  opacity: 1;
-}
-
+.sidebar-nav a:hover,
 .sidebar-nav a.active {
   color: white;
+}
+
+.sidebar-nav a img {
+  width: 28px;
+  height: 28px;
+
+  object-fit: contain;
+
+  opacity: 0.5;
+}
+
+.sidebar-nav a:hover img,
+.sidebar-nav a.active img {
+  opacity: 1;
 }
 
 
 /* =========================
    PROFIL EN BAS
    ========================= */
+
 .sidebar-profile {
   margin-top: auto;
+
   min-height: 85px;
+
   border-top: 1px solid white;
+
   display: flex;
   align-items: center;
+
   gap: 15px;
+
   padding: 0 30px;
 
   color: white;
+
   text-decoration: none;
 
   font-size: 17px;
   font-weight: 700;
+
   box-sizing: border-box;
+
   cursor: pointer;
+
+  flex-shrink: 0;
 }
 
 .sidebar-profile img {
   width: 32px;
   height: 32px;
+
   object-fit: contain;
 }
 
@@ -119,48 +150,36 @@
    ========================= */
 
 .dashboard-content {
-  flex: 1;
+  margin-left: 240px;
 
+  width: calc(100% - 240px);
   min-height: 100vh;
 
   padding: 60px 70px;
 
   box-sizing: border-box;
+
+  transition: all 0.3s ease;
 }
 
-
-/* =========================
-   ICÔNES DU MENU
-   ========================= */
-
-.sidebar-nav a img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-
-  /* Toutes les icônes sont moins visibles */
-  opacity: 0.5;
-}
-
-/* Accueil = icône active à 100 % */
-.sidebar-nav a.active img {
-  opacity: 1;
-}
-.sidebar-profile img {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-}
 
 /* =========================
    BANNIÈRE DE BIENVENUE
    ========================= */
 
 .welcome-card {
-  width: 99%;
+  width: 100%;
   height: 240px;
+  transform: translateX(-15px);
 
- background: radial-gradient(circle at 55% 50%, #0d50b4 0%, #0e2f7a 45%, #06133f 100%);
+  background:
+    radial-gradient(
+      circle at 55% 50%,
+      #0d50b4 0%,
+      #0e2f7a 45%,
+      #06133f 100%
+    );
+
   border-radius: 25px;
 
   display: flex;
@@ -168,10 +187,14 @@
   justify-content: space-between;
 
   padding: 35px 50px;
+
   margin: -10px 12px;
+
   box-sizing: border-box;
 
   overflow: hidden;
+
+  position: relative;
 }
 
 
@@ -181,6 +204,7 @@
 
 .welcome-text {
   width: 55%;
+
   color: white;
 }
 
@@ -202,13 +226,13 @@
 
 
 /* =========================
-   IMAGE
+   IMAGE DE BIENVENUE
    ========================= */
 
 .welcome-image {
   width: 40%;
   height: 100%;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -217,7 +241,612 @@
 .welcome-image img {
   max-width: 100%;
   max-height: 205px;
-  position: absolute; top: 85px; right: 77px;
+
+  position: absolute;
+  top: 35px;
+  right: 27px;
 
   object-fit: contain;
+}
+
+
+/* =========================
+   BOUTON FLÈCHE
+   ========================= */
+
+.sidebar-toggle {
+  position: absolute;
+
+  top: 18px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 10;
+}
+
+.sidebar-toggle img {
+  width: 28px;
+  height: 28px;
+
+  object-fit: contain;
+
+  opacity: 1;
+}
+
+
+/* =========================
+   SIDEBAR RÉDUITE
+   ========================= */
+
+.sidebar.sidebar-reduite {
+  width: 80px;
+}
+
+
+/* Cache le logo */
+
+.sidebar.sidebar-reduite .sidebar-logo img {
+  display: none;
+}
+
+
+/* Centre les éléments du menu */
+
+.sidebar.sidebar-reduite .sidebar-nav {
+  padding: 70px 0 0;
+
+  align-items: center;
+}
+
+
+/* Centre les icônes */
+
+.sidebar.sidebar-reduite .sidebar-nav a {
+  justify-content: center;
+}
+
+
+/* Cache les textes */
+
+.sidebar.sidebar-reduite .sidebar-nav a span {
+  display: none;
+}
+
+
+/* Taille des icônes réduites */
+
+.sidebar.sidebar-reduite .sidebar-nav a img {
+  width: 27px;
+  height: 27px;
+}
+
+
+/* Profil réduit */
+
+.sidebar.sidebar-reduite .sidebar-profile {
+  padding: 0;
+
+  justify-content: center;
+}
+
+
+/* Cache "Mon profil" */
+
+.sidebar.sidebar-reduite .sidebar-profile span {
+  display: none;
+}
+
+
+/* =========================
+   CONTENU QUAND SIDEBAR RÉDUITE
+   ========================= */
+
+.dashboard-content.content-sidebar-reduite {
+  margin-left: 80px;
+
+  width: calc(100% - 80px);
+}
+
+/* =========================
+   SECTIONS DASHBOARD
+   ========================= */
+
+.dashboard-section {
+  margin-top: 35px;
+}
+
+.dashboard-section h2 {
+  margin: 0;
+  color: #080678;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.dashboard-section p {
+  margin: 7px 0 0;
+  color: #666;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+
+/* =========================
+   STATISTIQUES
+   ========================= */
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.dashboard-stat-card {
+  min-height: 145px;
+
+  background: white;
+  border-radius: 12px;
+
+  padding: 22px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-stat-card > img {
+  width: 42px;
+  height: 42px;
+
+  padding: 9px;
+
+  box-sizing: border-box;
+
+  border-radius: 10px;
+
+  background: #eafcff;
+
+  object-fit: contain;
+}
+
+.dashboard-stat-card > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  color: #555;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.stat-value {
+  margin-top: 7px;
+
+  color: #080678;
+
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.dashboard-stat-card small {
+  margin-top: 3px;
+
+  color: #777;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   MA PROGRESSION
+   ========================= */
+
+.progression-total {
+  color: #080678;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.progression-bar {
+  width: 100%;
+  height: 14px;
+
+  background: #dfeff2;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.progression-bar-fill {
+  width: 65%;
+  height: 100%;
+
+  background: linear-gradient(90deg, #70d7ef, #080678);
+
+  border-radius: 20px;
+}
+
+.progression-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+
+  margin-top: 20px;
+}
+
+.progression-details div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 17px;
+
+  background: white;
+
+  border-radius: 9px;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.progression-details span {
+  color: #555;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.progression-details strong {
+  color: #080678;
+
+  font-size: 16px;
+}
+
+
+/* =========================
+   CONTINUER MA PRÉPARATION
+   ========================= */
+
+.continue-card {
+  min-height: 120px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 22px 25px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.continue-icon {
+  width: 55px;
+  height: 55px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #eafcff;
+}
+
+.continue-icon img {
+  width: 32px;
+  height: 32px;
+
+  object-fit: contain;
+}
+
+.continue-info {
+  flex: 1;
+}
+
+.continue-type {
+  color: #080678;
+
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.continue-info h3 {
+  margin: 5px 0 5px;
+
+  color: #222;
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.continue-info p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+.mini-progress {
+  width: 100%;
+  max-width: 400px;
+
+  height: 7px;
+
+  margin-top: 12px;
+
+  background: #e5eff1;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.mini-progress-fill {
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(90deg, #70d7ef, #080678);
+
+  border-radius: 10px;
+}
+
+.continue-button {
+  flex-shrink: 0;
+
+  border: none;
+  border-radius: 7px;
+
+  padding: 11px 20px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.continue-button:hover {
+  opacity: 0.85;
+}
+
+
+/* =========================
+   LIEN VOIR TOUT
+   ========================= */
+
+.voir-tout {
+  color: #080678;
+
+  text-decoration: none;
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.voir-tout:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================
+   FAVORIS
+   ========================= */
+
+.dashboard-favoris {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 22px;
+}
+
+.dashboard-favori-card {
+  min-height: 125px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 22px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.dashboard-favori-card:hover {
+  transform: translateY(-2px);
+}
+
+.dashboard-favori-card span {
+  color: #080678;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.dashboard-favori-card h3 {
+  margin: 8px 0 5px;
+
+  color: #222;
+
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.dashboard-favori-card p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   ACTUALITÉS
+   ========================= */
+
+.dashboard-actualites {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 22px;
+}
+
+.dashboard-actualite-card {
+  min-height: 125px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 22px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 18px;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.dashboard-actualite-card:hover {
+  transform: translateY(-2px);
+}
+
+.actualite-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #eafcff;
+}
+
+.actualite-icon img {
+  width: 28px;
+  height: 28px;
+
+  object-fit: contain;
+}
+
+.dashboard-actualite-card span {
+  color: #080678;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.dashboard-actualite-card h3 {
+  margin: 6px 0;
+
+  color: #222;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.dashboard-actualite-card p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1100px) {
+
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .progression-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 800px) {
+
+  .dashboard-stats,
+  .dashboard-favoris,
+  .dashboard-actualites {
+    grid-template-columns: 1fr;
+  }
+
+  .progression-details {
+    grid-template-columns: 1fr;
+  }
+
+  .continue-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .continue-button {
+    margin-left: 75px;
+  }
+
 }

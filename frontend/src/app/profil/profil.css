@@ -16,19 +16,37 @@
 
 .sidebar {
   width: 240px;
-  min-height: 100vh;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
   background: #080678;
   color: white;
+
   display: flex;
   flex-direction: column;
+
   box-sizing: border-box;
+  overflow: hidden;
+
+  transition: all 0.3s ease;
 }
+
+
+/* =========================
+   LOGO
+   ========================= */
 
 .sidebar-logo {
   height: 130px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  flex-shrink: 0;
 }
 
 .sidebar-logo img {
@@ -36,19 +54,32 @@
   height: auto;
 }
 
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
 .sidebar-nav {
   display: flex;
   flex-direction: column;
+
   padding: 0 30px;
+
+  flex: 1;
 }
 
 .sidebar-nav a {
   display: flex;
   align-items: center;
+
   gap: 14px;
+
   padding: 12px 0;
+
   color: #a7a7cc;
+
   text-decoration: none;
+
   font-size: 20px;
   font-weight: 700;
 }
@@ -61,7 +92,9 @@
 .sidebar-nav a img {
   width: 28px;
   height: 28px;
+
   object-fit: contain;
+
   opacity: 0.5;
 }
 
@@ -70,21 +103,37 @@
   opacity: 1;
 }
 
+
+/* =========================
+   PROFIL SIDEBAR
+   ========================= */
+
 .sidebar-profile {
   margin-top: auto;
+
   min-height: 85px;
+
   border-top: 1px solid white;
+
   display: flex;
   align-items: center;
+
   gap: 15px;
+
   padding: 0 30px;
+
   font-size: 17px;
   font-weight: 700;
+
+  flex-shrink: 0;
+
+  box-sizing: border-box;
 }
 
 .sidebar-profile img {
   width: 32px;
   height: 32px;
+
   object-fit: contain;
 }
 
@@ -98,21 +147,32 @@
    ========================= */
 
 .profil-content {
-  flex: 1;
+  margin-left: 240px;
+
+  width: calc(100% - 240px);
+  min-height: 100vh;
+
   padding: 35px 45px;
+
   box-sizing: border-box;
+
+  transition: all 0.3s ease;
 }
 
 .profil-content h1 {
   margin: 0 0 30px;
+
   font-size: 36px;
   font-weight: 800;
 }
 
 .profil-card {
   background: white;
+
   border-radius: 15px;
+
   padding: 35px;
+
   box-sizing: border-box;
 }
 
@@ -123,18 +183,23 @@
 
 .profil-section {
   padding-bottom: 35px;
+
   margin-bottom: 35px;
+
   border-bottom: 1px solid #d9e3e6;
 }
 
 .profil-section:last-child {
   border-bottom: none;
+
   margin-bottom: 0;
+
   padding-bottom: 0;
 }
 
 .profil-section h2 {
   margin: 0 0 25px;
+
   font-size: 25px;
   font-weight: 800;
 }
@@ -146,13 +211,16 @@
 
 .profil-grid {
   display: grid;
+
   grid-template-columns: repeat(2, 1fr);
+
   gap: 25px 30px;
 }
 
 .champ {
   display: flex;
   flex-direction: column;
+
   gap: 8px;
 }
 
@@ -163,11 +231,16 @@
 
 .champ input {
   height: 48px;
+
   border: 1px solid #b9c8ce;
   border-radius: 7px;
+
   padding: 0 15px;
+
   font-size: 17px;
+
   box-sizing: border-box;
+
   outline: none;
 }
 
@@ -177,6 +250,7 @@
 
 .champ input[readonly] {
   background: #f3f6f7;
+
   color: #777;
 }
 
@@ -191,6 +265,7 @@
 
 .profil-actions {
   margin-top: 30px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -201,21 +276,28 @@
 .delete-button {
   border: none;
   border-radius: 7px;
+
   font-size: 17px;
   font-weight: 800;
+
   cursor: pointer;
 }
 
 .save-button {
   padding: 12px 25px;
+
   background: linear-gradient(#70d7ef, #080678);
+
   color: white;
 }
 
 .logout-button {
   padding: 12px 25px;
+
   background: #eef1f2;
+
   color: #c52424;
+
   border: 1px solid #d7d7d7;
 }
 
@@ -232,25 +314,91 @@
 
 .favori-card {
   background: #f7fbfc;
+
   border: 1px solid #d9e3e6;
   border-radius: 10px;
+
   padding: 20px;
+
   margin-bottom: 15px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   cursor: pointer;
 }
 
 .favori-card p {
   margin: 5px 0;
+
   font-size: 16px;
 }
 
 .delete-button {
   padding: 10px 18px;
+
   background: #ffe5e5;
+
   color: #b91c1c;
+}
+
+
+/* =========================
+   ABONNEMENT
+   ========================= */
+
+.abonnement-profil {
+  background: white;
+
+  border-radius: 14px;
+
+  padding: 24px 28px;
+
+  margin-top: 18px;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.abonnement-profil h3 {
+  margin: 0 0 14px 0;
+
+  font-size: 24px;
+
+  color: #080678;
+}
+
+.abonnement-profil p {
+  margin: 7px 0;
+
+  font-size: 17px;
+
+  color: #333;
+}
+
+.abonnement-button {
+  display: inline-block;
+
+  margin-top: 15px;
+
+  padding: 11px 24px;
+
+  border-radius: 8px;
+
+  background: linear-gradient(#70d7ef, #080678);
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.abonnement-button:hover {
+  opacity: 0.9;
 }
 
 
@@ -260,22 +408,29 @@
 
 .resultats-grid {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
+
   gap: 20px;
 }
 
 .resultat-card {
   background: #f7fbfc;
+
   border: 1px solid #d9e3e6;
   border-radius: 10px;
+
   padding: 20px;
+
   text-align: center;
 }
 
 .resultat-card .score {
   margin: 0 0 8px;
+
   font-size: 28px;
   font-weight: 800;
+
   color: #080678;
 }
 
@@ -283,39 +438,90 @@
   margin: 0;
 }
 
-.abonnement-profil {
-  background: white;
-  border-radius: 14px;
-  padding: 24px 28px;
-  margin-top: 18px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-}
 
-.abonnement-profil h3 {
-  margin: 0 0 14px 0;
-  font-size: 24px;
-  color: #080678;
-}
+/* =========================
+   FLÈCHE SIDEBAR
+   ========================= */
 
-.abonnement-profil p {
-  margin: 7px 0;
-  font-size: 17px;
-  color: #333;
-}
+.sidebar-toggle {
+  position: absolute;
 
-.abonnement-button {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 11px 24px;
-  border-radius: 8px;
-  background: linear-gradient(#70d7ef, #080678);
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 700;
+  top: 18px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
+
+  z-index: 10;
 }
 
-.abonnement-button:hover {
-  opacity: 0.9;
+.sidebar-toggle img {
+  width: 28px;
+  height: 28px;
+
+  object-fit: contain;
+}
+
+
+/* =========================
+   SIDEBAR RÉDUITE
+   ========================= */
+
+.sidebar.sidebar-reduite {
+  width: 80px;
+}
+
+.sidebar.sidebar-reduite .sidebar-logo img {
+  display: none;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav {
+  padding: 70px 0 0;
+
+  align-items: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a {
+  justify-content: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a span {
+  display: none;
+}
+
+.sidebar.sidebar-reduite .sidebar-nav a img {
+  width: 27px;
+  height: 27px;
+}
+
+.sidebar.sidebar-reduite .sidebar-profile {
+  padding: 0;
+
+  justify-content: center;
+}
+
+.sidebar.sidebar-reduite .sidebar-profile span {
+  display: none;
+}
+
+
+/* =========================
+   CONTENU SIDEBAR RÉDUITE
+   ========================= */
+
+.profil-content.content-sidebar-reduite {
+  margin-left: 80px;
+
+  width: calc(100% - 80px);
 }

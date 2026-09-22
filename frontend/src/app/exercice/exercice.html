@@ -3,12 +3,28 @@
   <!-- =========================
        SIDEBAR
        ========================= -->
-  <aside class="sidebar">
 
+  <aside
+    class="sidebar"
+    [class.sidebar-reduite]="sidebarReduite">
+
+    <!-- FLÈCHE -->
+    <button
+      class="sidebar-toggle"
+      (click)="toggleSidebar()">
+
+      <img
+        [src]="sidebarReduite ? 'fleche-droite.png' : 'fleche-gauche.png'"
+        alt="Menu">
+
+    </button>
+
+    <!-- LOGO -->
     <div class="sidebar-logo">
       <img src="Logo.png" alt="Mon Concours">
     </div>
 
+    <!-- NAVIGATION -->
     <nav class="sidebar-nav">
 
       <a routerLink="/dashboard">
@@ -43,10 +59,11 @@
 
     </nav>
 
-<a routerLink="/profil" class="sidebar-profile">
-  <img src="icon-profil.png" alt="">
-  <span>Mon profil</span>
-</a>
+    <!-- PROFIL -->
+    <a routerLink="/profil" class="sidebar-profile">
+      <img src="icon-profil.png" alt="">
+      <span>Mon profil</span>
+    </a>
 
   </aside>
 
@@ -54,53 +71,62 @@
   <!-- =========================
        CONTENU
        ========================= -->
-  <main class="exercice-content">
 
-    <!-- =========================
-         HEADER
-         ========================= -->
-    <div class="exercice-header" *ngIf="!exerciceSelectionne">
+  <main
+    class="exercice-content"
+    [class.content-sidebar-reduite]="sidebarReduite">
+
+    <!-- HEADER -->
+    <div
+      class="exercice-header"
+      *ngIf="!exerciceSelectionne">
 
       <h1>Exercices</h1>
 
       <div class="filtre-wrapper">
- <select
-  [(ngModel)]="matiereSelectionnee"
-  (change)="filtrerParMatiere()">
 
-  <option value="">Matière</option>
-  <option value="Mathématiques">Mathématiques</option>
-  <option value="Physique">Physique</option>
-  <option value="Chimie">Chimie</option>
+        <select
+          [(ngModel)]="matiereSelectionnee"
+          (change)="filtrerParMatiere()">
 
-</select>
+          <option value="">Matière</option>
+          <option value="Mathématiques">Mathématiques</option>
+          <option value="Physique">Physique</option>
+          <option value="Chimie">Chimie</option>
+
+        </select>
+
       </div>
 
     </div>
 
+
+    <!-- ACCÈS REFUSÉ -->
     <div
-  *ngIf="accesExercicesRefuse && !exerciceSelectionne"
-  class="acces-refuse">
+      *ngIf="accesExercicesRefuse && !exerciceSelectionne"
+      class="acces-refuse">
 
-  <h2>Accès aux exercices non inclus</h2>
+      <h2>Accès aux exercices non inclus</h2>
 
-  <p>
-    Votre abonnement actuel ne permet pas d'accéder aux exercices.
-  </p>
+      <p>
+        Votre abonnement actuel ne permet pas d'accéder aux exercices.
+      </p>
 
-  <a routerLink="/abonnement">
-    Voir les offres d'abonnement
-  </a>
+      <a routerLink="/abonnement">
+        Voir les offres d'abonnement
+      </a>
 
-</div>
+    </div>
 
 
     <!-- =========================
          LISTE DES EXERCICES
          ========================= -->
+
     <div
-  class="exercice-list"
-  *ngIf="!exerciceSelectionne && !accesExercicesRefuse">
+      class="exercice-list"
+      *ngIf="!exerciceSelectionne && !accesExercicesRefuse">
+
       <div
         class="exercice-card"
         *ngFor="let exerciceItem of exercicesFiltres"
@@ -118,24 +144,26 @@
 
         </div>
 
-<div class="exercice-actions">
 
-  <button
-    class="favori-button"
-    (click)="$event.stopPropagation(); ajouterFavori(exerciceItem)">
+        <div class="exercice-actions">
 
-    <img
-      [src]="exerciceItem.estFavori === true
-        ? 'icon-favori-plein2.png'
-        : 'icon-favori.png'"
-      alt="Favori">
-  </button>
+          <button
+            class="favori-button"
+            (click)="$event.stopPropagation(); ajouterFavori(exerciceItem)">
 
-  <div class="exercice-open">
-    <img src="icon-ouvrir.png" alt="Ouvrir l'exercice">
-  </div>
+            <img
+              [src]="exerciceItem.estFavori === true
+                ? 'icon-favori-plein2.png'
+                : 'icon-favori.png'"
+              alt="Favori">
 
-</div>
+          </button>
+
+          <div class="exercice-open">
+            <img src="icon-ouvrir.png" alt="Ouvrir l'exercice">
+          </div>
+
+        </div>
 
       </div>
 
@@ -145,14 +173,17 @@
     <!-- =========================
          EXERCICE SÉLECTIONNÉ
          ========================= -->
+
     <section
       *ngIf="exerciceSelectionne"
       class="exercice-selectionne">
+
       <button
-      class="retour-button"
-    (click)="fermerExercice()">
-    ← Retour aux exercices
-    </button>
+        class="retour-button"
+        (click)="fermerExercice()">
+        ← Retour aux exercices
+      </button>
+
       <h2>
         {{ exerciceSelectionne.titre }}
       </h2>
